@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"binary_tree.h": "c",
+		"long.h": "c",
+		"tuple.h": "c",
+		"matrix.h": "c"
+	}
+}
