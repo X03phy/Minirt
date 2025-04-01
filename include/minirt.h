@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/03/31 16:32:17 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:10:43 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 # define MINIRT_H
 
 # include <stdlib.h>
+# include <math.h>
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
-# include "../libs/libft/inc/libft.h"
-# include "../libs/minilibx/mlx.h"
+# include "../libs/libft/include/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include "keycodes.h"
-# include "tuples.h"
-# include "matrices.h"
+# include "../libs/libft/include/tuple.h"
+# include "../libs/libft/include/matrix.h"
 # include "color.h"
 
 # define EPSILON 0.00001

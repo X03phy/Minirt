@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling.c                                          :+:      :+:    :+:   */
+/*   scaling_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 14:21:32 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 14:29:29 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:15:55 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*scaling(double x, double y, double z)
+t_matrice	*scaling_matrix(double x, double y, double z)
 {
 	t_matrice	*res;
 	res = get_identity_matrix();

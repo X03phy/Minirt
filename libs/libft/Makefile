@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/01 15:34:44 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/01 17:18:49 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,11 @@ SRC_MATRIX = creation/new_matrix.c \
 			 operations/minor_matrix.c \
 			 operations/mul_matrices.c \
 			 operations/mul_matrix_tuple.c \
+			 operations/rotation_matrix.c \
+			 operations/scaling_matrix.c \
+			 operations/shearing_matrix.c \
 			 operations/submatrix.c \
+			 operations/translation_matrix.c \
 			 operations/transpose_matrix.c \
 			 utils/clean_matrix.c \
 			 utils/print_matrix.c \

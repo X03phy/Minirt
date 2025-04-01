@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shearing.c                                         :+:      :+:    :+:   */
+/*   translation_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 15:21:12 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:24:03 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/01 14:11:50 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/01 17:15:12 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*shearing(double xy , double xz , double yx , double yz , double zx , double zy)
+t_matrice	*translation_matrix(double x, double y, double z)
 {
 	t_matrice	*res;
 
 	res = get_identity_matrix();
 	if (!res)
 		return (NULL);
-	res->matrice[0][1] = xy;
-	res->matrice[0][2] = xz;
-	res->matrice[1][0] = yx;
-	res->matrice[1][2] = yz;
-	res->matrice[2][0] = zx;
-	res->matrice[2][1] = zy;
+	res->matrice[0][3] = x;
+	res->matrice[1][3] = y;
+	res->matrice[2][3] = z;
 	return (res);
 }

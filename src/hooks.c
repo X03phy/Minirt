@@ -6,12 +6,12 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:40:12 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 14:09:22 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:28:24 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/matrix.h"
-
+#include "../include/minirt.h"
+#include "../libs/minilibx-linux/mlx.h"
 int	cross(t_config *config)
 {
 	clean_exit(config);

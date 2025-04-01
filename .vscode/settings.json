@@ -3,6 +3,8 @@
 		"binary_tree.h": "c",
 		"long.h": "c",
 		"tuple.h": "c",
-		"matrix.h": "c"
+		"matrix.h": "c",
+		"minirt.h": "c",
+		"stdbool.h": "c"
 	}
 }

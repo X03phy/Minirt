@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 10:54:35 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:22:29 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../include/minirt.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -53,7 +53,7 @@ int main(int ac, char **av)
 
 	t_tuple	p = new_tuple(1, 0, 0, POINT);
 	t_matrice	*transform = rotate_z(M_PI / 6);
-	t_matrice	*scale = scaling(100, 100, 0);
+	t_matrice	*scale = scaling_matrix(100, 100, 0);
 	t_tuple		tmp;
 	int	i = 0;
 	c->img.img = mlx_new_image(c->mlx, 1000, 1000);
@@ -62,13 +62,13 @@ int main(int ac, char **av)
 			&c->img.line_len, &c->img.endian);
 	while (i < 12)
 	{
-		p = mul_matrice_tuple(transform, p);
-		tmp = mul_matrice_tuple(scale, p);
+		p = mul_matrix_tuple(transform, p);
+		tmp = mul_matrix_tuple(scale, p);
 		my_mlx_pixel_put(&c->img, (int)tmp.x + 500, (int)tmp.y + 500, 0x00FFFF00);
 		i++;
 	}
-	clean_matrice(&transform);
-	clean_matrice(&scale);
+	clean_matrix(&transform);
+	clean_matrix(&scale);
 	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 	install_hooks(c);
 	mlx_loop(c->mlx);

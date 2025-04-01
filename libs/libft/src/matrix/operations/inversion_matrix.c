@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inversion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:37:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 10:51:56 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:14:04 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*inversion(t_matrice *m)
+t_matrice	*inversion_matrix(t_matrice *m)
 {
 	t_matrice	*result;
 	int			i;
