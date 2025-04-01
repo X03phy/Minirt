@@ -46,6 +46,13 @@ t_matrice	*mul_matrices(t_matrice *m1, t_matrice *m2);
 t_tuple		mul_matrix_tuple(t_matrice *m, t_tuple t);
 t_matrice	*submatrix(t_matrice *m, int row, int col);
 t_matrice	*transpose_matrix(t_matrice	*m);
+t_matrice	*inversion(t_matrice *m);
+t_matrice	*translation(double x, double y, double z);
+t_matrice	*scaling(double x, double y, double z);
+t_matrice	*rotate_x(double rad);
+t_matrice	*rotate_y(double rad);
+t_matrice	*rotate_z(double rad);
+t_matrice	*shearing(double xy , double xz , double yx , double yz , double zx , double zy);
 
 // Utils
 t_matrice	*clean_matrix(t_matrice **m);
