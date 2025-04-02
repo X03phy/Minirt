@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 14:52:56 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 15:42:43 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = MiniRT
 CC = cc
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -33,7 +33,11 @@ SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/cylinder.c \
 	  			minirt/parsing/plan.c \
 	  			minirt/parsing/sphere.c \
-				minirt/parsing/init_config.c
+	  			minirt/parsing/ambient.c \
+	  			minirt/parsing/camera.c \
+	  			minirt/parsing/light.c \
+				minirt/parsing/init_config.c \
+				minirt/parsing/print_config.c
 
 SRCTESTS = minirt/tests/circle.c \
 		   minirt/tests/eclairage.c

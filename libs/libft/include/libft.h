@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:49:35 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/01 17:07:14 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:37:46 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@
 # include "string.h"
 # include "tab.h"
 # include "tuple.h"
+# include "float.h"
+# include "color_code.h"
 
 #endif

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:45:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 11:47:20 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:25:23 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/int.h"
 #include <math.h>
 
-double	ft_atof(const char *nptr)
+double	ft_atod(const char *nptr)
 {
 	int		i;
 	int		j;
