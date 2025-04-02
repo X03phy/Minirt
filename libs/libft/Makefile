@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 14:41:25 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/02 11:49:43 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,8 +146,7 @@ OBJS_STRING = $(addprefix string/, $(SRC_STRING:.c=.o))
 
 SRC_TAB = ft_split_charset.c \
 		  ft_split.c \
-		  ft_tabdup.c \
-		  ft_tabsize.c
+		  ft_tabdup.c
 
 SRCS_TAB = $(addprefix tab/, $(SRC_TAB))
 OBJS_TAB = $(addprefix tab/, $(SRC_TAB:.c=.o))
