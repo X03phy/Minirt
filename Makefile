@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 12:30:31 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/02 14:52:56 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,13 +35,21 @@ SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/sphere.c \
 				minirt/parsing/init_config.c
 
-SRCTESTS = minirt/tests/circle.c
+SRCTESTS = minirt/tests/circle.c \
+		   minirt/tests/eclairage.c
+
+SRC_RAY = minirt/ray/ray_create.c \
+		  minirt/ray/ray_position.c \
+		  minirt/ray/ray_print.c \
+		  minirt/ray/ray_sphere_intersection.c \
+		  minirt/ray/ray_transform.c
 
 SRCUTILS = minirt/mlx_utils/utils1.c
 
 SRC = 	$(SRCPARSING) \
 		$(SRCTESTS) \
 		$(SRCUTILS) \
+		$(SRC_RAY) \
 		main.c \
 	  	hooks.c \
 

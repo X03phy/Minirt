@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:06:06 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:43:27 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:43:49 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ double		matrix_determinant(t_matrix *m);
 t_matrix	*matrix_identity(void);
 t_matrix	*matrix_inverse(t_matrix *m);
 double		matrix_minor(t_matrix *m, int row, int col);
-t_matrix	*matrix_multiply(t_matrix *m1, t_matrix *m2);
 t_tuple		matrix_multiply_tuple(t_matrix *m, t_tuple t);
-t_matrix	*matrix_submatrix(t_matrix *m, int row, int col);
-t_matrix	*matrix_transpose(t_matrix	*m);
-t_matrix	*matrix_translate(double x, double y, double z);
-t_matrix	*matrix_scale(double x, double y, double z);
+t_matrix	*matrix_multiply(t_matrix *m1, t_matrix *m2);
 t_matrix	*matrix_rotate_x(double rad);
 t_matrix	*matrix_rotate_y(double rad);
 t_matrix	*matrix_rotate_z(double rad);
+t_matrix	*matrix_scale(double x, double y, double z);
 t_matrix	*matrix_shear(double xy , double xz , double yx , double yz , double zx , double zy);
+t_matrix	*matrix_submatrix(t_matrix *m, int row, int col);
+t_matrix	*matrix_translate(double x, double y, double z);
+t_matrix	*matrix_transpose(t_matrix	*m);
 
 // Utils
+bool		matrix_equal(t_matrix *m1, t_matrix *m2);
 t_matrix	*matrix_free(t_matrix **m);
 void		matrix_print(t_matrix *m);
-bool		matrix_equal(t_matrix *m1, t_matrix *m2);
 
 #endif // !MATRIX_H

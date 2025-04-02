@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:32:31 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:48:02 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	install_hooks(t_config *config);
 void	tuples_tests(void);
 void	tuples_proj_test(void);
 void	test_circle(t_config *c);
+void	test_eclairage(t_config *c);
 
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);

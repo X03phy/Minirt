@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ray.c                                        :+:      :+:    :+:   */
+/*   ray_position.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:12:29 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:26:21 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 17:16:38 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 14:08:18 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../include/minirt.h"
+#include "../../../include/ray.h"
 
-void	ray_print(t_ray r)
+t_tuple	ray_position(t_ray r, double distance)
 {
-	printf("RAY:\norigin = ");
-	print_tuples(&r.origin);
-	printf("direction = ");
-	print_tuples(&r.direction);
+	return (
+		add_tuples(r.origin, mul_tuple(r.direction, distance))
+	);
 }

@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 11:49:43 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/02 14:54:55 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,6 +159,7 @@ SRC_TUPLE = creation/new_neg_tuple.c \
 			operations/add_tuples.c \
 			operations/cross_tuples.c \
 			operations/div_tuple.c \
+			operations/dot_tuples.c \
 			operations/mag_tuple.c \
 			operations/mul_tuple.c \
 			operations/normalize_tuple.c \
@@ -175,17 +176,17 @@ SRC_MATRIX = creation/matrix_new.c \
 			 operations/matrix_identity.c \
 			 operations/matrix_inverse.c \
 			 operations/matrix_minor.c \
-			 operations/matrix_multiply.c \
 			 operations/matrix_multiply_tuple.c \
-			 operations/rotation_matrix.c \
+			 operations/matrix_multiply.c \
+			 operations/matrix_rotate.c \
 			 operations/matrix_scale.c \
 			 operations/matrix_shear.c \
 			 operations/matrix_submatrix.c \
 			 operations/matrix_translate.c \
 			 operations/matrix_transpose.c \
+			 utils/matrix_equal.c \
 			 utils/matrix_free.c \
-			 utils/matrix_print.c \
-			 utils/matrix_equal.c
+			 utils/matrix_print.c
 
 SRCS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX))
 OBJS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX:.c=.o))

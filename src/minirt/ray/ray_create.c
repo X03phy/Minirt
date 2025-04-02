@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position.c                                         :+:      :+:    :+:   */
+/*   ray_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:16:38 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:18:02 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/01 17:11:01 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 14:51:03 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../include/minirt.h"
+#include "../../../include/ray.h"
 
-t_tuple	ray_position(t_ray r, double distance)
+t_ray	ray_create(t_tuple origin, t_tuple direction)
 {
-	return (
-		add_tuples(r.origin, mul_tuple(r.direction, distance))
-	);
+	t_ray	r;
+
+	r.origin = origin;
+	r.direction = direction;
+	return r;
 }
