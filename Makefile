@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/01 17:28:11 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/01 17:43:00 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,17 +40,19 @@ all: $(NAME)
 bonus: all
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
+	@mkdir -p $(OBJ_PATH)
+	@echo "Compiling " $<
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
 
 $(LIBFT):
-	make -sC $(LIBFT_PATH)
+	@make -sC $(LIBFT_PATH)
 
 $(MINILIBX):
-	make -sC $(MINILIBX_PATH)
+	@make -sC $(MINILIBX_PATH)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS)
-	$(CC) $(CFLAGS) -o $@  $(OBJS) $(LIBFT) $(MINILIBX) $(INCLUDE) -lm -lX11 -lXext
+	@$(CC) $(CFLAGS) -o $@  $(OBJS) $(LIBFT) $(MINILIBX) $(INCLUDE) -lm -lX11 -lXext
+	@echo "Creating" $(NAME)
 
 clean:
 	make -sC $(LIBFT_PATH) clean
