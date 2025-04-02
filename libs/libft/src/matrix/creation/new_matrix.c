@@ -6,13 +6,13 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:13:29 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:25:41 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:43:27 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*fill_matrix(t_matrice *m, double *values)
+t_matrix	*fill_matrix(t_matrix *m, double *values)
 {
 	int	i;
 	int	j;
@@ -24,30 +24,30 @@ t_matrice	*fill_matrix(t_matrice *m, double *values)
 	{
 		j = -1;
 		while (++j < m->col)
-			m->matrice[i][j] = *values++;
+			m->matrix[i][j] = *values++;
 	}
 	return (m);
 }
 
-t_matrice	*new_matrix(int row, int col, double *value)
+t_matrix	*matrix_new(int row, int col, double *value)
 {
-	t_matrice	*m;
+	t_matrix	*m;
 	int			i;
 
-	m = ft_calloc(sizeof(t_matrice), 1);
+	m = ft_calloc(sizeof(t_matrix), 1);
 	if (!m)
 		return (NULL);
 	m->col = col;
 	m->row = row;
-	m->matrice = ft_calloc(sizeof(double *), row);
-	if (!m->matrice)
+	m->matrix = ft_calloc(sizeof(double *), row);
+	if (!m->matrix)
 		return (ft_sfree((void **)&m), NULL);
 	i = -1;
 	while (++i < row)
 	{
-		m->matrice[i] = ft_calloc(sizeof(double), col);
-		if (!m->matrice[i])
-			return (clean_matrix(&m));
+		m->matrix[i] = ft_calloc(sizeof(double), col);
+		if (!m->matrix[i])
+			return (matrix_free(&m));
 	}
 	if (value)
 		return (fill_matrix(m, value));

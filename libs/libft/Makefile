@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/01 17:18:49 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 12:39:16 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,23 +163,23 @@ SRC_TUPLE = creation/new_neg_tuple.c \
 SRCS_TUPLE = $(addprefix tuple/, $(SRC_TUPLE))
 OBJS_TUPLE = $(addprefix tuple/, $(SRC_TUPLE:.c=.o))
 
-SRC_MATRIX = creation/new_matrix.c \
-			 operations/cofactor_matrix.c \
-			 operations/det_matrix.c \
-			 operations/get_identity_matrix.c \
-			 operations/inversion_matrix.c \
-			 operations/minor_matrix.c \
-			 operations/mul_matrices.c \
-			 operations/mul_matrix_tuple.c \
+SRC_MATRIX = creation/matrix_new.c \
+			 operations/matrix_cofactor.c \
+			 operations/matrix_determinant.c \
+			 operations/matrix_identity.c \
+			 operations/matrix_inverse.c \
+			 operations/matrix_minor.c \
+			 operations/matrix_multiply.c \
+			 operations/matrix_multiply_tuple.c \
 			 operations/rotation_matrix.c \
-			 operations/scaling_matrix.c \
-			 operations/shearing_matrix.c \
-			 operations/submatrix.c \
-			 operations/translation_matrix.c \
-			 operations/transpose_matrix.c \
-			 utils/clean_matrix.c \
-			 utils/print_matrix.c \
-			 utils/equal_matrices.c
+			 operations/matrix_scale.c \
+			 operations/matrix_shear.c \
+			 operations/matrix_submatrix.c \
+			 operations/matrix_translate.c \
+			 operations/matrix_transpose.c \
+			 utils/matrix_free.c \
+			 utils/matrix_print.c \
+			 utils/matrix_equal.c
 
 SRCS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX))
 OBJS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX:.c=.o))

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minor_matrix.c                                     :+:      :+:    :+:   */
+/*   print_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 17:44:12 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:41:13 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 17:12:29 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 12:26:21 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/matrix.h"
+#include "../../includes/minirt.h"
 
-double	matrix_minor(t_matrix *m, int row, int col)
+void	ray_print(t_ray r)
 {
-	t_matrix	*sub;
-	double		det;
-
-	if (!m)
-		return (0);
-	sub = matrix_submatrix(m, row, col);
-	det = matrix_determinant(sub);
-	matrix_free(&sub);
-	return (det);
+	printf("RAY:\norigin = ");
+	print_tuples(&r.origin);
+	printf("direction = ");
+	print_tuples(&r.direction);
 }

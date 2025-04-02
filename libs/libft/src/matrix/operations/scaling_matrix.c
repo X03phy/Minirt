@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling_matrix.c                                   :+:      :+:    :+:   */
+/*   matrix_scale.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 14:21:32 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:15:55 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:33:42 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*scaling_matrix(double x, double y, double z)
+t_matrix	*matrix_scale(double x, double y, double z)
 {
-	t_matrice	*res;
-	res = get_identity_matrix();
+	t_matrix	*res;
+	res = matrix_identity();
 	if (!res)
 		return (NULL);
-	res->matrice[0][0] = x;
-	res->matrice[1][1] = y;
-	res->matrice[2][2] = z;
+	res->matrix[0][0] = x;
+	res->matrix[1][1] = y;
+	res->matrix[2][2] = z;
 	return (res);
 }

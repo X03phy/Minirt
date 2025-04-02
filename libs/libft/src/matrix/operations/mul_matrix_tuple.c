@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mul_matrix_tuple.c                                 :+:      :+:    :+:   */
+/*   matrix_multiply_tuple.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,19 @@
 
 #include "../../../include/matrix.h"
 
-t_tuple	mul_matrix_tuple(t_matrice *m, t_tuple t)
+t_tuple	matrix_multiply_tuple(t_matrix *m, t_tuple t)
 {
 	t_tuple		result;
-	t_matrice	*m2;
-	t_matrice	*m3;
+	t_matrix	*m2;
+	t_matrix	*m3;
 
 	if (!m)
 		new_tuple(0, 0, 0, POINT);
-	m2 = new_matrix(m->row, 1, (double []){t.x, t.y, t.z, t.w});
-	m3 = mul_matrices(m, m2);
-	result = new_tuple(m3->matrice[0][0],
-			m3->matrice[1][0],
-			m3->matrice[2][0],
-			m3->matrice[3][0]);
-	return (clean_matrix(&m2), clean_matrix(&m3), result);
+	m2 = matrix_new(m->row, 1, (double []){t.x, t.y, t.z, t.w});
+	m3 = matrix_multiply(m, m2);
+	result = new_tuple(m3->matrix[0][0],
+			m3->matrix[1][0],
+			m3->matrix[2][0],
+			m3->matrix[3][0]);
+	return (matrix_free(&m2), matrix_free(&m3), result);
 }
