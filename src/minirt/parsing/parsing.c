@@ -6,12 +6,12 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:49:51 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:17:37 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:28:20 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
-#include <unistd.h>
+
 
 bool	parse_line(t_config *c, char *line)
 {
@@ -26,9 +26,6 @@ bool	parse_line(t_config *c, char *line)
 	splited = ft_split_charset(trimmed, WHITESPACES",");
 	if (!splited || splited[0] == NULL)
 		return (ft_dfree(&splited), free(trimmed), false);
-	for (int i = 0; splited[i]; i++) {
-		printf("[%s] ", splited[i]);
-	}
 	printf("\n");
 	return (true);
 }
@@ -57,3 +54,4 @@ bool	parse_scene(t_config *c, char *filepath)
 	}
 	return (close(scenefd), false);
 }
+
