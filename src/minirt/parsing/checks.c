@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 23:43:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 19:25:17 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/02 19:07:13 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 19:08:22 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "../../../include/minirt.h"
 
-typedef struct s_color
+bool	check_config(t_config *config)
 {
-	double r;
-	double g;
-	double b;
-}	t_color;
+	if (!config)
+		return (false);
+	if (!config->ambient_light || !config->camera || !config->light)
+		return (false);
 
-#endif
+	return (true);
+}

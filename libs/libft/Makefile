@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 17:50:34 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 18:15:17 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,6 +166,7 @@ SRC_TUPLE = creation/new_neg_tuple.c \
 			operations/normalize_tuple.c \
 			operations/sub_tuples.c \
 			operations/normal_at.c \
+			operations/normal_at_transform.c \
 			operations/reflect.c \
 			utils/equal_tuples.c \
 			utils/print_tuple.c

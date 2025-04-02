@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:45:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 16:25:23 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:15:16 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ double	ft_atod(const char *nptr)
 	flag = 1;
 	while (nptr[i] && nptr[i] != '.')
 		i++;
-	i++;
+	if (nptr[i] != '\0')
+		i++;
 	while (nptr[i] && ft_isdigit(nptr[i]))
 	{
 		val = (val * 10) + (nptr[i] - '0');

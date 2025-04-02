@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 15:53:42 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:06:29 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	print_cylinder(t_cylinder *c)
 	print_tuple(&c->center);
 	printf("Orientation : \n\t");
 	print_tuple(&c->orientation_vec);
-	printf("\tDiameter : %f Height : %f Color : 0x%X\n", c->diameter, c->diameter, c->color);
+	printf("\tDiameter : %f Height : %f Color : 0x%X\n", c->diameter, c->height, c->color);
 
 }
 
@@ -75,11 +75,11 @@ void	print_objects(t_list *obj)
 	while (obj)
 	{
 		if (((t_object_node *)obj->content)->type == PLANE)
-			print_plane(obj->content);
+			print_plane(((t_object_node *)obj->content)->obj);
 		else if (((t_object_node *)obj->content)->type == SPHERE)
-			print_sphere(obj->content);
+			print_sphere(((t_object_node *)obj->content)->obj);
 		else if (((t_object_node *)obj->content)->type == CYLINDER)
-			print_cylinder(obj->content);
+			print_cylinder(((t_object_node *)obj->content)->obj);
 		else
 			printf(RED"WRONG obj type.\n"RESET);
 		obj = obj->next;

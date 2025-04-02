@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 16:43:30 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 19:09:41 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/camera.c \
 	  			minirt/parsing/light.c \
 				minirt/parsing/init_config.c \
-				minirt/parsing/print_config.c
+				minirt/parsing/print_config.c \
+				minirt/parsing/checks.c
 
 SRCTESTS = minirt/tests/circle.c \
 		   minirt/tests/eclairage.c
@@ -46,7 +47,8 @@ SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \
 		  minirt/ray/ray_print.c \
 		  minirt/ray/ray_sphere_intersection.c \
-		  minirt/ray/ray_transform.c
+		  minirt/ray/ray_transform.c \
+		  minirt/ray/lighting.c
 
 SRCUTILS = minirt/mlx_utils/utils1.c
 

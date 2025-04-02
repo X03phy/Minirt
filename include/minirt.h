@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 16:41:57 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:33:26 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_light
 	t_tuple	position;
 	double	brightness;
 	int		color;
+	t_tuple	tcolor;
 }	t_light;
 
 
@@ -123,5 +124,6 @@ bool	parse_light(t_config *c, char **infos);
 bool	parse_camera(t_config *c, char **infos);
 
 void	print_config(t_config *c);
+bool	check_config(t_config *config);
 
 #endif
