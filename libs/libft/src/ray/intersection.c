@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:27:14 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:50:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:36:55 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 #include <math.h>
 
-double	*intersection(t_sphere s, t_ray r)
+double	*intersection_ray_with_sphere(t_sphere s, t_ray r)
 {
 	double	*inter;
 	double	a;

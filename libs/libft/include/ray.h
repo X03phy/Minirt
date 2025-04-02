@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:09:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:47:02 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:29:13 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "tuples.h"
+# include "tuple.h"
 # include "sphere.h"
 
 typedef struct s_ray
@@ -21,8 +21,6 @@ typedef struct s_ray
 	t_tuple	origin;
 	t_tuple	direction;
 }	t_ray;
-
-
 
 void	print_ray(t_ray r);
 t_ray	create_ray(t_tuple origin, t_tuple direction);

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:45:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:56:30 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:28:29 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPHERE_H
 # define SPHERE_H
 
-# include "tuples.h"
+# include "tuple.h"
 
 typedef struct s_sphere
 {
