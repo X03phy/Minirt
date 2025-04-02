@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:54:49 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 09:59:14 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:59:47 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECTS_H
 
 # include "../libs/libft/include/tuple.h"
+# include "minirt.h"
 
 typedef struct s_sphere
 {
@@ -37,5 +38,11 @@ typedef struct s_cylinder
 	double	height;
 	int		color;
 }	t_cylinder;
+
+typedef struct s_intersection
+{
+	double			t;
+	t_object_node		*object;
+}	t_intersection;
 
 #endif

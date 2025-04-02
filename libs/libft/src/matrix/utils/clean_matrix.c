@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_matrix.c                                     :+:      :+:    :+:   */
+/*   matrix_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../../../include/matrix.h"
 
-t_matrice	*clean_matrix(t_matrice **m)
+t_matrix	*matrix_free(t_matrix **m)
 {
 	int	j;
 
@@ -21,10 +21,10 @@ t_matrice	*clean_matrix(t_matrice **m)
 	j = 0;
 	while (j < (*m)->row)
 	{
-		ft_sfree((void **)&(*m)->matrice[j]);
+		ft_sfree((void **)&(*m)->matrix[j]);
 		j++;
 	}
-	ft_sfree((void **)&(*m)->matrice);
+	ft_sfree((void **)&(*m)->matrix);
 	free(*m);
 	return (NULL);
 }

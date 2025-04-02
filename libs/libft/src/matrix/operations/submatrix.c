@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   submatrix.c                                        :+:      :+:    :+:   */
+/*   matrix_submatrix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:20:34 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:31:03 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:32:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*submatrix(t_matrice *m, int row, int col)
+t_matrix	*matrix_submatrix(t_matrix *m, int row, int col)
 {
-	t_matrice	*res;
+	t_matrix	*res;
 	int			i;
 	int			j;
 	int			mi;
@@ -25,8 +25,8 @@ t_matrice	*submatrix(t_matrice *m, int row, int col)
 	if (m->row != m->col)
 		return (NULL);
 	if (m->col == 1 && m->row == 1)
-		return (new_matrix(1, 1, &m->matrice[0][0]));
-	res = new_matrix(m->row - 1, m->col - 1, NULL);
+		return (matrix_new(1, 1, &m->matrix[0][0]));
+	res = matrix_new(m->row - 1, m->col - 1, NULL);
 	if (!res)
 		return (NULL);
 	i = -1;
@@ -41,7 +41,7 @@ t_matrice	*submatrix(t_matrice *m, int row, int col)
 		{
 			if (mj == col)
 				mj++;
-			res->matrice[i][j] = m->matrice[mi][mj];
+			res->matrix[i][j] = m->matrix[mi][mj];
 			mj++;
 		}
 		mi++;

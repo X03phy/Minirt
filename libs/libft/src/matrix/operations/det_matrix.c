@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   det_matrix.c                                       :+:      :+:    :+:   */
+/*   matrix_determinant.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,34 +12,34 @@
 
 #include "../../../include/matrix.h"
 
-double	det_matrix(t_matrice *m)
+double	matrix_determinant(t_matrix *m)
 {
 	int			j;
 	double		det;
-	t_matrice	*sub;
+	t_matrix	*sub;
 	double		subdet;
 
 	if (!m || m->row != m->col)
 		return (0);
 	if (m->row == 1)
-		return (m->matrice[0][0]);
+		return (m->matrix[0][0]);
 	if (m->row == 2)
-		return (m->matrice[0][0] * m->matrice[1][1]
-			- m->matrice[0][1] * m->matrice[1][0]);
+		return (m->matrix[0][0] * m->matrix[1][1]
+			- m->matrix[0][1] * m->matrix[1][0]);
 	det = 0;
 	j = -1;
 	// Expansion par cofacteurs sur la première ligne (ligne 0)
 	while (++j < m->col)
 	{
-		// On crée la sous-matrice en retirant la ligne 0 et la colonne j
-		sub = submatrix(m, 0, j);
-		// Calcul récursif du déterminant de la sous-matrice
-		subdet = det_matrix(sub);
+		// On crée la sous-matrix en retirant la ligne 0 et la colonne j
+		sub = matrix_submatrix(m, 0, j);
+		// Calcul récursif du déterminant de la sous-matrix
+		subdet = matrix_determinant(sub);
 		if (j % 2 == 0)
-			det += m->matrice[0][j] * subdet;
+			det += m->matrix[0][j] * subdet;
 		else
-			det += -1 * m->matrice[0][j] * subdet;
-		clean_matrix(&sub);
+			det += -1 * m->matrix[0][j] * subdet;
+		matrix_free(&sub);
 	}
 	return (det);
 }

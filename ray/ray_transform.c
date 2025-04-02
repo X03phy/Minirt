@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ray.c                                        :+:      :+:    :+:   */
+/*   ray_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:12:29 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:14:04 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/02 12:19:40 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/02 12:25:21 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+# include "ray.h"
 
-void	print_ray(t_ray r)
+t_ray	ray_transform(t_ray r, t_matrix *m)
 {
-	printf("RAY:\norigin = ");
-	print_tuples(&r.origin);
-	printf("direction = ");
-	print_tuples(&r.direction);
+	t_ray	new_ray;
+
+	new_ray.origin = matrix_multiply_tuple(m, r.origin);
+	new_ray.direction = matrix_multiply_tuple(m, r.direction);
+	return (new_ray);
 }
