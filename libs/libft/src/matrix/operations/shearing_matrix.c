@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shearing_matrix.c                                  :+:      :+:    :+:   */
+/*   matrix_shear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:21:12 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:15:51 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:33:42 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*shearing_matrix(double xy , double xz , double yx , double yz , double zx , double zy)
+t_matrix	*matrix_shear(double xy , double xz , double yx , double yz , double zx , double zy)
 {
-	t_matrice	*res;
+	t_matrix	*res;
 
-	res = get_identity_matrix();
+	res = matrix_identity();
 	if (!res)
 		return (NULL);
-	res->matrice[0][1] = xy;
-	res->matrice[0][2] = xz;
-	res->matrice[1][0] = yx;
-	res->matrice[1][2] = yz;
-	res->matrice[2][0] = zx;
-	res->matrice[2][1] = zy;
+	res->matrix[0][1] = xy;
+	res->matrix[0][2] = xz;
+	res->matrix[1][0] = yx;
+	res->matrix[1][2] = yz;
+	res->matrix[2][0] = zx;
+	res->matrix[2][1] = zy;
 	return (res);
 }

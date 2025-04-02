@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:33:52 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 14:21:47 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:43:27 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	num_digit(double n)
 	return (digit);
 }
 
-bool	get_max(t_matrice *m, double *max)
+bool	get_max(t_matrix *m, double *max)
 {
 	double	tmpmax;
 	double	tmpmin;
@@ -39,17 +39,17 @@ bool	get_max(t_matrice *m, double *max)
 	if (!m || !max)
 		return (false);
 	i = -1;
-	tmpmax = m->matrice[0][0];
+	tmpmax = m->matrix[0][0];
 	tmpmin = tmpmax;
 	while (++i < m->row)
 	{
 		j = -1;
 		while (++j < m->col)
 		{
-			if (m->matrice[i][j] > tmpmax)
-				tmpmax = m->matrice[i][j];
-			if (m->matrice[i][j] < tmpmin)
-				tmpmin = m->matrice[i][j];
+			if (m->matrix[i][j] > tmpmax)
+				tmpmax = m->matrix[i][j];
+			if (m->matrix[i][j] < tmpmin)
+				tmpmin = m->matrix[i][j];
 		}
 	}
 	*max = tmpmax;
@@ -68,7 +68,7 @@ void	print_element(double value, int max_digit)
 		printf(" ");
 }
 
-void	print_matrix(t_matrice *m)
+void	matrix_print(t_matrix *m)
 {
 	int		i;
 	int		j;
@@ -76,7 +76,7 @@ void	print_matrix(t_matrice *m)
 
 	if (!m)
 		return ;
-	printf("Matrice[%d][%d] ([row][col]):\n", m->row, m->col);
+	printf("matrix[%d][%d] ([row][col]):\n", m->row, m->col);
 	i = -1;
 	if (!get_max(m, &max))
 		return ;
@@ -85,7 +85,7 @@ void	print_matrix(t_matrice *m)
 		j = -1;
 		while (++j < m->col)
 		{
-			print_element(m->matrice[i][j], num_digit(max));
+			print_element(m->matrix[i][j], num_digit(max));
 		}
 		printf("|\n");
 	}

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creation.c                                         :+:      :+:    :+:   */
+/*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:11:01 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 18:39:41 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/02 12:08:34 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../include/minirt.h"
+#include "../../../include/objects.h"
+#include "../../../libs/minilibx-linux/mlx.h"
 
-t_ray	create_ray(t_tuple origin, t_tuple direction)
+void	intersections()
 {
-	t_ray	r;
 
-	r.origin = origin;
-	r.direction = direction;
-	return r;
+}
+
+void	test_intersections(void)
+{
+	t_sphere	s;
+	t_intersection i1 = {1, &s};
+	t_intersection i2 = {2, &s};
+	t_intersection *xs = intersections();
 }

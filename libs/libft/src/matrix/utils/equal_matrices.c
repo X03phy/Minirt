@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equal_matrices.c                                   :+:      :+:    :+:   */
+/*   matrix_equal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../../../include/matrix.h"
 
-bool	equal_matrices(t_matrice *m1, t_matrice *m2)
+bool	matrix_equal(t_matrix *m1, t_matrix *m2)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,7 @@ bool	equal_matrices(t_matrice *m1, t_matrice *m2)
 	{
 		j = -1;
 		while (j++ < m1->col)
-			if (m1->matrice[i][j] != m2->matrice[i][j])
+			if (m1->matrix[i][j] != m2->matrix[i][j])
 				return (false);
 	}
 	return (true);

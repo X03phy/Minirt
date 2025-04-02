@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minor_matrix.c                                     :+:      :+:    :+:   */
+/*   create_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 17:44:12 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:41:13 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 17:11:01 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 12:26:52 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/matrix.h"
+#include "../../includes/minirt.h"
 
-double	matrix_minor(t_matrix *m, int row, int col)
+t_ray	ray_create(t_tuple origin, t_tuple direction)
 {
-	t_matrix	*sub;
-	double		det;
+	t_ray	r;
 
-	if (!m)
-		return (0);
-	sub = matrix_submatrix(m, row, col);
-	det = matrix_determinant(sub);
-	matrix_free(&sub);
-	return (det);
+	r.origin = origin;
+	r.direction = direction;
+	return r;
 }

@@ -6,21 +6,21 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:58:24 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:31:22 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:43:27 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*transpose_matrix(t_matrice	*m)
+t_matrix	*matrix_transpose(t_matrix	*m)
 {
 	int			i;
 	int			j;
-	t_matrice	*res;
+	t_matrix	*res;
 
 	if (!m)
 		return (NULL);
-	res = new_matrix(m->col, m->row, NULL);
+	res = matrix_new(m->col, m->row, NULL);
 	if (!res)
 		return (NULL);
 	i = -1;
@@ -29,7 +29,7 @@ t_matrice	*transpose_matrix(t_matrice	*m)
 		j = -1;
 		while (++j < res->col)
 		{
-			res->matrice[i][j] = m->matrice[j][i];
+			res->matrix[i][j] = m->matrix[j][i];
 		}
 	}
 	return (res);

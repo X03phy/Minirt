@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mul_matrices.c                                     :+:      :+:    :+:   */
+/*   matrix_multiply.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 11:58:03 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:29:24 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:32:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/matrix.h"
 
-t_matrice	*mul_matrices(t_matrice *m1, t_matrice *m2)
+t_matrix	*matrix_multiply(t_matrix *m1, t_matrix *m2)
 {
-	t_matrice	*m3;
+	t_matrix	*m3;
 	int			i;
 	int			j;
 	int			k;
 
 	if (!m1 || !m2)
 		return (NULL);
-	m3 = new_matrix(m1->row, m2->col, NULL);
+	m3 = matrix_new(m1->row, m2->col, NULL);
 	if (!m3)
 		return (NULL);
 	i = -1;
@@ -32,7 +32,7 @@ t_matrice	*mul_matrices(t_matrice *m1, t_matrice *m2)
 		{
 			k = -1;
 			while (++k < m1->col)
-				m3->matrice[i][j] += m1->matrice[i][k] * m2->matrice[k][j];
+				m3->matrix[i][j] += m1->matrix[i][k] * m2->matrix[k][j];
 		}
 	}
 	return (m3);
