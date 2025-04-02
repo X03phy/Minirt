@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 11:47:04 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/03/28 16:22:07 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 10:12:27 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include "char.h"
 # include <stdbool.h>
+
+#define WHITESPACES " \n\t\v\f\r"
 
 bool	ft_str_charset(char *str, char *charset);
 char	*ft_strchr(const char *s, int c);
