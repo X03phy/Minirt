@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:45:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 09:39:35 by ebonutto         ###   ########.fr       */
+/*   Created: 2024/11/18 08:56:18 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/01/14 19:01:07 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "get_next_line.h"
 
-# include "tuple.h"
-
-typedef struct s_sphere
+int	ft_isline(char *str)
 {
-	t_tuple	center;
-	double	radius;
-}	t_sphere;
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}

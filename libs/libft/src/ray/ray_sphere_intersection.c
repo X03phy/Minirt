@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersection.c                                     :+:      :+:    :+:   */
+/*   ray_sphere_intersection.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:27:14 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 17:50:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:40:57 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../include/minirt.h"
 #include <math.h>
 
-double	*intersection(t_sphere s, t_ray r)
+double	*ray_sphere_intersection(t_sphere s, t_ray r)
 {
 	double	*inter;
 	double	a;
@@ -29,7 +29,7 @@ double	*intersection(t_sphere s, t_ray r)
 
 	a = dot_tuple(r.direction, r.direction);
 	b = 2 * dot_tuple(r.direction, sphere_to_ray);
-	c = dot_tuple(sphere_to_ray, sphere_to_ray) - 1;
+	c = dot_tuple(sphere_to_ray, sphere_to_ray) - pow(s.radius, 2.0);
 	discriminant = pow(b, 2.0) - (4 * a * c);
 
 	if (discriminant < 0)
