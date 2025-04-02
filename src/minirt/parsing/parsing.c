@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
+#include <unistd.h>
 
 bool	parse_line(t_config *c, char *line)
 {
@@ -29,6 +30,7 @@ bool	parse_line(t_config *c, char *line)
 		printf("[%s] ", splited[i]);
 	}
 	printf("\n");
+	return (true);
 }
 
 bool	parse_scene(t_config *c, char *filepath)
@@ -43,12 +45,15 @@ bool	parse_scene(t_config *c, char *filepath)
 	scenefd = open(filepath, O_RDONLY);
 	if (scenefd == -1)
 		return (false);
-	tmp = get_next_line(scenefd);
+	if (get_next_line(scenefd, &tmp) != 0)
+		return (close(scenefd), false);
 	while (tmp != NULL)
 	{
 		if (!parse_line(c, tmp))
 			return (free(tmp), false);
 		ft_sfree((void **)&tmp);
-		tmp = get_next_line(scenefd);
+		if (get_next_line(scenefd, &tmp) != 0)
+			return (close(scenefd), false);
 	}
+	return (close(scenefd), false);
 }

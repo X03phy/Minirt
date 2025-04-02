@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "libft.h"
+# include "../../libft/include/libft.h"
 
 # define ERROR_CODE 42
 

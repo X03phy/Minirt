@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:17:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:18:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:23:24 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 bool	parse_sphere(t_config *c, char **infos)
 {
+	(void)c;
+	(void)infos;
 	return (true);
 }
