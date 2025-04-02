@@ -6,11 +6,11 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 15:42:43 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/02 16:43:30 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = MiniRT
+NAME = minirt
 CC = cc
 CFLAGS = -Werror -Wextra -Wall -g
 

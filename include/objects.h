@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:54:49 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 11:59:47 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:41:50 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,5 @@ typedef struct s_cylinder
 	double	height;
 	int		color;
 }	t_cylinder;
-
-typedef struct s_intersection
-{
-	double			t;
-	t_object_node		*object;
-}	t_intersection;
 
 #endif

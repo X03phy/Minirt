@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 16:22:36 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:34:37 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	test_eclairage(t_config *c)
 			xs = ray_sphere_intersection(s, r);
 			if (xs)
 			{
-				my_mlx_pixel_put(&c->img, x, y, 0x00FF0000);
+				my_mlx_pixel_put(&c->img, x, y, 0x000000FF);
 				free(xs);
 			}
 		}

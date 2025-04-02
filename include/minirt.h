@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 15:42:24 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:41:57 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@ typedef struct s_config
 	t_light			*light;
 	t_list			*objects_list;
 }	t_config;
+
+typedef struct s_intersection
+{
+	double			t;
+	t_object_node		*object;
+}	t_intersection;
+
 
 void	clean_exit(t_config *config);
 void	install_hooks(t_config *config);
