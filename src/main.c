@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 11:26:38 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:19:18 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,19 @@ void	clean_exit(t_config *config)
 			mlx_destroy_display(config->mlx);
 			free(config->mlx);
 		}
+		free(config->ambient_light);
+		free(config->light);
+		free(config->camera);
 		free(config);
 	}
 	exit(0);
+}
+
+void	ft_help(char *message)
+{
+	printf("Error\n");
+	if (message)
+		printf("%s\n", message);
 }
 
 int main(int ac, char **av)
@@ -36,9 +46,13 @@ int main(int ac, char **av)
 	if (!c)
 		return (EXIT_FAILURE);
 
-	test_circle(c);
+	if (ac != 2)
+		return (ft_help("Invalid number of arguments."), EXIT_FAILURE);
+	// test_circle(c);
+	parse_scene(c, av[1]);
 
 	clean_exit(c);
-	return (0 * ac * (long)av);
+	return (EXIT_SUCCESS);
+	(void)av;
 }
 

@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 12:39:16 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 11:49:43 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,12 @@ SRC_INT = ft_atoi.c \
 
 SRCS_INT = $(addprefix int/, $(SRC_INT))
 OBJS_INT = $(addprefix int/, $(SRC_INT:.c=.o))
+
+
+SRC_FLOAT = ft_atod.c
+
+SRCS_FLOAT = $(addprefix float/, $(SRC_FLOAT))
+OBJS_FLOAT = $(addprefix float/, $(SRC_FLOAT:.c=.o))
 
 SRC_LINKED_LIST = ft_lstadd_back.c \
 				  ft_lstadd_front.c \
@@ -184,8 +190,8 @@ SRC_MATRIX = creation/matrix_new.c \
 SRCS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX))
 OBJS_MATRIX = $(addprefix matrix/, $(SRC_MATRIX:.c=.o))
 
-SRC = $(addprefix $(SRC_PATH), $(SRCS_BINARY_TREE) $(SRCS_CHAR) $(SRCS_DOUBLE_LINKED_LIST) $(SRCS_FD) $(SRCS_INT) $(SRCS_LINKED_LIST) $(SRCS_LONG) $(SRCS_MY_MATH) $(SRCS_MEMORY) $(SRCS_SAFE) $(SRCS_STRING) $(SRCS_TAB) $(SRCS_TUPLE) $(SRCS_MATRIX))
-OBJ = $(addprefix $(OBJ_PATH), $(OBJS_BINARY_TREE) $(OBJS_CHAR) $(OBJS_DOUBLE_LINKED_LIST) $(OBJS_FD) $(OBJS_INT) $(OBJS_LINKED_LIST) $(OBJS_LONG) $(OBJS_MY_MATH) $(OBJS_MEMORY) $(OBJS_SAFE) $(OBJS_STRING) $(OBJS_TAB) $(OBJS_TUPLE) $(OBJS_MATRIX))
+SRC = $(addprefix $(SRC_PATH), $(SRCS_BINARY_TREE) $(SRCS_CHAR) $(SRCS_DOUBLE_LINKED_LIST) $(SRCS_FD) $(SRCS_INT) $(SRCS_FLOAT) $(SRCS_LINKED_LIST) $(SRCS_LONG) $(SRCS_MY_MATH) $(SRCS_MEMORY) $(SRCS_SAFE) $(SRCS_STRING) $(SRCS_TAB) $(SRCS_TUPLE) $(SRCS_MATRIX))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJS_BINARY_TREE) $(OBJS_CHAR) $(OBJS_DOUBLE_LINKED_LIST) $(OBJS_FD) $(OBJS_INT) $(OBJS_FLOAT) $(OBJS_LINKED_LIST) $(OBJS_LONG) $(OBJS_MY_MATH) $(OBJS_MEMORY) $(OBJS_SAFE) $(OBJS_STRING) $(OBJS_TAB) $(OBJS_TUPLE) $(OBJS_MATRIX))
 
 all: $(NAME)
 

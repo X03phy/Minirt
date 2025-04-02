@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 11:26:33 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:32:31 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_config
-{
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
-	t_list	*objects_list;
-}	t_config;
-
 typedef enum e_object_type
 {
 	SPHERE,
@@ -61,6 +53,38 @@ typedef struct s_object_node
 	void			*obj;
 }	t_object_node;
 
+typedef struct s_ambient_light
+{
+	double	ratio;
+	int		color;
+}	t_ambient_light;
+
+typedef struct s_camera
+{
+	t_tuple	position;
+	t_tuple	orientation_vec;
+	int		fov;
+}	t_camera;
+
+typedef struct s_light
+{
+	t_tuple	position;
+	double	brightness;
+	int		color;
+}	t_light;
+
+typedef struct s_config
+{
+	void			*mlx;
+	void			*mlx_win;
+	t_img			img;
+	char			**parsing_types;
+	t_ambient_light	*ambient_light;
+	t_camera		*camera;
+	t_light			*light;
+	t_list			*objects_list;
+}	t_config;
+
 void	clean_exit(t_config *config);
 void	install_hooks(t_config *config);
 
@@ -71,6 +95,9 @@ void	test_circle(t_config *c);
 
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+
+// init
+t_config	*init_config(void);
 
 // parsing
 bool	parse_scene(t_config *c, char *filepath);
