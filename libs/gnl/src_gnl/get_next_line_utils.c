@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:09:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:26:05 by ebonutto         ###   ########.fr       */
+/*   Created: 2024/11/18 08:56:18 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/01/14 19:01:07 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "get_next_line.h"
 
-# include "tuple.h"
-# include "sphere.h"
-
-typedef struct s_ray
+int	ft_isline(char *str)
 {
-	t_tuple	origin;
-	t_tuple	direction;
-}	t_ray;
+	int	i;
 
-void	print_ray(t_ray r);
-t_ray	create_ray(t_tuple origin, t_tuple direction);
-t_tuple	ray_position(t_ray r, double distance);
-double	*ray_sphere_intersection(t_sphere s, t_ray r);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
