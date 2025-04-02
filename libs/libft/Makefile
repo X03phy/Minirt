@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 14:54:55 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/02 17:50:34 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,7 +146,8 @@ OBJS_STRING = $(addprefix string/, $(SRC_STRING:.c=.o))
 
 SRC_TAB = ft_split_charset.c \
 		  ft_split.c \
-		  ft_tabdup.c
+		  ft_tabdup.c \
+		  ft_tabsize.c
 
 SRCS_TAB = $(addprefix tab/, $(SRC_TAB))
 OBJS_TAB = $(addprefix tab/, $(SRC_TAB:.c=.o))
@@ -164,6 +165,8 @@ SRC_TUPLE = creation/new_neg_tuple.c \
 			operations/mul_tuple.c \
 			operations/normalize_tuple.c \
 			operations/sub_tuples.c \
+			operations/normal_at.c \
+			operations/reflect.c \
 			utils/equal_tuples.c \
 			utils/print_tuple.c
 

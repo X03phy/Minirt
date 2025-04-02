@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:46:23 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:23:51 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:50:14 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ double	mag_tuple(t_tuple a);
 t_tuple	mul_tuple(t_tuple a, double factor);
 t_tuple	normalize_tuple(t_tuple a);
 t_tuple	sub_tuples(t_tuple a, t_tuple b);
+t_tuple normal_at(t_tuple p1, t_tuple p2);
+t_tuple	reflect(t_tuple in, t_tuple normal);
 
 // Utils
 bool	equal_tuples(double a, double b);
