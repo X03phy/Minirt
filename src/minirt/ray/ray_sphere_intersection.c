@@ -6,11 +6,13 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:27:14 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:25:52 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:57:43 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "../../../include/objects.h"
+#include "../../../include/minirt.h"
+#include "../../../include/ray.h"
 #include <math.h>
 
 double	*ray_sphere_intersection(t_sphere s, t_ray r)
@@ -27,16 +29,15 @@ double	*ray_sphere_intersection(t_sphere s, t_ray r)
 	if (!inter)
 		return (NULL);
 
-	a = dot_tuple(r.direction, r.direction);
-	b = 2 * dot_tuple(r.direction, sphere_to_ray);
-	c = dot_tuple(sphere_to_ray, sphere_to_ray) - pow(s.radius, 2.0);
+	a = dot_tuples(r.direction, r.direction);
+	b = 2 * dot_tuples(r.direction, sphere_to_ray);
+	c = dot_tuples(sphere_to_ray, sphere_to_ray) - pow(s.radius, 2.0);
 	discriminant = pow(b, 2.0) - (4 * a * c);
 
 	if (discriminant < 0)
 	{
 		return (free(inter), NULL);
 	}
-
 	inter[0] = (-b - sqrt(discriminant)) / (2 * a);
 	inter[1] = (-b + sqrt(discriminant)) / (2 * a);
 	return (inter);
