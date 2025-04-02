@@ -26,7 +26,7 @@ bool	parse_line(t_config *c, char *line)
 	splited = ft_split_charset(trimmed, WHITESPACES",");
 	if (!splited || splited[0] == NULL)
 		return (ft_dfree(&splited), free(trimmed), false);
-	printf("\n");
+
 	return (true);
 }
 

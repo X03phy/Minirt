@@ -96,6 +96,9 @@ void	test_circle(t_config *c);
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
+// init
+t_config	*init_config(void);
+
 // parsing
 bool	parse_scene(t_config *c, char *filepath);
 

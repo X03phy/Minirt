@@ -32,7 +32,8 @@ GNL = $(GNL_PATH)/gnl.a
 SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/cylinder.c \
 	  			minirt/parsing/plan.c \
-	  			minirt/parsing/sphere.c
+	  			minirt/parsing/sphere.c \
+				minirt/parsing/init_config.c
 
 SRCTESTS = minirt/tests/circle.c
 

@@ -19,9 +19,5 @@ t_config	*init_config(void)
 	c = ft_calloc(sizeof(t_config), 1);
 	if (!c)
 		return (NULL);
-
-	c->parsing_types = ft_calloc(sizeof(char *), 1);
-
-
 	return (c);
 }
