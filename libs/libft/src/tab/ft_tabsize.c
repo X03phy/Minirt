@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float.h                                            :+:      :+:    :+:   */
+/*   ft_tabsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 12:39:09 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 14:44:05 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/02 14:18:32 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 14:19:37 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLOAT_H
-# define FLOAT_H
+#include "../../include/tab.h"
 
-double	ft_atod(const char *nptr);
-#endif
+int	ft_tabsize(char **tab)
+{
+	int	i;
+
+	if (!tab)
+		return (-1);
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}

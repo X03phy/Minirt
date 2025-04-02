@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:38:01 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 13:34:42 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:20:41 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*ft_add_word(char *str, char *charset, int *j)
 
 	i = 0;
 	current_word_len = 0;
+	word = NULL;
 	while (ft_is_char_in_charset(str[*j], charset))
 		(*j)++;
 	while (!ft_is_char_in_charset(str[*j + current_word_len], charset)

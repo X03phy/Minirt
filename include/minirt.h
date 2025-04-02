@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:32:31 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:42:24 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@
 # include "../libs/libft/include/tuple.h"
 # include "../libs/libft/include/matrix.h"
 # include "color.h"
+# include "objects.h"
 
 # define EPSILON 0.00001
 # define PI 3.145926
+# define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0"
+# define SCENE_TYPE_NUM 6
 
 typedef struct s_img
 {
@@ -73,12 +76,15 @@ typedef struct s_light
 	int		color;
 }	t_light;
 
+
+typedef bool (*parsefunc)(void *, char **);
+
 typedef struct s_config
 {
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
-	char			**parsing_types;
+	parsefunc		*funcs;
 	t_ambient_light	*ambient_light;
 	t_camera		*camera;
 	t_light			*light;
@@ -101,5 +107,13 @@ t_config	*init_config(void);
 
 // parsing
 bool	parse_scene(t_config *c, char *filepath);
+bool	parse_sphere(t_config *c, char **infos);
+bool	parse_plan(t_config *c, char **infos);
+bool	parse_cylinder(t_config *c, char **infos);
+bool	parse_ambient(t_config *c, char **infos);
+bool	parse_light(t_config *c, char **infos);
+bool	parse_camera(t_config *c, char **infos);
+
+void	print_config(t_config *c);
 
 #endif
