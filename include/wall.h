@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersections.c                                    :+:      :+:    :+:   */
+/*   wall.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 12:08:34 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/02 14:03:12 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/02 14:07:22 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minirt.h"
-#include "../../../include/objects.h"
-#include "../../../libs/minilibx-linux/mlx.h"
+#ifndef WALL_H
+# define WALL_H
 
-void	intersections()
+typedef struct s_wall
 {
+	int	x;
+	int	y;
+	int	z;
+	int	size;
+}	t_wall;
 
-}
-
-void	test_intersections(void)
-{
-	t_sphere	s;
-	t_intersection i1 = {1, &s};
-	t_intersection i2 = {2, &s};
-	t_intersection *xs = intersections();
-}
+#endif

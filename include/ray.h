@@ -6,15 +6,15 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:09:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:26:05 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:12:28 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "tuple.h"
-# include "sphere.h"
+# include "../libs/libft/include/libft.h"
+# include "objects.h"
 
 typedef struct s_ray
 {
@@ -22,9 +22,10 @@ typedef struct s_ray
 	t_tuple	direction;
 }	t_ray;
 
-void	print_ray(t_ray r);
-t_ray	create_ray(t_tuple origin, t_tuple direction);
+void	ray_print(t_ray r);
+t_ray	ray_create(t_tuple origin, t_tuple direction);
 t_tuple	ray_position(t_ray r, double distance);
 double	*ray_sphere_intersection(t_sphere s, t_ray r);
+t_ray	ray_transform(t_ray r, t_matrix *m);
 
 #endif

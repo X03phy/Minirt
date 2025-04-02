@@ -98,6 +98,7 @@ void	install_hooks(t_config *config);
 void	tuples_tests(void);
 void	tuples_proj_test(void);
 void	test_circle(t_config *c);
+void	test_eclairage(t_config *c);
 
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);

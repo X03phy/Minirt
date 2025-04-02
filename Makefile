@@ -39,13 +39,21 @@ SRCPARSING =	minirt/parsing/parsing.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c
 
-SRCTESTS = minirt/tests/circle.c
+SRCTESTS = minirt/tests/circle.c \
+		   minirt/tests/eclairage.c
+
+SRC_RAY = minirt/ray/ray_create.c \
+		  minirt/ray/ray_position.c \
+		  minirt/ray/ray_print.c \
+		  minirt/ray/ray_sphere_intersection.c \
+		  minirt/ray/ray_transform.c
 
 SRCUTILS = minirt/mlx_utils/utils1.c
 
 SRC = 	$(SRCPARSING) \
 		$(SRCTESTS) \
 		$(SRCUTILS) \
+		$(SRC_RAY) \
 		main.c \
 	  	hooks.c \
 

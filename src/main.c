@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
 /*   Updated: 2025/04/02 15:42:55 by maecarva         ###   ########.fr       */
@@ -47,11 +47,12 @@ int main(int ac, char **av)
 	t_config	*c = init_config();
 	if (!c)
 		return (EXIT_FAILURE);
-
-	if (ac != 2)
-		return (ft_help("Invalid number of arguments."), EXIT_FAILURE);
-	parse_scene(c, av[1]);
-	print_config(c);
+	(void)ac;
+	// if (ac != 2)
+	// 	return (ft_help("Invalid number of arguments."), EXIT_FAILURE);
+	// test_circle(c);
+	test_eclairage(c);
+	// parse_scene(c, av[1]);
 
 	clean_exit(c);
 	return (EXIT_SUCCESS);
