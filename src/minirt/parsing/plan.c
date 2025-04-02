@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:19:11 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:23:26 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 bool	parse_plan(t_config *c, char **infos)
 {
+	(void)c;
+	(void)infos;
 	return (true);
 }

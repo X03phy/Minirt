@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:02:51 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/02 11:26:33 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <math.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <unistd.h>
 # include "../libs/libft/include/libft.h"
+# include "../libs/gnl/include_gnl/get_next_line.h"
 # include "../libs/minilibx-linux/mlx.h"
 # include "keycodes.h"
 # include "../libs/libft/include/tuple.h"
@@ -65,5 +67,12 @@ void	install_hooks(t_config *config);
 // tests
 void	tuples_tests(void);
 void	tuples_proj_test(void);
+void	test_circle(t_config *c);
+
+// utils
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+
+// parsing
+bool	parse_scene(t_config *c, char *filepath);
 
 #endif

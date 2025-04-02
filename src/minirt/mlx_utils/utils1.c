@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 17:45:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 10:26:20 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/02 11:18:55 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/02 11:19:12 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "../../../include/minirt.h"
 
-# include "tuple.h"
-
-typedef struct s_sphere
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
-	t_tuple	center;
-	double	radius;
-}	t_sphere;
+	char	*dst;
 
-#endif
+	dst = data->addr + (y * data->line_len + x * (data->bits_per_pixels / 8));
+	*(unsigned int *)dst = color;
+}
