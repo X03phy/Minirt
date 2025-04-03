@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:27:14 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 15:57:43 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:04:53 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ double	*ray_sphere_intersection(t_sphere s, t_ray r)
 	double	c;
 	double	discriminant;
 
-	t_tuple	sphere_to_ray = sub_tuples(r.origin, s.center);
+	t_tuple	sphere_to_ray = tuple_substitute(r.origin, s.center);
 
 	inter = ft_calloc(sizeof(double), 2);
 	if (!inter)
 		return (NULL);
 
-	a = dot_tuples(r.direction, r.direction);
-	b = 2 * dot_tuples(r.direction, sphere_to_ray);
-	c = dot_tuples(sphere_to_ray, sphere_to_ray) - pow(s.radius, 2.0);
+	a = vector_dot(r.direction, r.direction);
+	b = 2 * vector_dot(r.direction, sphere_to_ray);
+	c = vector_dot(sphere_to_ray, sphere_to_ray) - pow(s.radius, 2.0);
 	discriminant = pow(b, 2.0) - (4 * a * c);
 
 	if (discriminant < 0)

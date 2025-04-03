@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 17:50:34 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/03 15:00:27 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,23 +152,23 @@ SRC_TAB = ft_split_charset.c \
 SRCS_TAB = $(addprefix tab/, $(SRC_TAB))
 OBJS_TAB = $(addprefix tab/, $(SRC_TAB:.c=.o))
 
-SRC_TUPLE = creation/new_neg_tuple.c \
-			creation/new_point.c \
-			creation/new_tuple_ptr.c \
-			creation/new_tuple.c \
-			creation/new_vec.c \
-			operations/add_tuples.c \
-			operations/cross_tuples.c \
-			operations/div_tuple.c \
-			operations/dot_tuples.c \
-			operations/mag_tuple.c \
-			operations/mul_tuple.c \
-			operations/normalize_tuple.c \
-			operations/sub_tuples.c \
-			operations/normal_at.c \
-			operations/reflect.c \
-			utils/equal_tuples.c \
-			utils/print_tuple.c
+SRC_TUPLE = creation/point_create.c \
+			creation/tuple_create.c \
+			creation/tuple_negate.c \
+			creation/tuple_new.c \
+			creation/vector_create.c \
+			operations/tuple_add.c \
+			operations/tuple_divide.c \
+			operations/tuple_multiply.c \
+			operations/tuple_substitute.c \
+			operations/vector_cross_product.c \
+			operations/vector_dot.c \
+			operations/vector_magnitude.c \
+			operations/vector_normal_at.c \
+			operations/vector_normalize.c \
+			operations/vector_reflect.c \
+			utils/tuple_equal.c \
+			utils/tuple_print.c
 
 SRCS_TUPLE = $(addprefix tuple/, $(SRC_TUPLE))
 OBJS_TUPLE = $(addprefix tuple/, $(SRC_TUPLE:.c=.o))

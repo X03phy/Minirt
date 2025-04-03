@@ -19,10 +19,10 @@ t_tuple	matrix_multiply_tuple(t_matrix *m, t_tuple t)
 	t_matrix	*m3;
 
 	if (!m)
-		new_tuple(0, 0, 0, POINT);
+		tuple_create(0, 0, 0, POINT);
 	m2 = matrix_new(m->row, 1, (double []){t.x, t.y, t.z, t.w});
 	m3 = matrix_multiply(m, m2);
-	result = new_tuple(m3->matrix[0][0],
+	result = tuple_create(m3->matrix[0][0],
 			m3->matrix[1][0],
 			m3->matrix[2][0],
 			m3->matrix[3][0]);

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tuple.c                                      :+:      :+:    :+:   */
+/*   vector_cross_product.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:54:09 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/01 14:01:53 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:49:09 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/03 13:40:06 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-void	print_tuple(t_tuple *tuple)
+t_tuple	vector_cross_product(t_tuple a, t_tuple b)
 {
-	if (!tuple)
-		return ;
-	if (tuple->w == 1)
-		printf("POINT { x: %f, y: %f, z: %f, w: %d }\n",
-			tuple->x, tuple->y, tuple->z, tuple->w);
-	else if (tuple->w == 0)
-		printf("VEC { x: %f, y: %f, z: %f, w: %d }\n",
-			tuple->x, tuple->y, tuple->z, tuple->w);
-	else
-		printf("UNKNOWN { x: %f, y: %f, z: %f, w: %d }\n",
-			tuple->x, tuple->y, tuple->z, tuple->w);
+	return (
+		tuple_create(
+			(a.y * b.z) - (a.z * b.y),
+			(a.z * b.x) - (a.x * b.z),
+			(a.x * b.y) - (a.y * b.x),
+			VEC
+		)
+	);
 }

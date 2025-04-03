@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:16:38 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 14:08:18 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:04:26 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 t_tuple	ray_position(t_ray r, double distance)
 {
 	return (
-		add_tuples(r.origin, mul_tuple(r.direction, distance))
+		tuple_add(r.origin, tuple_multiply(r.direction, distance))
 	);
 }

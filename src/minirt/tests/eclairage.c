@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 16:34:37 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:06:43 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	test_eclairage(t_config *c)
 			&c->img.bits_per_pixels,
 			&c->img.line_len, &c->img.endian);
 
-	t_tuple	ray_origin = new_point(0, 0, -5);
+	t_tuple	ray_origin = point_create(0, 0, -5);
 	int	wall_z = 10;
 	double	wall_size = 7.0;
 
@@ -37,7 +37,7 @@ void	test_eclairage(t_config *c)
 	double	half = wall_size / 2;
 
 	t_sphere s;
-	s.center = new_point(0, 0, 0);
+	s.center = point_create(0, 0, 0);
 	s.radius = 1;
 
 	double *xs;
@@ -47,8 +47,8 @@ void	test_eclairage(t_config *c)
 		for (int x = 0; x < image_pixels; x++)
 		{
 			double world_x = -half + (x * pixel_size);
-			t_tuple	position = new_point(world_x, world_y, wall_z);
-			t_ray	r = ray_create(ray_origin, normalize_tuple(sub_tuples(position, ray_origin)));
+			t_tuple	position = point_create(world_x, world_y, wall_z);
+			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 			xs = ray_sphere_intersection(s, r);
 			if (xs)
 			{

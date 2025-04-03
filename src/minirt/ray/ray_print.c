@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:12:29 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 14:53:16 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:05:22 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ray_print(t_ray r)
 {
 	printf("RAY:\norigin = ");
-	print_tuple(&r.origin);
+	tuple_print(&r.origin);
 	printf("direction = ");
-	print_tuple(&r.direction);
+	tuple_print(&r.direction);
 }
