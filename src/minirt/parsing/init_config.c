@@ -12,7 +12,7 @@
 
 #include "../../../include/minirt.h"
 
-t_config	*init_config(void)
+t_config	*init_config(int ac, char **av)
 {
 	t_config	*c;
 
@@ -28,5 +28,10 @@ t_config	*init_config(void)
 	c->funcs[3] = (parsefunc)parse_sphere;
 	c->funcs[4] = (parsefunc)parse_plan;
 	c->funcs[5] = (parsefunc)parse_cylinder;
+	c->ac = ac;
+	c->av = av;
+	c->err.line = -1;
+	c->win_height = 1000;
+	c->win_width = 1000;
 	return (c);
 }

@@ -61,54 +61,34 @@ void	ft_help(char *message)
 		printf("%s\n", message);
 }
 
+void	print_err(t_config *c, char *msg)
+{
+	printf(HRED"Error.\n"RESET);
+	if (msg)
+		return ((void)printf("%s\n", msg));
+	if (c->err.line > -1)
+		printf("In scene file : %s\n", c->av[1]);
+	printf(c->err.msg, c->err.line);
+}
+
 int main(int ac, char **av)
 {
-	t_config	*c = init_config();
+	t_config	*c = init_config(ac, av);
 	if (!c)
-		return (EXIT_FAILURE);
+		return (perror("Can't initialize config : "), EXIT_FAILURE);
 	if (ac != 2)
 		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
 
-	t_sphere	s;
-	s.center = new_point(0, 0, 0);
-	s.radius = 1.0;
-
-	t_material	m;
-	m.ambient = 0.1;
-	m.diffuse = 0.9;
-	m.specular = 0.9;
-	m.shininess = 200.0;
-	m.color = new_tuple(20, 20, 20, 0);
-	s.material = m;
-
-	t_tuple	eyev = new_vec(0, 0, -1);
-
-	t_tuple	normalv = new_vec(0, 0, 1);
-	
-	t_light	light;
-	
-	light.position = new_point(0, 0, 10);
-	light.tcolor = new_point(1, 1, 1);
-	light.brightness = 1.0;
-
-	t_tuple	result_color = lighting(m, light, s.center, eyev, normalv);
-	
-	print_tuple(&result_color);
-
-
-
-
 	// test_circle(c);
 	// test_eclairage(c);
-	// parse_scene(c, av[1]);
-	// if (!check_config(c))
-	// 	return (ft_help("Invalid scenes."), clean_exit(c), EXIT_FAILURE);
-	// if (c)
-	// 	print_config(c);
+	parse_scene(c, av[1]);
+	check_config(c);
+	if (c->err.msg)
+		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
+	if (c)
+		print_config(c);
 	
 	clean_exit(c);
 	return (EXIT_SUCCESS);
-	(void)av;
-	(void)ac;
 }
 

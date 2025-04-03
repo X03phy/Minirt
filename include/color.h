@@ -13,11 +13,7 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-typedef struct s_color
-{
-	double r;
-	double g;
-	double b;
-}	t_color;
+#include "../libs/libft/include/tuple.h"
 
+typedef t_tuple t_color;
 #endif

@@ -14,10 +14,25 @@
 
 bool	check_config(t_config *config)
 {
+	bool	status;
+
+	status = true;
 	if (!config)
 		return (false);
 	if (!config->ambient_light || !config->camera || !config->light)
-		return (false);
-
-	return (true);
+	{
+		if (!config->ambient_light)
+			config->err.msg = "No ambient light !\n";
+		else if (!config->camera)
+			config->err.msg = "No camera !\n";
+		else if (!config->light)
+			config->err.msg = "No spotlight !\n";
+		status = false;
+	}
+	// if (status && (config->win_height <= 0 || config->win_width <= 0))
+	// {
+	// 	config->err.msg = "Invalid image size !\n";
+	// 	status = false;
+	// }
+	return (status);
 }

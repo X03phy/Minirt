@@ -30,12 +30,12 @@ GNL_PATH = $(LIBS_PATH)/gnl
 GNL = $(GNL_PATH)/gnl.a
 
 SRCPARSING =	minirt/parsing/parsing.c \
-	  			minirt/parsing/cylinder.c \
-	  			minirt/parsing/plan.c \
-	  			minirt/parsing/sphere.c \
-	  			minirt/parsing/ambient.c \
-	  			minirt/parsing/camera.c \
-	  			minirt/parsing/light.c \
+	  			minirt/parsing/object_parsers/cylinder.c \
+	  			minirt/parsing/object_parsers/plan.c \
+	  			minirt/parsing/object_parsers/sphere.c \
+	  			minirt/parsing/object_parsers/ambient.c \
+	  			minirt/parsing/object_parsers/camera.c \
+	  			minirt/parsing/object_parsers/light.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c \
 				minirt/parsing/checks.c

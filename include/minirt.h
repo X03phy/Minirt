@@ -34,6 +34,12 @@
 # define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0"
 # define SCENE_TYPE_NUM 6
 
+// errors messages
+# define INVALID_FILE "Invalid file : %s\n"
+# define ERROR_IN_FILE "Error in scene file : %s\n"
+# define INVALID_OBJECT	"Invalid object at line : %d\n"
+# define TOO_MANY_ELEMENT "Ambient light, camera and light can only be defined once !\n"
+
 typedef struct s_img
 {
 	void	*img;
@@ -56,32 +62,21 @@ typedef struct s_object_node
 	void			*obj;
 }	t_object_node;
 
-typedef struct s_ambient_light
+typedef struct s_error
 {
-	double	ratio;
-	int		color;
-}	t_ambient_light;
-
-typedef struct s_camera
-{
-	t_tuple	position;
-	t_tuple	orientation_vec;
-	int		fov;
-}	t_camera;
-
-typedef struct s_light
-{
-	t_tuple	position;
-	double	brightness;
-	int		color;
-	t_tuple	tcolor;
-}	t_light;
-
+	int		line;
+	char	*msg;
+}	t_error;
 
 typedef bool (*parsefunc)(void *, char **);
 
 typedef struct s_config
 {
+	int				win_height;
+	int				win_width;
+	int				ac;
+	char			**av;
+	t_error			err;
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
@@ -90,6 +85,7 @@ typedef struct s_config
 	t_camera		*camera;
 	t_light			*light;
 	t_list			*objects_list;
+	int				total_objects;
 }	t_config;
 
 typedef struct s_intersection
@@ -112,7 +108,7 @@ void	test_eclairage(t_config *c);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 // init
-t_config	*init_config(void);
+t_config	*init_config(int ac, char **av);
 
 // parsing
 bool	parse_scene(t_config *c, char *filepath);

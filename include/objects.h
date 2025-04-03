@@ -14,7 +14,7 @@
 # define OBJECTS_H
 
 # include "../libs/libft/include/tuple.h"
-# include "minirt.h"
+# include "color.h"
 
 typedef struct s_material
 {
@@ -27,27 +27,49 @@ typedef struct s_material
 
 typedef struct s_sphere
 {
+	int		id;
 	t_tuple	center;
 	double	radius;
-	int		color;
-	t_tuple	tcolor;
+	t_color	color;
 	t_material	material;
 }	t_sphere;
 
 typedef struct s_plane
 {
+	int		id;
 	t_tuple	center;
 	t_tuple	orientation_vec;
-	int		color;
+	t_color	color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
+	int		id;
 	t_tuple	center;
 	t_tuple	orientation_vec;
 	double	diameter;
 	double	height;
-	int		color;
+	t_color	color;
 }	t_cylinder;
+
+typedef struct s_ambient_light
+{
+	double	ratio;
+	t_color	color;
+}	t_ambient_light;
+
+typedef struct s_camera
+{
+	t_tuple	position;
+	t_tuple	orientation_vec;
+	int		fov;
+}	t_camera;
+
+typedef struct s_light
+{
+	t_tuple	position;
+	double	brightness;
+	t_color	color;
+}	t_light;
 
 #endif
