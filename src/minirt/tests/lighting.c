@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:49:22 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/04 11:19:39 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:28:38 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev, t_
 	else
 	{
 		diffuse = effective_color * 1 * light_dot_normal; // (material.diffuse)
-		t_tuple reflectv = vector_reflect(tuple_multiply(lightv, -1), normalv);
-		double	reflect_dot_eye = vector_dot(reflectv, eyev);
-		if (reflect_dot_eye <= 0)
+		t_tuple tuple_multiplyv = vector_tuple_multiply(tuple_multiply(lightv, -1), normalv);
+		double	tuple_multiply_dot_eye = vector_dot(tuple_multiplyv, eyev);
+		if (tuple_multiply_dot_eye <= 0)
 			specular = 0x000000;
 		else
 		{
-			double	factor = pow(reflect_dot_eye, 0.5);
+			double	factor = pow(tuple_multiply_dot_eye, 0.5);
 			specular = 1 * 0.5 * factor;
 		}
 	}

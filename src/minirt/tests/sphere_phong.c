@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_phong.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:13:23 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 10:09:04 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:26:46 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	test_phong(t_config *c)
 			&c->img.bits_per_pixels,
 			&c->img.line_len, &c->img.endian);
 
-	t_tuple	ray_origin = new_point(0, 0, -5);
+	t_tuple	ray_origin = point_create(0, 0, -5);
 	int	wall_z = 10;
 	double	wall_size = 7.0;
 
@@ -73,8 +73,8 @@ void	test_phong(t_config *c)
 		for (int x = 0; x < image_pixels; x++)
 		{
 			double world_x = -half + (x * pixel_size);
-			t_tuple	position = new_point(world_x, world_y, wall_z);
-			t_ray	r = ray_create(ray_origin, normalize_tuple(sub_tuples(position, ray_origin)));
+			t_tuple	position = point_create(world_x, world_y, wall_z);
+			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 			xs = ray_sphere_intersection((t_sphere)*s, r);
 			if (xs)
 			{
@@ -82,10 +82,10 @@ void	test_phong(t_config *c)
 				// point d-intersection sur la sphere
 				t_tuple	x_point = ray_position(r, first_intersection);
 				// vecteur normal a la sphere en ce point
-				t_tuple	normal_vec = normalize_tuple(sub_tuples(x_point, s->center));
+				t_tuple	normal_vec = vector_normalize(tuple_substitute(x_point, s->center));
 
 				// eye vector
-				t_tuple	eyev = new_neg_tuple(r.direction);
+				t_tuple	eyev = tuple_negate(r.direction);
 
 				t_tuple	color = lighting(s->material, *c->light, x_point, eyev, normal_vec);
 				int	colorint = color_to_int(color);
@@ -112,7 +112,7 @@ void	test_phong(t_config *c)
 // 			&c->img.bits_per_pixels,
 // 			&c->img.line_len, &c->img.endian);
 //
-// 	t_tuple	ray_origin = new_point(0, 0, -5);
+// 	t_tuple	ray_origin = point_create(0, 0, -5);
 // 	int	wall_z = 10;
 // 	double	wall_size = 7.0;
 //
@@ -121,7 +121,7 @@ void	test_phong(t_config *c)
 // 	double	half = wall_size / 2;
 //
 // 	t_sphere s;
-// 	s.center = new_point(0, 0, 0);
+// 	s.center = point_create(0, 0, 0);
 // 	s.radius = 0.6;
 //
 // 	t_material m;
@@ -133,7 +133,7 @@ void	test_phong(t_config *c)
 //     s.material = m;
 //
 // 	t_light light;
-//     light.position = new_point(5, 10, -10);
+//     light.position = point_create(5, 10, -10);
 //     light.color = new_tuple(1, 1, 1, 0);
 //     light.brightness = 0.8;
 //
@@ -144,8 +144,8 @@ void	test_phong(t_config *c)
 // 		for (int x = 0; x < image_pixels; x++)
 // 		{
 // 			double world_x = -half + (x * pixel_size);
-// 			t_tuple	position = new_point(world_x, world_y, wall_z);
-// 			t_ray	r = ray_create(ray_origin, normalize_tuple(sub_tuples(position, ray_origin)));
+// 			t_tuple	position = point_create(world_x, world_y, wall_z);
+// 			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 // 			xs = ray_sphere_intersection(s, r);
 // 			if (xs)
 // 			{
@@ -153,10 +153,10 @@ void	test_phong(t_config *c)
 // 				// point d-intersection sur la sphere
 // 				t_tuple	x_point = ray_position(r, first_intersection);
 // 				// vecteur normal a la sphere en ce point
-// 				t_tuple	normal_vec = normalize_tuple(sub_tuples(x_point, s.center));
+// 				t_tuple	normal_vec = vector_normalize(tuple_substitute(x_point, s.center));
 //
 // 				// eye vector
-// 				t_tuple	eyev = new_neg_tuple(r.direction);
+// 				t_tuple	eyev = tuple_negate(r.direction);
 //
 // 				t_tuple	color = lighting(s.material, light, x_point, eyev, normal_vec);
 // 				int	colorint = color_to_int(color);

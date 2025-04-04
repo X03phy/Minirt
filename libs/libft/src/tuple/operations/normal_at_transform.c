@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_at_transform.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:07:22 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 18:15:37 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:26:46 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_tuple	normal_at_transform(void *transform, t_tuple p1, t_tuple world_point)
 
 	inv = matrix_inverse(transform);
 	object_point = matrix_multiply_tuple(inv, world_point);
-	object_normal = sub_tuples(object_point, p1);
+	object_normal = tuple_substitute(object_point, p1);
 	t_matrix *transpose = matrix_transpose(inv);
 	world_normal = matrix_multiply_tuple(transpose, object_normal);
 	world_normal.w = 0;
 	matrix_free(&inv);
 	matrix_free(&transpose);
-	return (normalize_tuple(world_normal));
+	return (vector_normalize(world_normal));
 }

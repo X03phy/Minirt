@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:30:34 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 09:43:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:31:03 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 t_color	lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv)
 {
-	t_tuple	effective_color = mul_tuple(m.color, l.brightness);
+	t_tuple	effective_color = tuple_multiply(m.color, l.brightness);
 	
-	t_tuple	lightv = normalize_tuple(sub_tuples(l.position, p));
+	t_tuple	lightv = vector_normalize(tuple_substitute(l.position, p));
 
-	t_tuple ambient = mul_tuple(effective_color, m.ambient);
+	t_tuple ambient = tuple_multiply(effective_color, m.ambient);
 
-	double	light_dot_normal = dot_tuples(lightv, normalv);
+	double	light_dot_normal = vector_dot(lightv, normalv);
 	
-	t_color	diffuse = new_point(0, 0, 0);
-	t_color	specular = new_point(0, 0, 0);
+	t_color	diffuse = point_create(0, 0, 0);
+	t_color	specular = point_create(0, 0, 0);
 	if (light_dot_normal >= 0) 
 	{
-		diffuse = mul_tuple(effective_color, m.diffuse * light_dot_normal);
-		t_tuple	reflectv = reflect(new_neg_tuple(lightv), normalv);
-		double reflect_dot_eye = dot_tuples(reflectv, eyev);
-		if (reflect_dot_eye > 0)
+		diffuse = tuple_multiply(effective_color, m.diffuse * light_dot_normal);
+		t_tuple	reflectv = vector_reflect(tuple_negate(lightv), normalv);
+		double tuple_multiply_dot_eye = vector_dot(reflectv, eyev);
+		if (tuple_multiply_dot_eye > 0)
 		{
-			double factor = pow(reflect_dot_eye, m.shininess);
-			t_color	white = new_point(1, 1, 1);
-			specular = mul_tuple(white, m.specular * factor);
+			double factor = pow(tuple_multiply_dot_eye, m.shininess);
+			t_color	white = point_create(1, 1, 1);
+			specular = tuple_multiply(white, m.specular * factor);
 		}
 	}
-	return (add_tuples(add_tuples(ambient, diffuse), specular));
+	return (tuple_add(tuple_add(ambient, diffuse), specular));
 }

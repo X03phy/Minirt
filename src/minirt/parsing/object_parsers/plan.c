@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:16:53 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:24:44 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ bool	parse_plan(t_config *c, char **infos)
 	if (!node->obj)
 		return (free(node), false);
 	((t_plane *)node->obj)->id = ++(c->total_objects);
-	((t_plane *)node->obj)->center = new_point(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
-	((t_plane *)node->obj)->orientation_vec = new_vec(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
-	((t_plane *)node->obj)->color = new_point(ft_atoi(infos[7]) / 255.0, ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
+	((t_plane *)node->obj)->center = point_create(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
+	((t_plane *)node->obj)->orientation_vec = vector_create(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
+	((t_plane *)node->obj)->color = point_create(ft_atoi(infos[7]) / 255.0, ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

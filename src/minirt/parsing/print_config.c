@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:15:05 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:25:01 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_ambient(t_ambient_light *a)
 {
 	printf(GRN"Ambient lighting = \n"RESET);
 	printf("\tRatio : %f \nColor : ", a->ratio);
-	print_tuple(&a->color);
+	tuple_print(&a->color);
 }
 
 void	print_camera(t_camera *c)
@@ -40,7 +40,7 @@ void	print_light(t_light *l)
 	tuple_print(&l->position);
 	printf("\tBrightness : %f\n", l->brightness);
 	printf("\tColor : ");
-	print_tuple(&l->color);
+	tuple_print(&l->color);
 }
 
 void	print_plane(t_plane *p)
@@ -50,9 +50,9 @@ void	print_plane(t_plane *p)
 	printf("Center : \n\t");
 	tuple_print(&p->center);
 	printf("Orientation : \n\t");
-	print_tuple(&p->orientation_vec);
+	tuple_print(&p->orientation_vec);
 	printf("\tColor :");
-	print_tuple(&p->color);
+	tuple_print(&p->color);
 }
 
 void	print_sphere(t_sphere *s)
@@ -60,9 +60,9 @@ void	print_sphere(t_sphere *s)
 	printf(UYEL"SPHERE = \n"RESET);
 	printf(BHYEL"ID : %d \n"RESET, s->id);
 	printf("Center : \n\t");
-	print_tuple(&s->center);
+	tuple_print(&s->center);
 	printf("\tRadius : %f\n\tColor : ", s->radius);
-	print_tuple(&s->color);
+	tuple_print(&s->color);
 }
 
 void	print_cylinder(t_cylinder *c)
@@ -72,9 +72,9 @@ void	print_cylinder(t_cylinder *c)
 	printf("Center : \n\t");
 	tuple_print(&c->center);
 	printf("Orientation : \n\t");
-	print_tuple(&c->orientation_vec);
+	tuple_print(&c->orientation_vec);
 	printf("\tDiameter : %f Height : %f\nColor : ", c->diameter, c->height);
-	print_tuple(&c->color);
+	tuple_print(&c->color);
 
 }
 
