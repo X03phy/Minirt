@@ -6,16 +6,17 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:49:22 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/03 13:44:52 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:19:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
 
-int	lighting(t_sphere s, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
+int	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
 {
-	int	effective_color = s.color * 1; // (1 = light.intensity)
-	t_tuple lightv = vector_normalize(tuple_substitute(light.position, point));
+	t_tuple	effective_color = tuple_multiply(material.color, light.brightness); // ntensite de la couleurr de la boule (du a la lumiere)
+	t_tuple lightv = vector_normalize(tuple_substitute(light.position, point)); // direction de la lumiere normalisee
+	t_tuple ambiant = tuple_multiply(effective_color, );
 	int ambient = effective_color * 1; // (1 = ambient)
 	int	diffuse, specular;
 	double	light_dot_normal = vector_dot(lightv, normalv);
