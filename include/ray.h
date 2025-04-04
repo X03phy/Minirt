@@ -14,6 +14,7 @@
 # define RAY_H
 
 # include "../libs/libft/include/libft.h"
+#include "minirt.h"
 # include "objects.h"
 
 typedef struct s_ray
@@ -22,10 +23,11 @@ typedef struct s_ray
 	t_tuple	direction;
 }	t_ray;
 
-void	ray_print(t_ray r);
-t_ray	ray_create(t_tuple origin, t_tuple direction);
-t_tuple	ray_position(t_ray r, double distance);
-double	*ray_sphere_intersection(t_sphere s, t_ray r);
-t_ray	ray_transform(t_ray r, t_matrix *m);
+void			ray_print(t_ray r);
+t_ray			ray_create(t_tuple origin, t_tuple direction);
+t_tuple			ray_position(t_ray r, double distance);
+bool			ray_sphere_intersection(t_sphere *s, t_ray r, double *x);
+t_ray			ray_transform(t_ray r, t_matrix *m);
+t_intersection	*hit(t_config	*c, t_ray r);
 
 #endif

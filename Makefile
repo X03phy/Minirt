@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/04 11:49:11 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/04 17:51:05 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g
+CFLAGS = -Werror -Wextra -Wall -g -O3 -flto -ffast-math -march=native -pipe
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -42,6 +42,7 @@ SRCPARSING =	minirt/parsing/parsing.c \
 
 SRCTESTS = minirt/tests/circle.c \
 		   minirt/tests/eclairage.c \
+		   minirt/tests/multiple_spheres.c \
 		   minirt/tests/sphere_phong.c
 
 SRC_RAY = minirt/ray/ray_create.c \
@@ -59,6 +60,7 @@ SRC = 	$(SRCPARSING) \
 		$(SRC_RAY) \
 		main.c \
 	  	hooks.c \
+	  	utils.c
 
 SRCS = $(addprefix src/, $(SRC))
 OBJS = $(addprefix obj/, $(SRC:.c=.o))
