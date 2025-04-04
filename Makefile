@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/02 19:09:41 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/04 09:23:20 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRCPARSING =	minirt/parsing/parsing.c \
 				minirt/parsing/checks.c
 
 SRCTESTS = minirt/tests/circle.c \
-		   minirt/tests/eclairage.c
+		   minirt/tests/eclairage.c \
+		   minirt/tests/sphere_phong.c
 
 SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \

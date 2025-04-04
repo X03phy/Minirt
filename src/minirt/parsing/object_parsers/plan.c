@@ -29,7 +29,7 @@ bool	parse_plan(t_config *c, char **infos)
 	((t_plane *)node->obj)->id = ++(c->total_objects);
 	((t_plane *)node->obj)->center = new_point(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	((t_plane *)node->obj)->orientation_vec = new_vec(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
-	((t_plane *)node->obj)->color = new_point(ft_atoi(infos[7]), ft_atoi(infos[8]), ft_atoi(infos[9]));
+	((t_plane *)node->obj)->color = new_point(ft_atoi(infos[7]) / 255.0, ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

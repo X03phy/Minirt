@@ -40,6 +40,7 @@ typedef struct s_plane
 	t_tuple	center;
 	t_tuple	orientation_vec;
 	t_color	color;
+	t_material	material;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -50,6 +51,7 @@ typedef struct s_cylinder
 	double	diameter;
 	double	height;
 	t_color	color;
+	t_material	material;
 }	t_cylinder;
 
 typedef struct s_ambient_light

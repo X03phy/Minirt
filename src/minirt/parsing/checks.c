@@ -19,6 +19,8 @@ bool	check_config(t_config *config)
 	status = true;
 	if (!config)
 		return (false);
+	if (config->err.msg != NULL)
+		return (false);
 	if (!config->ambient_light || !config->camera || !config->light)
 	{
 		if (!config->ambient_light)

@@ -31,7 +31,7 @@ bool	parse_cylinder(t_config *c, char **infos)
 	((t_cylinder *)node->obj)->orientation_vec = new_vec(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
 	((t_cylinder *)node->obj)->diameter = ft_atod(infos[7]);
 	((t_cylinder *)node->obj)->height = ft_atod(infos[8]);
-	((t_cylinder *)node->obj)->color = new_point(ft_atoi(infos[9]), ft_atoi(infos[10]), ft_atoi(infos[11]));
+	((t_cylinder *)node->obj)->color = new_point(ft_atoi(infos[9]) / 255.0, ft_atoi(infos[10]) / 255.0, ft_atoi(infos[11]) / 255.0);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

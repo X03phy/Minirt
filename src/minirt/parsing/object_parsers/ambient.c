@@ -25,6 +25,6 @@ bool	parse_ambient(t_config *c, char **infos)
 	if (!c->ambient_light)
 		return (false);
 	c->ambient_light->ratio = ft_atod(infos[1]);
-	c->ambient_light->color = new_point(ft_atoi(infos[2]), ft_atoi(infos[3]), ft_atoi(infos[4]));
+	c->ambient_light->color = new_point(ft_atoi(infos[2]) / 255.0, ft_atoi(infos[3]) / 255.0, ft_atoi(infos[4]) / 255.0);
 	return (true);
 }

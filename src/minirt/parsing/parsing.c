@@ -58,13 +58,16 @@ bool	parse_scene(t_config *c, char *filepath)
 		return (false);
 	scenefd = open(filepath, O_RDONLY);
 	if (scenefd == -1)
+	{
+		c->err.msg = INVALID_FILE;
 		return (false);
+	}
 	if (get_next_line(scenefd, &tmp) != 0)
 		return (close(scenefd), false);
 	while (tmp != NULL)
 	{
 		if (!parse_line(c, tmp, ++currline))
-			return (get_next_line(scenefd, NULL), free(tmp), false);
+			return (get_next_line(100, &tmp), free(tmp), false);
 		ft_sfree((void **)&tmp);
 		if (get_next_line(scenefd, &tmp) != 0)
 			return (close(scenefd), false);

@@ -26,6 +26,6 @@ bool	parse_light(t_config *c, char **infos)
 		return (false);
 	c->light->position = new_point(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	c->light->brightness = ft_atod(infos[4]);
-	c->light->color = new_point(ft_atoi(infos[5]), ft_atoi(infos[6]), ft_atoi(infos[7]));
+	c->light->color = new_point(ft_atoi(infos[5]) / 255.0, ft_atoi(infos[6]) / 255.0, ft_atoi(infos[7]) / 255.0);
 	return (true);
 }

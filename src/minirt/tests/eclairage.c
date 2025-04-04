@@ -28,10 +28,14 @@ void	test_eclairage(t_config *c)
 			&c->img.bits_per_pixels,
 			&c->img.line_len, &c->img.endian);
 
+	// camera
 	t_tuple	ray_origin = new_point(0, 0, -5);
+
+	// mur
 	int	wall_z = 10;
 	double	wall_size = 7.0;
 
+	// calcul de la taille d'un pixel de l'image dans la simulation 3D
 	double	image_pixels = 500;
 	double	pixel_size = wall_size / image_pixels;
 	double	half = wall_size / 2;
@@ -48,6 +52,7 @@ void	test_eclairage(t_config *c)
 		{
 			double world_x = -half + (x * pixel_size);
 			t_tuple	position = new_point(world_x, world_y, wall_z);
+			// cree un rayon partant de la camera vers le point de l'image de coordonnes x y
 			t_ray	r = ray_create(ray_origin, normalize_tuple(sub_tuples(position, ray_origin)));
 			xs = ray_sphere_intersection(s, r);
 			if (xs)
