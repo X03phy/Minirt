@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 15:11:38 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:58:05 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	parse_plan(t_config *c, char **infos)
 	node->obj = ft_calloc(sizeof(t_plane), 1);
 	if (!node->obj)
 		return (free(node), false);
-	((t_plane *)node->obj)->center = new_point(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
-	((t_plane *)node->obj)->orientation_vec = new_vec(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
+	((t_plane *)node->obj)->center = point_create(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
+	((t_plane *)node->obj)->orientation_vec = vector_create(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
 	((t_plane *)node->obj)->color = (0 << 24 | ft_atoi(infos[7]) << 16 | ft_atoi(infos[8]) << 8 | ft_atoi(infos[9]));
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)

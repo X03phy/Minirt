@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_tuple.c                                        :+:      :+:    :+:   */
+/*   tuple_multiply.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:39:03 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 15:52:11 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:46:17 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	new_tuple(double x, double y, double z, int w)
+t_tuple	tuple_multiply(t_tuple a, double factor)
 {
-	return ((t_tuple){.x = x, .y = y, .z = z, .w = w});
+	return (
+		tuple_create(
+			a.x * factor, a.y * factor, a.z * factor, a.w * factor
+		)
+	);
 }

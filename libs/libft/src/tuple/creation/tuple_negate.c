@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   div_tuple.c                                        :+:      :+:    :+:   */
+/*   tuple_negate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 14:30:38 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:43:33 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/03 13:40:06 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	div_tuple(t_tuple a, double factor)
+t_tuple	tuple_negate(t_tuple a)
 {
 	return (
-		new_tuple(
-			a.x / factor, a.y / factor, a.z / factor, a.w / factor
+		tuple_create(
+			0 - a.x, 0 - a.y, 0 - a.z, 0 - a.w
 		)
 	);
 }

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_vec.c                                          :+:      :+:    :+:   */
+/*   tuple_divide.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 13:49:24 by maecarva          #+#    #+#             */
+/*   Created: 2025/03/25 14:30:38 by maecarva          #+#    #+#             */
 /*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	new_vec(double x, double y, double z)
+t_tuple	tuple_divide(t_tuple a, double factor)
 {
-	return (new_tuple(x, y, z, 0));
+	return (
+		tuple_create(
+			a.x / factor, a.y / factor, a.z / factor, a.w / factor
+		)
+	);
 }

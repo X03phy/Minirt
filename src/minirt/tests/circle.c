@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:11:32 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 12:43:27 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:40:06 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_circle(t_config *c)
 		return ;
 	c->mlx_win = mlx_new_window(c->mlx, 1000, 1000, "MiniRT");
 
-	t_tuple	p = new_tuple(1, 0, 0, POINT);
+	t_tuple	p = tuple_create(1, 0, 0, POINT);
 	t_matrix	*transform = matrix_rotate_z(M_PI / 2000);
 	t_matrix	*scale = matrix_scale(500, 500, 0);
 	t_matrix	*scale2 = matrix_scale(499, 499, 0);	
