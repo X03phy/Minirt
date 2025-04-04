@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:15:41 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:20:32 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	test_phong(t_config *c);
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 t_color	lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv);
+int	color_to_int(t_color color);
+t_material	default_material(t_color color);
 
 // init
 t_config	*init_config(int ac, char **av);
