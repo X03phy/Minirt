@@ -81,7 +81,7 @@ int main(int ac, char **av)
 		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
 
 	// test_circle(c);
-	test_eclairage(c);
+	// test_eclairage(c);
 	parse_scene(c, av[1]);
 	check_config(c);
 	if (c->err.msg)
@@ -89,7 +89,7 @@ int main(int ac, char **av)
 	if (c)
 		print_config(c);
 	
-	// test_phong(c);
+	test_phong(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }
