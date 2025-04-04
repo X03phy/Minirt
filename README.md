@@ -1,4 +1,5 @@
 # Minirt
 minirt
 
-ask for changing gnl
+# todo
+ajust size of object with window size
