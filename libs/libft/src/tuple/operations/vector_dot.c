@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub_tuples.c                                       :+:      :+:    :+:   */
+/*   dot_tuples.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:43:05 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:49:46 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/03 12:03:50 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	sub_tuples(t_tuple a, t_tuple b)
+double	vector_dot(t_tuple a, t_tuple b)
 {
 	return (
-		new_tuple(
-			a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w
-		)
+		(a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w)
 	);
 }

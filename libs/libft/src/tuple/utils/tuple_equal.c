@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_tuples.c                                       :+:      :+:    :+:   */
+/*   tuple_equal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:42:49 by ebonutto          #+#    #+#             */
+/*   Created: 2025/03/25 14:03:36 by maecarva          #+#    #+#             */
 /*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	add_tuples(t_tuple a, t_tuple b)
+bool	tuple_equal(double a, double b)
 {
-	return (
-		new_tuple(
-			a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w
-		)
-	);
+	return (fabs(a - b) < EPSILON);
 }

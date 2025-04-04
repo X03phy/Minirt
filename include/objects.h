@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:54:49 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 19:28:52 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:15:59 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ typedef struct s_material
 	double specular;
 	double shininess;
 }	t_material;
+
+typedef struct s_material
+{
+	t_tuple color;    // Couleur du matériau (ex: RGB sous forme de tuple)
+	double ambient;   // Illumination ambiante
+	double diffuse;   // Reflexion diffuse
+	double specular;  // Reflexion speculaire
+	double shininess; // Brillance du materiau
+} t_material;
 
 typedef struct s_sphere
 {

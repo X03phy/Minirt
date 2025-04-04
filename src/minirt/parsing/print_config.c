@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 19:06:29 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:15:05 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	print_camera(t_camera *c)
 		return ;
 	printf(BLU"Camera = \n"RESET);
 	printf("Position : \n\t");
-	print_tuple(&c->position);
+	tuple_print(&c->position);
 	printf("Orientation : \n\t");
-	print_tuple(&c->orientation_vec);
+	tuple_print(&c->orientation_vec);
 	printf("\tFov : %d\n", c->fov);
 }
 
@@ -37,7 +37,7 @@ void	print_light(t_light *l)
 		return ;
 	printf(MAG"Light = \n"RESET);
 	printf("Position : \n\t");
-	print_tuple(&l->position);
+	tuple_print(&l->position);
 	printf("\tBrightness : %f\n", l->brightness);
 	printf("\tColor : ");
 	print_tuple(&l->color);
@@ -48,7 +48,7 @@ void	print_plane(t_plane *p)
 	printf(UCYN"PLANE = \n"RESET);
 	printf(BHCYN"ID : %d \n"RESET, p->id);
 	printf("Center : \n\t");
-	print_tuple(&p->center);
+	tuple_print(&p->center);
 	printf("Orientation : \n\t");
 	print_tuple(&p->orientation_vec);
 	printf("\tColor :");
@@ -70,7 +70,7 @@ void	print_cylinder(t_cylinder *c)
 	printf(UBLU"CYLINDER = \n"RESET);
 	printf(BHBLU"ID : %d \n"RESET, c->id);
 	printf("Center : \n\t");
-	print_tuple(&c->center);
+	tuple_print(&c->center);
 	printf("Orientation : \n\t");
 	print_tuple(&c->orientation_vec);
 	printf("\tDiameter : %f Height : %f\nColor : ", c->diameter, c->height);

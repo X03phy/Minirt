@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize_tuple.c                                  :+:      :+:    :+:   */
+/*   point_create.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:52:45 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 16:31:19 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:41:31 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	normalize_tuple(t_tuple a)
+t_tuple	point_create(double x, double y, double z)
 {
-	double	magnitude;
-
-	magnitude = mag_tuple(a);
-	if (magnitude == 0)
-		return new_tuple(0, 0, 0, a.w);
-	return new_tuple(a.x / magnitude, a.y / magnitude, a.z / magnitude, a.w / magnitude);
+	return (tuple_create(x, y, z, 1));
 }

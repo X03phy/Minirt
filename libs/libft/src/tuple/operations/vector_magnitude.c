@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_point.c                                        :+:      :+:    :+:   */
+/*   vector_magnitude.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:41:31 by ebonutto          #+#    #+#             */
+/*   Created: 2025/03/25 15:21:32 by maecarva          #+#    #+#             */
 /*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	new_point(double x, double y, double z)
+double	vector_magnitude(t_tuple a)
 {
-	return (new_tuple(x, y, z, 1));
+	return (
+		sqrt(pow(a.x, 2) + pow(a.y, 2) + pow(a.z, 2) + pow(a.w, 2))
+	);
 }

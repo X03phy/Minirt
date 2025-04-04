@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reflect.c                                          :+:      :+:    :+:   */
+/*   vector_normalize.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 17:44:02 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 17:50:56 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:52:45 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/02 16:31:19 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple	reflect(t_tuple in, t_tuple normal)
+t_tuple	vector_normalize(t_tuple a)
 {
-	return (sub_tuples(in, mul_tuple(normal, dot_tuples(in, normal) * 2)));
+	double	magnitude;
+
+	magnitude = vector_magnitude(a);
+	if (magnitude == 0)
+		return tuple_create(0, 0, 0, a.w);
+	return tuple_create(a.x / magnitude, a.y / magnitude, a.z / magnitude, a.w / magnitude);
 }

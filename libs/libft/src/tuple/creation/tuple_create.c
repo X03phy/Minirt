@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_tuples.c                                       :+:      :+:    :+:   */
+/*   tuple_create.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 13:49:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:39:03 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/02 15:52:11 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-double	dot_tuples(t_tuple a, t_tuple b)
+t_tuple	tuple_create(double x, double y, double z, int w)
 {
-	return (
-		(a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w)
-	);
+	return ((t_tuple){.x = x, .y = y, .z = z, .w = w});
 }

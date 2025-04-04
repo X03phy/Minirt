@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mag_tuple.c                                        :+:      :+:    :+:   */
+/*   tuple_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:21:32 by maecarva          #+#    #+#             */
+/*   Created: 2025/04/01 13:42:49 by ebonutto          #+#    #+#             */
 /*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-double	mag_tuple(t_tuple a)
+t_tuple	tuple_add(t_tuple a, t_tuple b)
 {
 	return (
-		sqrt(pow(a.x, 2) + pow(a.y, 2) + pow(a.z, 2) + pow(a.w, 2))
+		tuple_create(
+			a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w
+		)
 	);
 }

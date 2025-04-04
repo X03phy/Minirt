@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal_at.c                                        :+:      :+:    :+:   */
+/*   tuple_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 16:52:29 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/02 17:20:25 by ebonutto         ###   ########.fr       */
+/*   Created: 2025/04/01 13:40:37 by ebonutto          #+#    #+#             */
+/*   Updated: 2025/04/01 14:01:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/tuple.h"
 
-t_tuple normal_at(t_tuple p1, t_tuple p2)
+t_tuple	*tuple_new(double x, double y, double z, int w)
 {
-	return (normalize_tuple(sub_tuples(p2, p1)));
+	t_tuple	*t;
+
+	t = ft_calloc(sizeof(t_tuple), 1);
+	if (!t)
+		return (NULL);
+	t->x = x;
+	t->y = y;
+	t->z = z;
+	t->w = w;
+	return (t);
 }

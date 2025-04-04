@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:54 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 14:52:59 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:58:05 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ bool	parse_camera(t_config *c, char **infos)
 	c->camera = ft_calloc(sizeof(t_camera), 1);
 	if (!c->camera)
 		return (false);
-	c->camera->position = new_point(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
-	c->camera->orientation_vec = new_vec(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
+	c->camera->position = point_create(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
+	c->camera->orientation_vec = vector_create(ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
 	c->camera->fov = ft_atoi(infos[7]);
 	return (true);
 }

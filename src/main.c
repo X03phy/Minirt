@@ -6,13 +6,11 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 09:50:01 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:49:58 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-t_tuple lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv);
 
 void	clean_obj_list(t_list	**lst)
 {
@@ -91,7 +89,6 @@ int main(int ac, char **av)
 		print_config(c);
 	
 	test_phong(c);
-	
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }
