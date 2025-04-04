@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/04 12:17:36 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:03:16 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	test_eclairage(t_config *c)
 		for (int x = 0; x < image_pixels; x++)
 		{
 			double world_x = -half + (x * pixel_size);
-			t_tuple	position = point_create(world_x, world_y, wall_z);
+			t_tuple	position = point_create(world_x, world_y, wall_z);        // position reelle de mon pixel dans le monde 3D
 			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 			xs = ray_sphere_intersection(s, r);
 			if (xs)
