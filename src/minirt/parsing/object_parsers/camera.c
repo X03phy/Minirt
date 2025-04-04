@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minirt.h"
+#include "../../../../include/minirt.h"
 
 bool	parse_camera(t_config *c, char **infos)
-{
+{	
+	if (c->camera != NULL)
+	{
+		c->err.msg = TOO_MANY_ELEMENT;
+		return (false);
+	}
 	if (ft_tabsize(infos) != 8)
 		return (false);
 	c->camera = ft_calloc(sizeof(t_camera), 1);

@@ -6,11 +6,28 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/03 15:05:05 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:49:58 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+void	clean_obj_list(t_list	**lst)
+{
+	t_list	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		free(((t_object_node *)(*lst)->content)->obj);
+		free((*lst)->content);
+		free(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
 
 void	clean_exit(t_config *config)
 {
@@ -25,7 +42,7 @@ void	clean_exit(t_config *config)
 			mlx_destroy_display(config->mlx);
 			free(config->mlx);
 		}
-		ft_lstclear(&config->objects_list, free);
+		clean_obj_list(&config->objects_list);
 		free(config->ambient_light);
 		free(config->light);
 		free(config->camera);
@@ -42,26 +59,36 @@ void	ft_help(char *message)
 		printf("%s\n", message);
 }
 
+void	print_err(t_config *c, char *msg)
+{
+	printf(HRED"Error.\n"RESET);
+	if (msg)
+		return ((void)printf("%s\n", msg));
+	if (c->err.line > -1)
+		printf("In scene file : %s\n", c->av[1]);
+	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0)
+		printf(c->err.msg, c->err.line);
+	else
+		printf(c->err.msg, c->av[1]);
+}
+
 int main(int ac, char **av)
 {
-	(void)av;
-	(void)ac;
-
-	t_tuple	v = vector_create(1, -1, 0);
-	t_tuple	n = vector_create(0, 1, 0);
-	t_tuple r = vector_reflect(v, n);
-	
-	
-	tuple_print(&r);
-	t_config	*c = init_config();
+	t_config	*c = init_config(ac, av);
 	if (!c)
-		return (EXIT_FAILURE);
-	// if (ac != 2)
-	// 	return (ft_help("Invalid number of arguments."), EXIT_FAILURE);
-	// test_circle(c);
-	test_eclairage(c);
-	// parse_scene(c, av[1]);
+		return (perror("Can't initialize config : "), EXIT_FAILURE);
+	if (ac != 2)
+		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
 
+	// test_circle(c);
+	parse_scene(c, av[1]);
+	check_config(c);
+	if (c->err.msg)
+		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
+	if (c)
+		print_config(c);
+	
+	test_phong(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }

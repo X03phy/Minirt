@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/03 12:05:22 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:15:05 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	print_ambient(t_ambient_light *a)
 {
 	printf(GRN"Ambient lighting = \n"RESET);
-	printf("\tRatio : %f Color: 0x%X\n", a->ratio, a->color);
+	printf("\tRatio : %f \nColor : ", a->ratio);
+	print_tuple(&a->color);
 }
 
 void	print_camera(t_camera *c)
@@ -38,35 +39,42 @@ void	print_light(t_light *l)
 	printf("Position : \n\t");
 	tuple_print(&l->position);
 	printf("\tBrightness : %f\n", l->brightness);
-	printf("\tColor : 0x%X\n", l->color);
+	printf("\tColor : ");
+	print_tuple(&l->color);
 }
 
 void	print_plane(t_plane *p)
 {
-	printf(CYN"PLANE = \n"RESET);
+	printf(UCYN"PLANE = \n"RESET);
+	printf(BHCYN"ID : %d \n"RESET, p->id);
 	printf("Center : \n\t");
 	tuple_print(&p->center);
 	printf("Orientation : \n\t");
-	tuple_print(&p->orientation_vec);
-	printf("\tColor : 0x%X\n", p->color);
+	print_tuple(&p->orientation_vec);
+	printf("\tColor :");
+	print_tuple(&p->color);
 }
 
 void	print_sphere(t_sphere *s)
 {
-	printf(YEL"SPHERE = \n"RESET);
+	printf(UYEL"SPHERE = \n"RESET);
+	printf(BHYEL"ID : %d \n"RESET, s->id);
 	printf("Center : \n\t");
-	tuple_print(&s->center);
-	printf("\tRadius : %f\n\tColor : 0x%X\n", s->radius, s->color);
+	print_tuple(&s->center);
+	printf("\tRadius : %f\n\tColor : ", s->radius);
+	print_tuple(&s->color);
 }
 
 void	print_cylinder(t_cylinder *c)
 {
-	printf(BLUB"CYLINDER = \n"RESET);
+	printf(UBLU"CYLINDER = \n"RESET);
+	printf(BHBLU"ID : %d \n"RESET, c->id);
 	printf("Center : \n\t");
 	tuple_print(&c->center);
 	printf("Orientation : \n\t");
-	tuple_print(&c->orientation_vec);
-	printf("\tDiameter : %f Height : %f Color : 0x%X\n", c->diameter, c->diameter, c->color);
+	print_tuple(&c->orientation_vec);
+	printf("\tDiameter : %f Height : %f\nColor : ", c->diameter, c->height);
+	print_tuple(&c->color);
 
 }
 
@@ -75,11 +83,11 @@ void	print_objects(t_list *obj)
 	while (obj)
 	{
 		if (((t_object_node *)obj->content)->type == PLANE)
-			print_plane(obj->content);
+			print_plane(((t_object_node *)obj->content)->obj);
 		else if (((t_object_node *)obj->content)->type == SPHERE)
-			print_sphere(obj->content);
+			print_sphere(((t_object_node *)obj->content)->obj);
 		else if (((t_object_node *)obj->content)->type == CYLINDER)
-			print_cylinder(obj->content);
+			print_cylinder(((t_object_node *)obj->content)->obj);
 		else
 			printf(RED"WRONG obj type.\n"RESET);
 		obj = obj->next;

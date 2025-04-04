@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/03 15:04:32 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/04 11:49:11 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,23 +30,26 @@ GNL_PATH = $(LIBS_PATH)/gnl
 GNL = $(GNL_PATH)/gnl.a
 
 SRCPARSING =	minirt/parsing/parsing.c \
-	  			minirt/parsing/cylinder.c \
-	  			minirt/parsing/plan.c \
-	  			minirt/parsing/sphere.c \
-	  			minirt/parsing/ambient.c \
-	  			minirt/parsing/camera.c \
-	  			minirt/parsing/light.c \
+	  			minirt/parsing/object_parsers/cylinder.c \
+	  			minirt/parsing/object_parsers/plan.c \
+	  			minirt/parsing/object_parsers/sphere.c \
+	  			minirt/parsing/object_parsers/ambient.c \
+	  			minirt/parsing/object_parsers/camera.c \
+	  			minirt/parsing/object_parsers/light.c \
 				minirt/parsing/init_config.c \
-				minirt/parsing/print_config.c
+				minirt/parsing/print_config.c \
+				minirt/parsing/checks.c
 
 SRCTESTS = minirt/tests/circle.c \
-		   minirt/tests/eclairage.c
+		   minirt/tests/eclairage.c \
+		   minirt/tests/sphere_phong.c
 
 SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \
 		  minirt/ray/ray_print.c \
 		  minirt/ray/ray_sphere_intersection.c \
-		  minirt/ray/ray_transform.c
+		  minirt/ray/ray_transform.c \
+		  minirt/ray/lighting.c
 
 SRCUTILS = minirt/mlx_utils/utils1.c
 

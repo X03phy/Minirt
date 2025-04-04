@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/03 15:10:11 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:15:41 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 # define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0"
 # define SCENE_TYPE_NUM 6
 
+// errors messages
+# define INVALID_FILE "Invalid file : %s\n"
+# define ERROR_IN_FILE "Error in scene file : %s\n"
+# define INVALID_OBJECT	"Invalid object at line : %d\n"
+# define TOO_MANY_ELEMENT "Ambient light, camera and light can only be defined once !\n"
+
 typedef struct s_img
 {
 	void	*img;
@@ -56,31 +62,21 @@ typedef struct s_object_node
 	void			*obj;
 }	t_object_node;
 
-typedef struct s_ambient_light
+typedef struct s_error
 {
-	double	ratio;
-	int		color;
-}	t_ambient_light;
-
-typedef struct s_camera
-{
-	t_tuple	position;
-	t_tuple	orientation_vec;
-	int		fov;
-}	t_camera;
-
-typedef struct s_light
-{
-	t_tuple	position;
-	double	brightness;
-	int		color;
-}	t_light;
-
+	int		line;
+	char	*msg;
+}	t_error;
 
 typedef bool (*parsefunc)(void *, char **);
 
 typedef struct s_config
 {
+	int				win_height;
+	int				win_width;
+	int				ac;
+	char			**av;
+	t_error			err;
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
@@ -89,6 +85,7 @@ typedef struct s_config
 	t_camera		*camera;
 	t_light			*light;
 	t_list			*objects_list;
+	int				total_objects;
 }	t_config;
 
 typedef struct s_intersection
@@ -106,12 +103,14 @@ void	tuples_tests(void);
 void	tuples_proj_test(void);
 void	test_circle(t_config *c);
 void	test_eclairage(t_config *c);
+void	test_phong(t_config *c);
 
 // utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+t_color	lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv);
 
 // init
-t_config	*init_config(void);
+t_config	*init_config(int ac, char **av);
 
 // parsing
 bool	parse_scene(t_config *c, char *filepath);
@@ -123,5 +122,6 @@ bool	parse_light(t_config *c, char **infos);
 bool	parse_camera(t_config *c, char **infos);
 
 void	print_config(t_config *c);
+bool	check_config(t_config *config);
 
 #endif
