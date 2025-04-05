@@ -22,7 +22,6 @@
 // 	if (c->mlx == NULL)
 // 		return ;
 // 	c->mlx_win = mlx_new_window(c->mlx, 500, 500, "MiniRT");
-		
 // 	c->img.img = mlx_new_image(c->mlx, 500, 500);
 // 	c->img.addr = mlx_get_data_addr(c->img.img,
 // 			&c->img.bits_per_pixels,

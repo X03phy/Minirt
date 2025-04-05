@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float.h                                            :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 12:39:09 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/05 10:30:11 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/05 10:04:52 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/05 10:47:43 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLOAT_H
-# define FLOAT_H
+#include "../../../../include/minirt.h"
 
-# include <stdbool.h>
-
-double	ft_atod(const char *nptr);
-bool	ft_is_double(char *s);
-#endif
+bool	check_only_valid_float(char **tab)
+{
+	if (!tab)
+		return (false);
+	while (*tab)
+	{
+		if (!ft_is_double(*tab))
+			return (false);
+		tab++;
+	}
+	return (true);
+}

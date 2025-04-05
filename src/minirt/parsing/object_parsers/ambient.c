@@ -6,13 +6,13 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:07:04 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:24:28 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:45:56 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/minirt.h"
 
-bool	parse_ambient(t_config *c, char **infos)
+bool	parse_ambient(t_config *c, char **infos, int currline)
 {
 	if (c->ambient_light != NULL)
 	{
@@ -21,6 +21,12 @@ bool	parse_ambient(t_config *c, char **infos)
 	}
 	if (ft_tabsize(infos) != 5)
 		return (false);
+	if (!check_only_valid_float(&infos[1]))
+	{
+		c->err.msg = INVALID_NUMBER;
+		c->err.line = currline;
+		return (false);
+	}
 	c->ambient_light = ft_calloc(sizeof(t_ambient_light), 1);
 	if (!c->ambient_light)
 		return (false);

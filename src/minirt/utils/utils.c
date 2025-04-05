@@ -10,21 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
-
-int	color_to_int(t_color color)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (fmin(fmax(color.x, 0.0), 1.0) * 255);
-	g = (fmin(fmax(color.y, 0.0), 1.0) * 255);
-	b = (fmin(fmax(color.z, 0.0), 1.0) * 255);
-	return (
-		(r << 16 | g << 8 | b)
-	);
-}
+#include "../../../include/minirt.h"
 
 t_material	default_material(t_color color)
 {
@@ -35,4 +21,19 @@ t_material	default_material(t_color color)
     m.shininess = 200.0;
     m.color = color;
 	return (m);
+}
+
+t_sphere	*listptr_to_sphere(t_list *elem)
+{
+	return ((t_sphere *)((t_object_node *)elem->content)->obj);
+}
+
+t_plane	*listptr_to_plane(t_list *elem)
+{
+	return ((t_plane *)((t_object_node *)elem->content)->obj);
+}
+
+t_cylinder	*listptr_to_cylinder(t_list *elem)
+{
+	return ((t_cylinder *)((t_object_node *)elem->content)->obj);
 }

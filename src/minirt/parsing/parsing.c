@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:49:51 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 14:14:36 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:38:40 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_line(t_config *c, char *line, int currline)
 	{
 		if (ft_strcmp(splited[0], &SCENE_TYPE[start]) == 0)
 		{
-			if (!(c->funcs[i])(c, splited))
+			if (!(c->funcs[i])(c, splited, currline))
 				return (ft_sfree((void **)&trimmed), ft_dfree(&splited), false);
 			return (ft_sfree((void **)&trimmed), ft_dfree(&splited), true);
 		}
