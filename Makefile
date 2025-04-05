@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/05 11:00:04 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/05 11:51:04 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \
 		  minirt/ray/ray_print.c \
 		  minirt/ray/ray_sphere_intersection.c \
+		  minirt/ray/ray_plane_intersection.c \
 		  minirt/ray/ray_transform.c \
 		  minirt/ray/lighting.c \
 

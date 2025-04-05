@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 10:38:25 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 11:04:27 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,15 @@ typedef struct s_config
 typedef struct s_intersection
 {
 	double			t;
-	t_object_node		*object;
+	t_object_node	*object;
 }	t_intersection;
+
+typedef struct s_intersection2
+{
+	double			t1;
+	double			t2;
+	t_object_node	*object;
+}	t_intersection2;
 
 
 void	clean_exit(t_config *config);

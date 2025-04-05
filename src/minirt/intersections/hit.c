@@ -6,16 +6,16 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:58:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 11:00:30 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:15:27 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
 #include "../../../include/ray.h"
 
-// t_intersection	*world_hit(t_config *c, t_ray r)
+// t_intersection2	**world_hit(t_config *c, t_ray r)
 // {
-// 	t_intersection	**result;
+// 	t_intersection2	**result;
 // 	t_list			*tmp;
 // 	double			t;
 // 	int				i;
@@ -24,7 +24,7 @@
 // 		return (NULL);
 // 	if (c->total_objects == 0)
 // 		return (NULL);
-// 	result = ft_calloc(sizeof(t_intersection *), c->total_objects + 1);
+// 	result = ft_calloc(sizeof(t_intersection2 *), c->total_objects + 1);
 // 	if (!result)
 // 		return (NULL);
 // 	i = 0;
@@ -35,7 +35,7 @@
 //
 // 		tmp = tmp->next;
 // 	}
-// 	
+// 	return (result);
 // }
 
 
@@ -65,6 +65,19 @@ t_intersection	*hit(t_config	*c, t_ray r)
 				{
 					result->t = t;
 					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object->type = SPHERE;
+				}
+			}
+		}
+		else if (((t_object_node *)tmp->content)->type == PLANE)
+		{
+			if (ray_plane_intersection((t_plane *)(((t_object_node *)(tmp->content))->obj), r, &t))
+			{
+				if (t > 0 && t < result->t)
+				{
+					result->t = t;
+					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object->type = PLANE;
 				}
 			}
 		}
