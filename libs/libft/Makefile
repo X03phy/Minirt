@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/04 17:51:19 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/05 10:29:37 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRCS_INT = $(addprefix int/, $(SRC_INT))
 OBJS_INT = $(addprefix int/, $(SRC_INT:.c=.o))
 
 
-SRC_FLOAT = ft_atod.c
+SRC_FLOAT = ft_atod.c \
+			ft_is_double.c
 
 SRCS_FLOAT = $(addprefix float/, $(SRC_FLOAT))
 OBJS_FLOAT = $(addprefix float/, $(SRC_FLOAT:.c=.o))

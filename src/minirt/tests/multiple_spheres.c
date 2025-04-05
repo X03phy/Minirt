@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:06:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 17:12:23 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:21:30 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	test_phong(t_config *c)
 
 	t_tuple	ray_origin = point_create(0, 0, -5);
 	int	wall_z = 10;
-	double	wall_size = 7.0;
+	double	wall_size = 10.0; // change this to change the image dimension
 
 	double	image_pixels = 1000;
 	double	pixel_size = wall_size / image_pixels;
@@ -47,19 +47,29 @@ void	test_phong(t_config *c)
 			xs = hit(c, r);
 			if (xs && xs->t)
 			{
-				// printf("Intersection found\n");
-				// point d'intersection sur la sphere
 				t_tuple	x_point = ray_position(r, xs->t);
-				// vecteur normal a la sphere en ce point
-				t_tuple	normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
+				if (xs->object->type == SPHERE)
+				{
+					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
+					// eye vector
+					t_tuple	eyev = tuple_negate(r.direction);
+					t_tuple color = lighting(((t_sphere *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					int	colorint = color_to_int(color);
+					// printf("Color : 0x%X\n", colorint);
+					my_mlx_pixel_put(&c->img, x, y, colorint);
 
-				// eye vector
-				t_tuple	eyev = tuple_negate(r.direction);
-
-				t_tuple	color = lighting(((t_sphere *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
-				int	colorint = color_to_int(color);
-				// printf("Color : 0x%X\n", colorint);
-				my_mlx_pixel_put(&c->img, x, y, colorint);
+				}
+				else
+				{
+					// printf("plane\n");
+					t_tuple normal_vec = ((t_plane *)xs->object)->orientation_vec;
+					// eye vector
+					t_tuple	eyev = tuple_negate(r.direction);
+					t_tuple color = lighting(((t_plane *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					int	colorint = color_to_int(color);
+					// printf("Color : 0x%X\n", colorint);
+					my_mlx_pixel_put(&c->img, x, y, colorint);
+				}
 				free(xs);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 15:14:53 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:40:44 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_help(char *message)
 	printf("Error\n");
 	if (message)
 		printf("%s\n", message);
+	printf(GRN"Usage : ./minirt <scene.rt>\n"RESET);
 }
 
 void	print_err(t_config *c, char *msg)
@@ -66,7 +67,7 @@ void	print_err(t_config *c, char *msg)
 		return ((void)printf("%s\n", msg));
 	if (c->err.line > -1)
 		printf("In scene file : %s\n", c->av[1]);
-	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0)
+	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0 || ft_strcmp(INVALID_NUMBER, c->err.msg) == 0)
 		printf(c->err.msg, c->err.line);
 	else
 		printf(c->err.msg, c->av[1]);
@@ -81,7 +82,7 @@ int main(int ac, char **av)
 		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
 
 	// test_circle(c);
-	test_eclairage(c);
+	// test_eclairage(c);
 	parse_scene(c, av[1]);
 	check_config(c);
 	if (c->err.msg)
@@ -89,7 +90,7 @@ int main(int ac, char **av)
 	if (c)
 		print_config(c);
 	
-	// test_phong(c);
+	test_phong(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }
