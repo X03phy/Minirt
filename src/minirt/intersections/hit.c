@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:58:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 13:15:27 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:15 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ t_intersection	*hit(t_config	*c, t_ray r)
 					result->t = t;
 					result->object = ((t_object_node *)(tmp->content))->obj;
 					result->object->type = PLANE;
+				}
+			}
+		}
+		else if (((t_object_node *)tmp->content)->type == CYLINDER)
+		{
+			if (ray_cylinder_intersection((t_cylinder *)(((t_object_node *)(tmp->content))->obj), r, &t))
+			{
+				// printf("hit : %f\n", t);
+				if (t > 0 && t < result->t)
+				{
+					result->t = t;
+					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object->type = CYLINDER;
 				}
 			}
 		}
