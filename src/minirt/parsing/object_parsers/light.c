@@ -6,17 +6,23 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:21 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:24:28 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:41:44 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/minirt.h"
 
-bool	parse_light(t_config *c, char **infos)
+bool	parse_light(t_config *c, char **infos, int currline)
 {
 	if (c->light != NULL)
 	{
 		c->err.msg = TOO_MANY_ELEMENT;
+		return (false);
+	}
+	if (!check_only_valid_float(&infos[1]))
+	{
+		c->err.msg = INVALID_NUMBER;
+		c->err.line = currline;
 		return (false);
 	}
 	if (ft_tabsize(infos) != 8)

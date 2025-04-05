@@ -6,19 +6,25 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:24:44 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:37:46 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/minirt.h"
 
-bool	parse_cylinder(t_config *c, char **infos)
+bool	parse_cylinder(t_config *c, char **infos, int currline)
 {
 	t_object_node	*node;
 	t_list			*lsttmp;
 
 	if (ft_tabsize(infos) != 12)
 		return (false);
+	if (!check_only_valid_float(&infos[1]))
+	{
+		c->err.msg = INVALID_NUMBER;
+		c->err.line = currline;
+		return (false);
+	}
 	node = ft_calloc(sizeof(t_object_node), 1);
 	if (!node)
 		return (false);

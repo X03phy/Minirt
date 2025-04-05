@@ -6,19 +6,25 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:17:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 15:20:56 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:42:03 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/minirt.h"
 
-bool	parse_sphere(t_config *c, char **infos)
+bool	parse_sphere(t_config *c, char **infos, int currline)
 {
 	t_object_node	*node;
 	t_list			*lsttmp;
 
 	if (ft_tabsize(infos) != 8)
+		return (false);	
+	if (!check_only_valid_float(&infos[1]))
+	{
+		c->err.msg = INVALID_NUMBER;
+		c->err.line = currline;
 		return (false);
+	}
 	node = ft_calloc(sizeof(t_object_node), 1);
 	if (!node)
 		return (false);
