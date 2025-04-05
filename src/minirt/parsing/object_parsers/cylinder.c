@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 10:37:46 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:55 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool	parse_cylinder(t_config *c, char **infos, int currline)
 	((t_cylinder *)node->obj)->diameter = ft_atod(infos[7]);
 	((t_cylinder *)node->obj)->height = ft_atod(infos[8]);
 	((t_cylinder *)node->obj)->color = point_create(ft_atoi(infos[9]) / 255.0, ft_atoi(infos[10]) / 255.0, ft_atoi(infos[11]) / 255.0);
+	((t_cylinder *)node->obj)->material = default_material(((t_cylinder *)node->obj)->color);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

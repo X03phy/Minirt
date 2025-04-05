@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_spheres.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:06:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 13:21:30 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:14:29 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,31 @@ void	test_phong(t_config *c)
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 
 				}
-				else
+				else if (xs->object->type == PLANE)
 				{
 					// printf("plane\n");
 					t_tuple normal_vec = ((t_plane *)xs->object)->orientation_vec;
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
 					t_tuple color = lighting(((t_plane *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					int	colorint = color_to_int(color);
+					// printf("Color : 0x%X\n", colorint);
+					my_mlx_pixel_put(&c->img, x, y, colorint);
+				}
+				else
+				{
+					t_tuple normal = vector_create(x_point.x, 0, x_point.y);
+					double mag = vector_magnitude(normal);
+					if (mag > EPSILON)
+					{
+						normal.x /= mag;
+						normal.z /= mag;
+					}
+					// t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_cylinder *)xs->object)->center));
+					// normal_vec.y = 0;
+					// eye vector
+					t_tuple	eyev = tuple_negate(r.direction);
+					t_tuple color = lighting(((t_cylinder *)xs->object)->material, *c->light, x_point, eyev, normal);
 					int	colorint = color_to_int(color);
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);

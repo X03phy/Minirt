@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:09:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 11:48:50 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:36:22 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ bool			ray_sphere_intersection(t_sphere *s, t_ray r, double *x);
 bool			ray_plane_intersection(t_plane *p, t_ray r, double *x);
 t_ray			ray_transform(t_ray r, t_matrix *m);
 t_intersection	*hit(t_config	*c, t_ray r);
+bool	ray_cylinder_intersection(t_cylinder *cylinder, t_ray ray, double *x);
 
 #endif
