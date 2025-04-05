@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:01:46 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/04 15:13:10 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:20:57 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,24 @@
 // 	if (c->mlx == NULL)
 // 		return ;
 // 	c->mlx_win = mlx_new_window(c->mlx, 500, 500, "MiniRT");
-// 		
 // 	c->img.img = mlx_new_image(c->mlx, 500, 500);
 // 	c->img.addr = mlx_get_data_addr(c->img.img,
 // 			&c->img.bits_per_pixels,
 // 			&c->img.line_len, &c->img.endian);
-//
+
 // 	t_tuple	ray_origin = point_create(0, 0, -5);
 // 	int	wall_z = 10;
 // 	double	wall_size = 7.0;
-//
+
 // 	// calcul de la taille d'un pixel de l'image dans la simulation 3D
 // 	double	image_pixels = 500;
 // 	double	pixel_size = wall_size / image_pixels;
 // 	double	half = wall_size / 2;
-//
+
 // 	t_sphere s;
 // 	s.center = point_create(0, 0, 0);
 // 	s.radius = 1;
-//
+
 // 	double *xs;
 // 	for (int y = 0; y < image_pixels; y++)
 // 	{
