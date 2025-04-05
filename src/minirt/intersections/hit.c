@@ -85,7 +85,6 @@ t_intersection	*hit(t_config	*c, t_ray r)
 		{
 			if (ray_cylinder_intersection((t_cylinder *)(((t_object_node *)(tmp->content))->obj), r, &t))
 			{
-				// printf("hit : %f\n", t);
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;
