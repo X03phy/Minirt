@@ -53,7 +53,7 @@ void	test_phong(t_config *c)
 					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_sphere *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					t_tuple color = lighting(((t_sphere *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c);
 					int	colorint = color_to_int(color);
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
@@ -65,7 +65,7 @@ void	test_phong(t_config *c)
 					t_tuple normal_vec = ((t_plane *)xs->object)->orientation_vec;
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_plane *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					t_tuple color = lighting(((t_plane *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c);
 					int	colorint = color_to_int(color);
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
@@ -75,7 +75,7 @@ void	test_phong(t_config *c)
 					t_tuple normal_vec = vector_normalize(tuple_create(x_point.x - ((t_cylinder *)xs->object)->center.x, 0, x_point.z - ((t_cylinder *)xs->object)->center.z, 0));
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_cylinder *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					t_tuple color = lighting(((t_cylinder *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c);
 					int	colorint = color_to_int(color);
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
