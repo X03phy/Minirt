@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:58:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 15:46:15 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:40:22 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ t_intersection	*hit(t_config	*c, t_ray r)
 		}
 		else if (((t_object_node *)tmp->content)->type == CYLINDER)
 		{
+			t_cylinder *cylinder = (t_cylinder *)(((t_object_node *)(tmp->content))->obj);
+   			cylinder->orientation_vec = vector_normalize(cylinder->orientation_vec);
 			if (ray_cylinder_intersection((t_cylinder *)(((t_object_node *)(tmp->content))->obj), r, &t))
 			{
 				// printf("hit : %f\n", t);
@@ -91,6 +93,7 @@ t_intersection	*hit(t_config	*c, t_ray r)
 					result->t = t;
 					result->object = ((t_object_node *)(tmp->content))->obj;
 					result->object->type = CYLINDER;
+					
 				}
 			}
 		}

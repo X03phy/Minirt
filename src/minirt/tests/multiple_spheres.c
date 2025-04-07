@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:06:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 16:14:29 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:31:29 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	test_phong(t_config *c)
 		{
 			double world_x = -half + (x * pixel_size);
 			t_tuple	position = point_create(world_x, world_y, wall_z);
-			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
+			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin))); // Normalise donc trkl
 			xs = hit(c, r);
 			if (xs && xs->t)
 			{
@@ -72,11 +72,22 @@ void	test_phong(t_config *c)
 				}
 				else
 				{
-					t_tuple normal_vec = vector_normalize(tuple_create(x_point.x - ((t_cylinder *)xs->object)->center.x, 0, x_point.z - ((t_cylinder *)xs->object)->center.z, 0));
+					t_cylinder *cylinder;
+					cylinder = ((t_cylinder *)xs->object);
+					// tuple_print(&((t_cylinder *)xs->object)->orientation_vec); // c est bon
+					t_tuple oc = tuple_substitute(x_point, cylinder->center);
+					double m = vector_dot(oc, cylinder->orientation_vec);
+					t_tuple proj = tuple_multiply(cylinder->orientation_vec, m);
+					t_tuple normal_vec = vector_normalize(tuple_substitute(oc, proj));
+					// normal_vec = tuple_multiply(normal_vec, -1);
+					// t_tuple normal_vec = vector_normalize(tuple_create(x_point.x - ((t_cylinder *)xs->object)->center.x, 0, x_point.z - ((t_cylinder *)xs->object)->center.z, 0));
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
 					t_tuple color = lighting(((t_cylinder *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					// tuple_print(&x_point);
+					// tuple_print(&normal_vec);
 					int	colorint = color_to_int(color);
+					// int	colorint = 0xFF0000;
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
