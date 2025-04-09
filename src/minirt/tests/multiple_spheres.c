@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:06:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/08 16:36:19 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:23:46 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	test_phong(t_config *c)
 			{
 				t_tuple	x_point = ray_position(r, xs->t);
 				// test shadow
-				t_tuple	shadow_point = ray_position(r, xs->t - 10);
-				bool	in_shadow = is_in_shadow(c, shadow_point);
+				bool	in_shadow = is_in_shadow(c, x_point);
 				if (xs->object->type == SPHERE)
 				{
 					// printf("hit : %f shadow hit : %f\n", xs->t, xs->t - 10);
@@ -97,7 +96,7 @@ void	test_phong(t_config *c)
 				{
 					t_tuple normal_vec = ((t_disk *)xs->object)->orientation_vec;
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_disk *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					t_tuple color = lighting(((t_disk *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c, false);
 					int	colorint = color_to_int(color);
 					// printf("Color : 0x%X\n", colorint);
 					// int	colorint = 0xFF0000;
