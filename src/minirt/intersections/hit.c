@@ -12,6 +12,7 @@
 
 #include "../../../include/minirt.h"
 #include "../../../include/ray.h"
+#include <stdint.h>
 
 // t_intersection2	**world_hit(t_config *c, t_ray r)
 // {
@@ -38,7 +39,23 @@
 // 	return (result);
 // }
 
-bool	is_in_shadow(t_config *c, t_tuple xpoint)
+int	get_obj_id(t_object_node *obj)
+{
+	// printf("obj = %p, obj.obj = %p\n", obj, obj->obj);
+	if (obj->obj == NULL)
+		return (-1);
+	if (obj->type == SPHERE)
+		return (((t_sphere *)obj->obj)->id);
+	else if (obj->type == CYLINDER)
+		return (((t_cylinder *)obj->obj)->id);
+	else if (obj->type == PLANE)
+		return (((t_plane *)obj->obj)->id);
+	else if (obj->type == DISK)
+		return (((t_disk *)obj->obj)->id);
+	return (-1);
+}
+
+bool	is_in_shadow(t_config *c, t_tuple xpoint, int	id)
 {
 	t_tuple v = tuple_substitute(c->light->position, xpoint);
 	double	distance = vector_magnitude(v);
@@ -46,12 +63,15 @@ bool	is_in_shadow(t_config *c, t_tuple xpoint)
 
 	t_ray	ray_to_light = ray_create(xpoint, direction);
 	t_intersection *xs = hit(c, ray_to_light);
-	if (xs)
+	if (xs && xs->t && (uintptr_t)xs->object->obj > 0x4000)
 	{
+		// if (get_obj_id(xs->object) == id)
+		// 	return (free(xs), false);
 		if (xs->t < distance)
 			return (free(xs), true);
 	}
 	return (free(xs), false);
+	(void)id;
 }
 
 t_intersection	*hit(t_config	*c, t_ray r)

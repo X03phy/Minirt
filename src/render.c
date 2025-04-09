@@ -43,10 +43,12 @@ void	render(t_config *c)
 			t_tuple	position = point_create(world_x, world_y, wall_z);
 			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 			xs = hit(c, r);
-			if (xs && xs->t)
+			// printf("pixel : x = %d, y = %d\n", x, y);
+			if (xs && xs->t && xs->object)
 			{
 				t_tuple	x_point = ray_position(r, xs->t);
-				bool	in_shadow = is_in_shadow(c, x_point);
+				// bool	in_shadow = is_in_shadow(c, x_point, get_obj_id(xs->object));
+				bool	in_shadow = is_in_shadow(c, x_point, 1);
 				if (xs->object->type == SPHERE)
 				{
 					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
