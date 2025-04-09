@@ -116,7 +116,8 @@ void	test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv);
+t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv, t_config *c, bool in_shadow);
+bool		is_in_shadow(t_config *c, t_tuple xpoint);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
 bool		check_only_valid_float(char **tab);

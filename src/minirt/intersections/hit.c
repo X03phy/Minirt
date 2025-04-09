@@ -38,6 +38,21 @@
 // 	return (result);
 // }
 
+bool	is_in_shadow(t_config *c, t_tuple xpoint)
+{
+	t_tuple v = tuple_substitute(c->light->position, xpoint);
+	double	distance = vector_magnitude(v);
+	t_tuple	direction = vector_normalize(v);
+
+	t_ray	ray_to_light = ray_create(xpoint, direction);
+	t_intersection *xs = hit(c, ray_to_light);
+	if (xs)
+	{
+		if (xs->t < distance)
+			return (free(xs), true);
+	}
+	return (free(xs), false);
+}
 
 t_intersection	*hit(t_config	*c, t_ray r)
 {
@@ -87,7 +102,6 @@ t_intersection	*hit(t_config	*c, t_ray r)
    			cylinder->orientation_vec = vector_normalize(cylinder->orientation_vec);
 			if (ray_cylinder_intersection((t_cylinder *)(((t_object_node *)(tmp->content))->obj), r, &t))
 			{
-				// printf("hit : %f\n", t);
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;

@@ -65,25 +65,24 @@ bool ray_cylinder_intersection3(t_cylinder *cylinder, t_ray ray, double *x)
     if (discriminant < 0)
         return false;
     
-    double sqrt_disc = sqrt(discriminant);
-    inter[0] = (-b - sqrt_disc) / (2 * a);
-    inter[1] = (-b + sqrt_disc) / (2 * a);
+    inter[0] = (-b - sqrt(discriminant)) / (2 * a);
+    inter[1] = (-b + sqrt(discriminant)) / (2 * a);
     
     // Choisir la solution la plus proche positive
-    double t_candidate = fmin(inter[0], inter[1]);
-    if (t_candidate < EPSILON)
-        t_candidate = fmax(inter[0], inter[1]);
-    if (t_candidate < EPSILON)
-        return false;
+    // double t_candidate = fmin(inter[0], inter[1]);
+    // if (t_candidate < EPSILON)
+    //     t_candidate = fmax(inter[0], inter[1]);
+    // if (t_candidate < EPSILON)
+    //     return false;
     
     // Calcul de la coordonnée Y de l'intersection
-    double y_intersection = ray.origin.y + t_candidate * ray.direction.y;
+    double y_intersection = ray.origin.y + fmin(inter[0], inter[1]) * ray.direction.y;
     double min_y = cylinder->center.y - (cylinder->height / 2.0);
     double max_y = cylinder->center.y + (cylinder->height / 2.0);
     if (y_intersection < min_y || y_intersection > max_y)
         return false;  // L'intersection est en dehors de la hauteur du cylindre
     
-    *x = t_candidate;
+    *x = fmin(inter[0], inter[1]);
     return true;
 }
 

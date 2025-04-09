@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/05 10:29:37 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/06 11:44:04 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,6 +161,7 @@ SRC_TUPLE = creation/point_create.c \
 			operations/tuple_add.c \
 			operations/tuple_divide.c \
 			operations/tuple_multiply.c \
+			operations/tuple_mult_tuple.c \
 			operations/tuple_substitute.c \
 			operations/vector_cross_product.c \
 			operations/vector_dot.c \
