@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:06:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/07 17:31:29 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:36:19 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	test_phong(t_config *c)
 					// printf("Color : 0x%X\n", colorint);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
-				else
+				else if (xs->object->type == CYLINDER)
 				{
 					t_cylinder *cylinder;
 					cylinder = ((t_cylinder *)xs->object);
@@ -89,6 +89,16 @@ void	test_phong(t_config *c)
 					int	colorint = color_to_int(color);
 					// int	colorint = 0xFF0000;
 					// printf("Color : 0x%X\n", colorint);
+					my_mlx_pixel_put(&c->img, x, y, colorint);
+				}
+				else if (xs->object->type == DISK)
+				{
+					t_tuple normal_vec = ((t_disk *)xs->object)->orientation_vec;
+					t_tuple	eyev = tuple_negate(r.direction);
+					t_tuple color = lighting(((t_disk *)xs->object)->material, *c->light, x_point, eyev, normal_vec);
+					int	colorint = color_to_int(color);
+					// printf("Color : 0x%X\n", colorint);
+					// int	colorint = 0xFF0000;
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
 				free(xs);

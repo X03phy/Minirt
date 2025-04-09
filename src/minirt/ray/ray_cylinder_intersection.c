@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:29:52 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/07 17:31:47 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:33:19 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,17 +189,7 @@ bool ray_cylinder_intersection(t_cylinder *cylinder, t_ray ray, double *x)
     
     // Vérifier si l'intersection est dans la hauteur du cylindre
     if (projection < -cylinder->height / 2.0 || projection > cylinder->height / 2.0)
-    {
-        // perror("mtm");
-        t_candidate = fmax(inter[0], inter[1]);
-        t_tuple hit_point = tuple_add(ray.origin, tuple_multiply(ray.direction, t_candidate));  // Position d'intersection du rayon
-    
-        // Projeter le point d'intersection sur l'axe d'orientation du cylindre
-        t_tuple from_center = tuple_substitute(hit_point, cylinder->center);
-        double projection = vector_dot(from_center, cylinder->orientation_vec);  // Projection sur l'axe du cylindre
-        if (projection < -cylinder->height / 2.0 || projection > cylinder->height / 2.0)
-            return (false);
-    }
+        return (false);
     *x = t_candidate;
     return true;
 }

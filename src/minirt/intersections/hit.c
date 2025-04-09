@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:58:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/07 13:40:22 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:31:26 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,18 @@ t_intersection	*hit(t_config	*c, t_ray r)
 					result->object = ((t_object_node *)(tmp->content))->obj;
 					result->object->type = CYLINDER;
 					
+				}
+			}
+		}
+		else if (((t_object_node *)tmp->content)->type == DISK)
+		{
+			if (ray_disk_intersection((t_disk *)(((t_object_node *)(tmp->content))->obj), r, &t))
+			{
+				if (t > 0 && t < result->t)
+				{
+					result->t = t;
+					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object->type = DISK;
 				}
 			}
 		}

@@ -6,6 +6,7 @@
 		"matrix.h": "c",
 		"minirt.h": "c",
 		"stdbool.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"ray.h": "c"
 	}
 }
