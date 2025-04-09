@@ -59,7 +59,6 @@ t_color lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple norma
         t_color diffuse_color = tuple_add(m.color, light_real_color);
         diffuse = tuple_multiply(diffuse_color, m.diffuse * light_dot_normal);
 
-        // Calcul du vecteur de réflexion
         t_tuple reflectv = vector_reflect(tuple_negate(lightv), normalv);
         double reflect_dot_eye = vector_dot(reflectv, eyev);
         if (reflect_dot_eye > 0)

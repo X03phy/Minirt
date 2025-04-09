@@ -49,9 +49,11 @@ void	test_phong(t_config *c)
 			{
 				t_tuple	x_point = ray_position(r, xs->t);
 				// test shadow
-				bool	in_shadow = is_in_shadow(c, x_point);
+				t_tuple	shadow_point = ray_position(r, xs->t - 10);
+				bool	in_shadow = is_in_shadow(c, shadow_point);
 				if (xs->object->type == SPHERE)
 				{
+					// printf("hit : %f shadow hit : %f\n", xs->t, xs->t - 10);
 					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
