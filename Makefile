@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/08 14:57:31 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/09 14:49:25 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g
+CFLAGS = -Werror -Wextra -Wall -g 
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -70,6 +70,7 @@ SRC = 	$(SRCPARSING) \
 		$(SRC_HIT) \
 		main.c \
 	  	hooks.c \
+		render.c
 
 SRCS = $(addprefix src/, $(SRC))
 OBJS = $(addprefix obj/, $(SRC:.c=.o))

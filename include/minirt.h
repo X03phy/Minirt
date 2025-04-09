@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/08 15:24:08 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:49:14 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,8 @@ bool	check_config(t_config *config);
 t_sphere	*listptr_to_sphere(t_list *elem);
 t_plane		*listptr_to_plane(t_list *elem);
 t_cylinder	*listptr_to_cylinder(t_list *elem);
+
+// render
+void	render(t_config *c);
 
 #endif
