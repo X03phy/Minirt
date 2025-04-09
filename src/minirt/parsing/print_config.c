@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/04 12:25:01 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:34:33 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ void	print_cylinder(t_cylinder *c)
 
 }
 
+void	print_disk(t_disk *p)
+{
+	printf(UCYN"DISK = \n"RESET);
+	printf(BHCYN"ID : %d \n"RESET, p->id);
+	printf("Center : \n\t");
+	tuple_print(&p->center);
+	printf("Orientation : \n\t");
+	tuple_print(&p->orientation_vec);
+	printf("\tRadius : %f\n", p->radius);
+	printf("\tColor :");
+	tuple_print(&p->color);
+}
+
 void	print_objects(t_list *obj)
 {
 	while (obj)
@@ -88,6 +101,8 @@ void	print_objects(t_list *obj)
 			print_sphere(((t_object_node *)obj->content)->obj);
 		else if (((t_object_node *)obj->content)->type == CYLINDER)
 			print_cylinder(((t_object_node *)obj->content)->obj);
+		else if (((t_object_node *)obj->content)->type == DISK)
+			print_disk(((t_object_node *)obj->content)->obj);
 		else
 			printf(RED"WRONG obj type.\n"RESET);
 		obj = obj->next;

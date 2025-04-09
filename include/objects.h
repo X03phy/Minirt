@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:54:49 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 15:47:06 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:51:51 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ typedef struct s_plane
 	t_color	color;
 	t_material	material;
 }	t_plane;
+
+typedef struct s_disk
+{
+	int	id;
+	t_tuple	center;
+	double	radius;
+	t_tuple	orientation_vec;
+	t_color	color;
+	t_material	material;
+}	t_disk;
 
 typedef struct s_cylinder
 {
