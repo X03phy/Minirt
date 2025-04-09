@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:58:56 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 15:46:15 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:31:26 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_intersection	*hit(t_config	*c, t_ray r)
 		}
 		else if (((t_object_node *)tmp->content)->type == CYLINDER)
 		{
+			t_cylinder *cylinder = (t_cylinder *)(((t_object_node *)(tmp->content))->obj);
+   			cylinder->orientation_vec = vector_normalize(cylinder->orientation_vec);
 			if (ray_cylinder_intersection((t_cylinder *)(((t_object_node *)(tmp->content))->obj), r, &t))
 			{
 				if (t > 0 && t < result->t)
@@ -105,6 +107,19 @@ t_intersection	*hit(t_config	*c, t_ray r)
 					result->t = t;
 					result->object = ((t_object_node *)(tmp->content))->obj;
 					result->object->type = CYLINDER;
+					
+				}
+			}
+		}
+		else if (((t_object_node *)tmp->content)->type == DISK)
+		{
+			if (ray_disk_intersection((t_disk *)(((t_object_node *)(tmp->content))->obj), r, &t))
+			{
+				if (t > 0 && t < result->t)
+				{
+					result->t = t;
+					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object->type = DISK;
 				}
 			}
 		}

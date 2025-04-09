@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/05 15:36:56 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/08 14:57:31 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_plane_intersection.c \
 		  minirt/ray/ray_transform.c \
 		  minirt/ray/lighting.c \
-		  minirt/ray/ray_cylinder_intersection.c
+		  minirt/ray/ray_cylinder_intersection.c \
+		  minirt/ray/ray_disk_intersection.c
 
 SRC_HIT = minirt/intersections/hit.c
 
