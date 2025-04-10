@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:21 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 10:41:44 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:21:52 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ bool	parse_light(t_config *c, char **infos, int currline)
 	c->light = ft_calloc(sizeof(t_light), 1);
 	if (!c->light)
 		return (false);
-	c->light->position = point_create(ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
+	c->light->position = point_create(
+			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	c->light->brightness = ft_atod(infos[4]);
-	c->light->color = point_create(ft_atoi(infos[5]) / 255.0, ft_atoi(infos[6]) / 255.0, ft_atoi(infos[7]) / 255.0);
+	c->light->color = point_create(
+			ft_atoi(infos[5]) / 255.0,
+			ft_atoi(infos[6]) / 255.0, ft_atoi(infos[7]) / 255.0);
 	return (true);
 }

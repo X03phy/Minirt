@@ -27,40 +27,40 @@ typedef struct s_material
 
 typedef struct s_sphere
 {
-	int		id;
-	t_tuple	center;
-	double	radius;
-	t_color	color;
+	int			id;
+	t_tuple		center;
+	double		radius;
+	t_color		color;
 	t_material	material;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	int		id;
-	t_tuple	center;
-	t_tuple	orientation_vec;
-	t_color	color;
+	int			id;
+	t_tuple		center;
+	t_tuple		orientation_vec;
+	t_color		color;
 	t_material	material;
 }	t_plane;
 
 typedef struct s_disk
 {
-	int	id;
-	t_tuple	center;
-	double	radius;
-	t_tuple	orientation_vec;
-	t_color	color;
+	int			id;
+	t_tuple		center;
+	double		radius;
+	t_tuple		orientation_vec;
+	t_color		color;
 	t_material	material;
 }	t_disk;
 
 typedef struct s_cylinder
 {
-	int		id;
-	t_tuple	center;
-	t_tuple	orientation_vec;
-	double	diameter;
-	double	height;
-	t_color	color;
+	int			id;
+	t_tuple		center;
+	t_tuple		orientation_vec;
+	double		diameter;
+	double		height;
+	t_color		color;
 	t_material	material;
 }	t_cylinder;
 

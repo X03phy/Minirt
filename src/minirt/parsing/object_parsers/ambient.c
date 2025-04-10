@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:07:04 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/05 10:45:56 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:17:52 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ bool	parse_ambient(t_config *c, char **infos, int currline)
 	if (!c->ambient_light)
 		return (false);
 	c->ambient_light->ratio = ft_atod(infos[1]);
-	c->ambient_light->color = point_create(ft_atoi(infos[2]) / 255.0, ft_atoi(infos[3]) / 255.0, ft_atoi(infos[4]) / 255.0);
+	c->ambient_light->color = point_create(
+			ft_atoi(infos[2]) / 255.0, ft_atoi(infos[3])
+			/ 255.0, ft_atoi(infos[4]) / 255.0);
 	return (true);
 }

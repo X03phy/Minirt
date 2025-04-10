@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/08 14:57:31 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/10 10:15:52 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g
+CFLAGS = -Werror -Wextra -Wall -g -fsanitize=address,null
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -39,6 +39,7 @@ SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/object_parsers/parser_utils.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c \
+				minirt/parsing/print_config2.c \
 				minirt/parsing/checks.c
 
 SRCTESTS = minirt/tests/circle.c \
@@ -62,12 +63,16 @@ SRCMLXUTILS = minirt/mlx_utils/utils1.c
 
 SRCUTILS = minirt/utils/utils.c
 
+SRCRENDER = minirt/render/render.c \
+			minirt/render/render_obj.c
+
 SRC = 	$(SRCPARSING) \
 		$(SRCTESTS) \
 		$(SRCMLXUTILS) \
 		$(SRCUTILS) \
 		$(SRC_RAY) \
 		$(SRC_HIT) \
+		$(SRCRENDER) \
 		main.c \
 	  	hooks.c \
 

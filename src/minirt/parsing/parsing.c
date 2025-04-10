@@ -12,12 +12,33 @@
 
 #include "../../../include/minirt.h"
 
+bool	handle_line(t_config *c, int currline, char **trimmed, char ***splited)
+{
+	int	i;
+	int	start;
+
+	i = 0;
+	start = 0;
+	while (SCENE_TYPE[start])
+	{
+		if (ft_strcmp(*splited[0], &SCENE_TYPE[start]) == 0)
+		{
+			if (!(c->funcs[i])(c, *splited, currline))
+				return (ft_sfree((void **)trimmed), ft_dfree(splited), false);
+			return (ft_sfree((void **)trimmed), ft_dfree(splited), true);
+		}
+		i++;
+		start += ft_strlen(&SCENE_TYPE[start]) + 1;
+	}
+	c->err.msg = INVALID_OBJECT;
+	c->err.line = currline;
+	return (ft_sfree((void **)trimmed), ft_dfree(splited), false);
+}
+
 bool	parse_line(t_config *c, char *line, int currline)
 {
 	char	*trimmed;
 	char	**splited;
-	int		i;
-	int		start;
 
 	if (!c || !line)
 		return (false);
@@ -27,22 +48,7 @@ bool	parse_line(t_config *c, char *line, int currline)
 	splited = ft_split_charset(trimmed, WHITESPACES",");
 	if (!splited || splited[0] == NULL)
 		return (ft_dfree(&splited), free(trimmed), false);
-	i = 0;
-	start = 0;
-	while (SCENE_TYPE[start])
-	{
-		if (ft_strcmp(splited[0], &SCENE_TYPE[start]) == 0)
-		{
-			if (!(c->funcs[i])(c, splited, currline))
-				return (ft_sfree((void **)&trimmed), ft_dfree(&splited), false);
-			return (ft_sfree((void **)&trimmed), ft_dfree(&splited), true);
-		}
-		i++;
-		start += ft_strlen(&SCENE_TYPE[start]) + 1;
-	}
-	c->err.msg = INVALID_OBJECT;
-	c->err.line = currline;
-	return (ft_sfree((void **)&trimmed), ft_dfree(&splited), false);
+	return (handle_line(c, currline, &trimmed, &splited));
 }
 
 bool	parse_scene(t_config *c, char *filepath)
@@ -52,7 +58,6 @@ bool	parse_scene(t_config *c, char *filepath)
 	int		currline;
 
 	tmp = NULL;
-	scenefd = 0;
 	currline = 0;
 	if (!c || !filepath)
 		return (false);
@@ -74,4 +79,3 @@ bool	parse_scene(t_config *c, char *filepath)
 	}
 	return (close(scenefd), false);
 }
-

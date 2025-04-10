@@ -49,7 +49,7 @@ void	test_phong(t_config *c)
 			{
 				t_tuple	x_point = ray_position(r, xs->t);
 				// test shadow
-				bool	in_shadow = is_in_shadow(c, x_point);
+				bool	in_shadow = false;//is_in_shadow(c, x_point);
 				if (xs->object->type == SPHERE)
 				{
 					// printf("hit : %f shadow hit : %f\n", xs->t, xs->t - 10);

@@ -31,10 +31,5 @@ bool	check_config(t_config *config)
 			config->err.msg = "No spotlight !\n";
 		status = false;
 	}
-	// if (status && (config->win_height <= 0 || config->win_width <= 0))
-	// {
-	// 	config->err.msg = "Invalid image size !\n";
-	// 	status = false;
-	// }
 	return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/08 14:59:06 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:52:11 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
 
-	// test_circle(c);
-	// test_eclairage(c);
 	parse_scene(c, av[1]);
 	check_config(c);
 	if (c->err.msg)
@@ -90,7 +88,7 @@ int main(int ac, char **av)
 	if (c)
 		print_config(c);
 	
-	test_phong(c);
+	render(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }
