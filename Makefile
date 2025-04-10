@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/10 09:28:44 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/10 10:15:52 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCPARSING =	minirt/parsing/parsing.c \
 	  			minirt/parsing/object_parsers/parser_utils.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c \
+				minirt/parsing/print_config2.c \
 				minirt/parsing/checks.c
 
 SRCTESTS = minirt/tests/circle.c \

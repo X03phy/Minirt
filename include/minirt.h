@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 09:42:11 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:15:40 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ bool	parse_camera(t_config *c, char **infos, int currline);
 
 void	print_config(t_config *c);
 bool	check_config(t_config *config);
+
+void	print_ambient(t_ambient_light *a);
+void	print_camera(t_camera *c);
+void	print_light(t_light *l);
+void	print_plane(t_plane *p);
+void	print_sphere(t_sphere *s);
 
 // cast
 t_sphere	*listptr_to_sphere(t_list *elem);
