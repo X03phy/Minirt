@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/09 14:49:14 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/10 09:42:11 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "objects.h"
 
 # define EPSILON 0.00001
-# define PI 3.145926
+# define ACNE_DECALAGE 0.0001
 # define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0"
 # define SCENE_TYPE_NUM 6
 
@@ -70,6 +70,18 @@ typedef struct s_error
 	char	*msg;
 }	t_error;
 
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}	t_ray;
+
+typedef struct s_intersection
+{
+	double			t;
+	t_object_node	*object;
+}	t_intersection;
+
 typedef bool (*parsefunc)(void *, char **, int);
 
 typedef struct s_config
@@ -89,20 +101,6 @@ typedef struct s_config
 	t_list			*objects_list;
 	int				total_objects;
 }	t_config;
-
-typedef struct s_intersection
-{
-	double			t;
-	t_object_node	*object;
-}	t_intersection;
-
-typedef struct s_intersection2
-{
-	double			t1;
-	double			t2;
-	t_object_node	*object;
-}	t_intersection2;
-
 
 void	clean_exit(t_config *config);
 void	install_hooks(t_config *config);
@@ -145,5 +143,9 @@ t_cylinder	*listptr_to_cylinder(t_list *elem);
 
 // render
 void	render(t_config *c);
+int		render_sphere(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
+int		render_plane(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
+int		render_cylinder(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
+int		render_disk(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
 
 #endif

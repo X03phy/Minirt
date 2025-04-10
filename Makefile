@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/09 14:49:25 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/10 09:28:44 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,15 +62,18 @@ SRCMLXUTILS = minirt/mlx_utils/utils1.c
 
 SRCUTILS = minirt/utils/utils.c
 
+SRCRENDER = minirt/render/render.c \
+			minirt/render/render_obj.c
+
 SRC = 	$(SRCPARSING) \
 		$(SRCTESTS) \
 		$(SRCMLXUTILS) \
 		$(SRCUTILS) \
 		$(SRC_RAY) \
 		$(SRC_HIT) \
+		$(SRCRENDER) \
 		main.c \
 	  	hooks.c \
-		render.c
 
 SRCS = $(addprefix src/, $(SRC))
 OBJS = $(addprefix obj/, $(SRC:.c=.o))
