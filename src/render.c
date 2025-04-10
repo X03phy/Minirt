@@ -44,46 +44,46 @@ void	render(t_config *c)
 			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
 			xs = hit(c, r);
 			// printf("pixel : x = %d, y = %d\n", x, y);
-			if (xs && xs->t && xs->object)
+			if (xs)
 			{
 				t_tuple	x_point = ray_position(r, xs->t);
-				// bool	in_shadow = is_in_shadow(c, x_point, get_obj_id(xs->object));
-				bool	in_shadow = is_in_shadow(c, x_point, 1);
+				bool	in_shadow = is_in_shadow(c, x_point, get_obj_id(xs->object));
+				// bool	in_shadow = is_in_shadow(c, x_point, 1);
 				if (xs->object->type == SPHERE)
 				{
-					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object)->center));
+					t_tuple normal_vec = vector_normalize(tuple_substitute(x_point, ((t_sphere *)xs->object->obj)->center));
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_sphere *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
+					t_tuple color = lighting(((t_sphere *)xs->object->obj)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
 					int	colorint = color_to_int(color);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
 				else if (xs->object->type == PLANE)
 				{
-					t_tuple normal_vec = ((t_plane *)xs->object)->orientation_vec;
+					t_tuple normal_vec = ((t_plane *)xs->object->obj)->orientation_vec;
 					// eye vector
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_plane *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
+					t_tuple color = lighting(((t_plane *)xs->object->obj)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
 					int	colorint = color_to_int(color);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
 				else if (xs->object->type == CYLINDER)
 				{
 					t_cylinder *cylinder;
-					cylinder = ((t_cylinder *)xs->object);
+					cylinder = ((t_cylinder *)xs->object->obj);
 					t_tuple oc = tuple_substitute(x_point, cylinder->center);
 					double m = vector_dot(oc, cylinder->orientation_vec);
 					t_tuple proj = tuple_multiply(cylinder->orientation_vec, m);
 					t_tuple normal_vec = vector_normalize(tuple_substitute(oc, proj));
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_cylinder *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
+					t_tuple color = lighting(((t_cylinder *)xs->object->obj)->material, *c->light, x_point, eyev, normal_vec, c, in_shadow);
 					int	colorint = color_to_int(color);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}
 				else if (xs->object->type == DISK)
 				{
-					t_tuple normal_vec = ((t_disk *)xs->object)->orientation_vec;
+					t_tuple normal_vec = ((t_disk *)xs->object->obj)->orientation_vec;
 					t_tuple	eyev = tuple_negate(r.direction);
-					t_tuple color = lighting(((t_disk *)xs->object)->material, *c->light, x_point, eyev, normal_vec, c, false);
+					t_tuple color = lighting(((t_disk *)xs->object->obj)->material, *c->light, x_point, eyev, normal_vec, c, false);
 					int	colorint = color_to_int(color);
 					my_mlx_pixel_put(&c->img, x, y, colorint);
 				}

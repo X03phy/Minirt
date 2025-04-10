@@ -41,7 +41,8 @@
 
 int	get_obj_id(t_object_node *obj)
 {
-	// printf("obj = %p, obj.obj = %p\n", obj, obj->obj);
+	if (!obj)
+		return (-1);
 	if (obj->obj == NULL)
 		return (-1);
 	if (obj->type == SPHERE)
@@ -57,13 +58,15 @@ int	get_obj_id(t_object_node *obj)
 
 bool	is_in_shadow(t_config *c, t_tuple xpoint, int	id)
 {
+	if (id == -1)
+		return (false);
 	t_tuple v = tuple_substitute(c->light->position, xpoint);
 	double	distance = vector_magnitude(v);
 	t_tuple	direction = vector_normalize(v);
 
 	t_ray	ray_to_light = ray_create(xpoint, direction);
 	t_intersection *xs = hit(c, ray_to_light);
-	if (xs && xs->t && (uintptr_t)xs->object->obj > 0x4000)
+	if (xs)
 	{
 		// if (get_obj_id(xs->object) == id)
 		// 	return (free(xs), false);
@@ -99,7 +102,7 @@ t_intersection	*hit(t_config	*c, t_ray r)
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;
-					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object = ((t_object_node *)(tmp->content));
 					result->object->type = SPHERE;
 				}
 			}
@@ -111,7 +114,7 @@ t_intersection	*hit(t_config	*c, t_ray r)
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;
-					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object = ((t_object_node *)(tmp->content));
 					result->object->type = PLANE;
 				}
 			}
@@ -125,7 +128,7 @@ t_intersection	*hit(t_config	*c, t_ray r)
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;
-					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object = ((t_object_node *)(tmp->content));
 					result->object->type = CYLINDER;
 					
 				}
@@ -138,7 +141,7 @@ t_intersection	*hit(t_config	*c, t_ray r)
 				if (t > 0 && t < result->t)
 				{
 					result->t = t;
-					result->object = ((t_object_node *)(tmp->content))->obj;
+					result->object = ((t_object_node *)(tmp->content));
 					result->object->type = DISK;
 				}
 			}
