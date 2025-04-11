@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:15:40 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:21:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,29 @@ typedef struct s_intersection
 
 typedef bool (*parsefunc)(void *, char **, int);
 
+typedef struct s_render
+{
+	int		wall_z;
+	double	dist_cam_wall;
+	double	fov_rad;
+	double	half_view;
+	double	wall_size;
+	double	image_pixels;
+	double	pixel_size;
+	double	half;
+	t_tuple	forward;
+	t_tuple	right;
+	t_tuple	up;
+	double	world_y;
+	double	world_x;
+	t_tuple	pixel_offset;
+	t_tuple	pixel_world;
+	t_tuple	dir;
+	t_ray	ray;
+	t_tuple	x_point;
+	bool	in_shadow;
+}	t_render;
+
 typedef struct s_config
 {
 	int				win_height;
@@ -115,6 +138,7 @@ void	test_phong(t_config *c);
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv, t_config *c, bool in_shadow);
+t_object_type	get_type(t_object_node *obj);
 bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
@@ -149,9 +173,9 @@ t_cylinder	*listptr_to_cylinder(t_list *elem);
 
 // render
 void	render(t_config *c);
-int		render_sphere(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
-int		render_plane(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
-int		render_cylinder(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
-int		render_disk(t_config	*c, t_tuple	x_point, t_intersection *xs, t_ray r, bool in_shadow);
+int		render_sphere(t_config *c, t_intersection *xs, t_render *render);
+int		render_plane(t_config *c, t_intersection *xs, t_render *render);
+int		render_cylinder(t_config *c, t_intersection *xs, t_render *render);
+int		render_disk(t_config *c, t_intersection *xs, t_render *render);
 
 #endif
