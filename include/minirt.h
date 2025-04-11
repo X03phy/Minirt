@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:15:40 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:21:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,29 @@ typedef struct s_intersection
 }	t_intersection;
 
 typedef bool	(*t_parsefunc)(void *, char **, int);
+
+typedef struct s_render
+{
+	int		wall_z;
+	double	dist_cam_wall;
+	double	fov_rad;
+	double	half_view;
+	double	wall_size;
+	double	image_pixels;
+	double	pixel_size;
+	double	half;
+	t_tuple	forward;
+	t_tuple	right;
+	t_tuple	up;
+	double	world_y;
+	double	world_x;
+	t_tuple	pixel_offset;
+	t_tuple	pixel_world;
+	t_tuple	dir;
+	t_ray	ray;
+	t_tuple	x_point;
+	bool	in_shadow;
+}	t_render;
 
 typedef struct s_config
 {
@@ -168,14 +191,10 @@ t_plane		*listptr_to_plane(t_list *elem);
 t_cylinder	*listptr_to_cylinder(t_list *elem);
 
 // render
-void		render(t_config *c);
-int			render_sphere(t_config	*c, t_tuple	x_point, t_intersection *xs,
-				t_ray r, bool in_shadow);
-int			render_plane(t_config	*c, t_tuple	x_point, t_intersection *xs,
-				t_ray r, bool in_shadow);
-int			render_cylinder(t_config	*c, t_tuple	x_point, t_intersection *xs,
-				t_ray r, bool in_shadow);
-int			render_disk(t_config	*c, t_tuple	x_point, t_intersection *xs,
-				t_ray r, bool in_shadow);
+void	render(t_config *c);
+int		render_sphere(t_config *c, t_intersection *xs, t_render *render);
+int		render_plane(t_config *c, t_intersection *xs, t_render *render);
+int		render_cylinder(t_config *c, t_intersection *xs, t_render *render);
+int		render_disk(t_config *c, t_intersection *xs, t_render *render);
 
 #endif
