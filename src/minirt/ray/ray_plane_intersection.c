@@ -22,7 +22,8 @@ bool	ray_plane_intersection(t_plane *p, t_ray r, double *x)
 	dotp = vector_dot(r.direction, p->orientation_vec);
 	if (fabs(dotp) < EPSILON)
 		return (false);
-	*x = vector_dot(tuple_substitute(p->center, r.origin), p->orientation_vec) / dotp;
+	*x = vector_dot(tuple_substitute(p->center, r.origin),
+			p->orientation_vec) / dotp;
 	if (*x < 0)
 		return (false);
 	return (true);

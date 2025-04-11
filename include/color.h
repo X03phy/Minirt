@@ -13,7 +13,8 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-#include "../libs/libft/include/tuple.h"
+# include "../libs/libft/include/tuple.h"
 
-typedef t_tuple t_color;
+typedef t_tuple	t_color;
+
 #endif

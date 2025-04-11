@@ -17,7 +17,7 @@
 # include "char.h"
 # include <stdbool.h>
 
-#define WHITESPACES " \n\t\v\f\r"
+# define WHITESPACES " \n\t\v\f\r"
 
 bool	ft_str_charset(char *str, char *charset);
 char	*ft_strchr(const char *s, int c);

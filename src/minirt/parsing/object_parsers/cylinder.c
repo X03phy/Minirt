@@ -39,26 +39,8 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 	return (true);
 }
 
-bool	parse_cylinder(t_config *c, char **infos, int currline)
+static void	fill_cylinder(t_config *c, char **infos, t_object_node *node)
 {
-	t_object_node	*node;
-	t_list			*lsttmp;
-
-	if (ft_tabsize(infos) != 12)
-		return (false);
-	if (!check_only_valid_float(&infos[1]))
-	{
-		c->err.msg = INVALID_NUMBER;
-		c->err.line = currline;
-		return (false);
-	}
-	node = ft_calloc(sizeof(t_object_node), 1);
-	if (!node)
-		return (false);
-	node->type = CYLINDER;
-	node->obj = ft_calloc(sizeof(t_cylinder), 1);
-	if (!node->obj)
-		return (free(node), false);
 	((t_cylinder *)node->obj)->id = ++(c->total_objects);
 	((t_cylinder *)node->obj)->center = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
@@ -71,6 +53,32 @@ bool	parse_cylinder(t_config *c, char **infos, int currline)
 			ft_atoi(infos[10]) / 255.0, ft_atoi(infos[11]) / 255.0);
 	((t_cylinder *)node->obj)->material = default_material(
 			((t_cylinder *)node->obj)->color);
+}
+
+static bool	set_error(t_config *c, char *msg, int currline)
+{
+	c->err.msg = msg;
+	c->err.line = currline;
+	return (false);
+}
+
+bool	parse_cylinder(t_config *c, char **infos, int currline)
+{
+	t_object_node	*node;
+	t_list			*lsttmp;
+
+	if (ft_tabsize(infos) != 12)
+		return (false);
+	if (!check_only_valid_float(&infos[1]))
+		return (set_error(c, INVALID_NUMBER, currline));
+	node = ft_calloc(sizeof(t_object_node), 1);
+	if (!node)
+		return (false);
+	node->type = CYLINDER;
+	node->obj = ft_calloc(sizeof(t_cylinder), 1);
+	if (!node->obj)
+		return (free(node), false);
+	fill_cylinder(c, infos, node);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

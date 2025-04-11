@@ -14,7 +14,7 @@
 # define RAY_H
 
 # include "../libs/libft/include/libft.h"
-#include "minirt.h"
+# include "minirt.h"
 # include "objects.h"
 
 void			ray_print(t_ray r);
@@ -25,6 +25,7 @@ bool			ray_plane_intersection(t_plane *p, t_ray r, double *x);
 bool			ray_disk_intersection(t_disk *d, t_ray r, double *x);
 t_ray			ray_transform(t_ray r, t_matrix *m);
 t_intersection	*hit(t_config	*c, t_ray r);
-bool			ray_cylinder_intersection(t_cylinder *cylinder, t_ray ray, double *x);
+bool			ray_cylinder_intersection(t_cylinder *cylinder,
+					t_ray ray, double *x);
 
 #endif

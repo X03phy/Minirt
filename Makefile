@@ -42,11 +42,6 @@ SRCPARSING =	minirt/parsing/parsing.c \
 				minirt/parsing/print_config2.c \
 				minirt/parsing/checks.c
 
-SRCTESTS = minirt/tests/circle.c \
-		   minirt/tests/eclairage.c \
-		   minirt/tests/multiple_spheres.c \
-		   minirt/tests/sphere_phong.c
-
 SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \
 		  minirt/ray/ray_print.c \
@@ -68,7 +63,6 @@ SRCRENDER = minirt/render/render.c \
 			minirt/render/render_obj.c
 
 SRC = 	$(SRCPARSING) \
-		$(SRCTESTS) \
 		$(SRCMLXUTILS) \
 		$(SRCUTILS) \
 		$(SRC_RAY) \

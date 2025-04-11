@@ -14,12 +14,13 @@
 
 t_material	default_material(t_color color)
 {
-	t_material m;
+	t_material	m;
+
 	m.ambient = 0.1;
-    m.diffuse = 0.9;
-    m.specular = 0.9;
-    m.shininess = 200.0;
-    m.color = color;
+	m.diffuse = 0.9;
+	m.specular = 0.9;
+	m.shininess = 200.0;
+	m.color = color;
 	return (m);
 }
 

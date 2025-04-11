@@ -38,7 +38,8 @@
 # define INVALID_FILE "Invalid file : %s\n"
 # define ERROR_IN_FILE "Error in scene file : %s\n"
 # define INVALID_OBJECT	"Invalid object at line : %d\n"
-# define TOO_MANY_ELEMENT "Ambient light, camera and light can only be defined once !\n"
+# define TOO_MANY_ELEMENT "Ambient light, camera \
+	and light can only be defined once !\n"
 # define INVALID_NUMBER	"Invalid number at line %d\n"
 
 typedef struct s_img
@@ -82,7 +83,7 @@ typedef struct s_intersection
 	t_object_node	*object;
 }	t_intersection;
 
-typedef bool (*parsefunc)(void *, char **, int);
+typedef bool	(*t_parsefunc)(void *, char **, int);
 
 typedef struct s_render
 {
@@ -117,7 +118,7 @@ typedef struct s_config
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
-	parsefunc		*funcs;
+	t_parsefunc		*funcs;
 	t_ambient_light	*ambient_light;
 	t_camera		*camera;
 	t_light			*light;
@@ -125,20 +126,38 @@ typedef struct s_config
 	int				total_objects;
 }	t_config;
 
-void	clean_exit(t_config *config);
-void	install_hooks(t_config *config);
+typedef struct	s_lighting
+{
+	t_material	m;
+	t_light		l;
+	t_tuple		p;
+	t_tuple		eyev;
+	t_tuple		normalv;
+	t_config	*c;
+	bool		in_shadow;
+	// interne
+	t_tuple		lightv;
+	t_color		light_real_color;
+	t_color		ambient;
+	double		light_dot_normal;
+	t_color		diffuse;
+	t_color		specular;
+}	t_lighting;
+
+void		clean_exit(t_config *config);
+void		install_hooks(t_config *config);
 
 // tests
-void	tuples_tests(void);
-void	tuples_proj_test(void);
-void	test_circle(t_config *c);
-void	test_eclairage(t_config *c);
-void	test_phong(t_config *c);
+void		tuples_tests(void);
+void		tuples_proj_test(void);
+void		test_circle(t_config *c);
+void		test_eclairage(t_config *c);
+void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev, t_tuple normalv, t_config *c, bool in_shadow);
-t_object_type	get_type(t_object_node *obj);
+t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev,
+				t_tuple normalv, t_config *c, bool in_shadow);
 bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
@@ -149,22 +168,22 @@ int			get_obj_id(t_object_node *obj);
 t_config	*init_config(int ac, char **av);
 
 // parsing
-bool	parse_scene(t_config *c, char *filepath);
-bool	parse_sphere(t_config *c, char **infos, int currline);
-bool	parse_plan(t_config *c, char **infos, int currline);
-bool	parse_cylinder(t_config *c, char **infos, int currline);
-bool	parse_ambient(t_config *c, char **infos, int currline);
-bool	parse_light(t_config *c, char **infos, int currline);
-bool	parse_camera(t_config *c, char **infos, int currline);
+bool		parse_scene(t_config *c, char *filepath);
+bool		parse_sphere(t_config *c, char **infos, int currline);
+bool		parse_plan(t_config *c, char **infos, int currline);
+bool		parse_cylinder(t_config *c, char **infos, int currline);
+bool		parse_ambient(t_config *c, char **infos, int currline);
+bool		parse_light(t_config *c, char **infos, int currline);
+bool		parse_camera(t_config *c, char **infos, int currline);
 
-void	print_config(t_config *c);
-bool	check_config(t_config *config);
+void		print_config(t_config *c);
+bool		check_config(t_config *config);
 
-void	print_ambient(t_ambient_light *a);
-void	print_camera(t_camera *c);
-void	print_light(t_light *l);
-void	print_plane(t_plane *p);
-void	print_sphere(t_sphere *s);
+void		print_ambient(t_ambient_light *a);
+void		print_camera(t_camera *c);
+void		print_light(t_light *l);
+void		print_plane(t_plane *p);
+void		print_sphere(t_sphere *s);
 
 // cast
 t_sphere	*listptr_to_sphere(t_list *elem);
