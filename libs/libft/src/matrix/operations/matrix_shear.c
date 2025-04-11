@@ -12,18 +12,18 @@
 
 #include "../../../include/matrix.h"
 
-t_matrix	*matrix_shear(double xy , double xz , double yx , double yz , double zx , double zy)
+t_matrix	*matrix_shear(t_shear *shear)
 {
 	t_matrix	*res;
 
 	res = matrix_identity();
 	if (!res)
 		return (NULL);
-	res->matrix[0][1] = xy;
-	res->matrix[0][2] = xz;
-	res->matrix[1][0] = yx;
-	res->matrix[1][2] = yz;
-	res->matrix[2][0] = zx;
-	res->matrix[2][1] = zy;
+	res->matrix[0][1] = shear->xy;
+	res->matrix[0][2] = shear->xz;
+	res->matrix[1][0] = shear->yx;
+	res->matrix[1][2] = shear->yz;
+	res->matrix[2][0] = shear->zx;
+	res->matrix[2][1] = shear->zy;
 	return (res);
 }

@@ -45,8 +45,10 @@ void	render(t_config *c)
 		for (int x = 0; x < image_pixels; x++)
 		{
 			double world_x = -half + (x * pixel_size);
-			t_tuple	position = point_create(world_x, world_y, wall_z);
+			t_tuple	position = point_create(world_x, world_y, wall_z); 
 			t_ray	r = ray_create(ray_origin, vector_normalize(tuple_substitute(position, ray_origin)));
+			// t_tuple	direction = vector_normalize(tuple_substitute(position, ray_origin));
+			// t_ray	r = ray_create(ray_origin, direction);
 			xs = hit(c, r);
 			if (xs)
 			{

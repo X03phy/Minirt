@@ -13,11 +13,11 @@
 #ifndef TUPLE_H
 # define TUPLE_H
 
-#include <stdlib.h>
-#include "memory.h"
-#include <stdbool.h>
-#include <math.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include "memory.h"
+# include <stdbool.h>
+# include <math.h>
+# include <stdio.h>
 
 # define POINT 1
 # define VEC 0
@@ -28,7 +28,7 @@ typedef struct s_tuple
 	double	x;
 	double	y;
 	double	z;
-	int		w; // 0 == vec, 1 == point
+	int		w;
 }	t_tuple;
 
 // Creation
@@ -48,7 +48,7 @@ t_tuple	vector_cross_product(t_tuple a, t_tuple b);
 double	vector_dot(t_tuple a, t_tuple b);
 double	vector_magnitude(t_tuple a);
 t_tuple	vector_normalize(t_tuple a);
-t_tuple vector_normal_at(t_tuple p1, t_tuple p2);
+t_tuple	vector_normal_at(t_tuple p1, t_tuple p2);
 t_tuple	vector_reflect(t_tuple in, t_tuple normal);
 
 // Utils

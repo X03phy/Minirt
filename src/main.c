@@ -67,27 +67,29 @@ void	print_err(t_config *c, char *msg)
 		return ((void)printf("%s\n", msg));
 	if (c->err.line > -1)
 		printf("In scene file : %s\n", c->av[1]);
-	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0 || ft_strcmp(INVALID_NUMBER, c->err.msg) == 0)
+	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0
+		|| ft_strcmp(INVALID_NUMBER, c->err.msg) == 0)
 		printf(c->err.msg, c->err.line);
 	else
 		printf(c->err.msg, c->av[1]);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_config	*c = init_config(ac, av);
+	t_config	*c;
+
+	c = init_config(ac, av);
 	if (!c)
 		return (perror("Can't initialize config : "), EXIT_FAILURE);
 	if (ac != 2)
-		return (ft_help("Invalid number of arguments."), clean_exit(c), EXIT_FAILURE);
-
+		return (ft_help("Invalid number of arguments."),
+			clean_exit(c), EXIT_FAILURE);
 	parse_scene(c, av[1]);
 	check_config(c);
 	if (c->err.msg)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
-	
 	render(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
