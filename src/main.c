@@ -84,7 +84,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (ft_help("Invalid number of arguments."),
 			clean_exit(c), EXIT_FAILURE);
-	parse_scene(c, av[1]);
+	if (parse_scene(c, av[1]) == false)
+		return (ft_help("Invalid scene."), clean_exit(c), EXIT_FAILURE);
 	check_config(c);
 	if (c->err.msg)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);

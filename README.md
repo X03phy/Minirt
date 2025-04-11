@@ -2,10 +2,10 @@
 minirt
 
 # todo
-ajust size of object with window size
-ambient light
-camera
-https://raytracing.github.io/
-
-changer les structures d'object pour avoir une seule big structure qui englobe toutes les formes possibles
-acne
+parsing bug :
+    - no object should quit
+    - vec 0, 0, 0
+    - size 0 || radius 0 || anything weird
+    - radius < 0
+    - if tabsize > expected value, object isnt parsed but no bug !
+        - when invalid tabsize, every object after current line isnt parsed

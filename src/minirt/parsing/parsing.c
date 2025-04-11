@@ -74,8 +74,7 @@ bool	parse_scene(t_config *c, char *filepath)
 		if (!parse_line(c, tmp, ++currline))
 			return (get_next_line(100, &tmp), free(tmp), false);
 		ft_sfree((void **)&tmp);
-		if (get_next_line(scenefd, &tmp) != 0)
-			return (close(scenefd), false);
+		get_next_line(scenefd, &tmp);
 	}
-	return (close(scenefd), false);
+	return (close(scenefd), true);
 }
