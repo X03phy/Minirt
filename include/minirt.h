@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/11 14:42:15 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:21:42 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_render
 	bool	in_shadow;
 }	t_render;
 
-typedef struct	s_lighting
+typedef struct s_lighting
 {
 	t_material	m;
 	t_light		l;
@@ -116,7 +116,6 @@ typedef struct	s_lighting
 	t_tuple		eyev;
 	t_tuple		normal_vec;
 	bool		in_shadow;
-	// interne
 	t_tuple		lightv;
 	t_color		light_real_color;
 	t_color		ambient;
@@ -158,7 +157,7 @@ void		test_phong(t_config *c);
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 // t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev,
 				// t_tuple normalv, t_config *c, bool in_shadow);
-t_color	lighting(t_lighting *l, t_config *c, bool in_shadow);
+t_color		lighting(t_lighting *l, t_config *c, bool in_shadow);
 bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
