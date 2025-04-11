@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_determinant.c                                       :+:      :+:    :+:   */
+/*   matrix_determinant.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:16:35 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/01 15:27:58 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/11 10:33:23 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,9 @@ double	matrix_determinant(t_matrix *m)
 			- m->matrix[0][1] * m->matrix[1][0]);
 	det = 0;
 	j = -1;
-	// Expansion par cofacteurs sur la première ligne (ligne 0)
 	while (++j < m->col)
 	{
-		// On crée la sous-matrix en retirant la ligne 0 et la colonne j
 		sub = matrix_submatrix(m, 0, j);
-		// Calcul récursif du déterminant de la sous-matrix
 		subdet = matrix_determinant(sub);
 		if (j % 2 == 0)
 			det += m->matrix[0][j] * subdet;

@@ -13,7 +13,7 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 # include "tuple.h"
-#include "safe.h"
+# include "safe.h"
 
 /*
 *
@@ -33,6 +33,16 @@ typedef struct s_matrix
 	double	**matrix;
 }	t_matrix;
 
+typedef struct s_shear
+{
+	double	xy;
+	double	xz;
+	double	yx;
+	double	yz;
+	double	zx;
+	double	zy;
+}	t_shear;
+
 // Creation
 t_matrix	*matrix_new(int row, int col, double *value);
 
@@ -48,7 +58,7 @@ t_matrix	*matrix_rotate_x(double rad);
 t_matrix	*matrix_rotate_y(double rad);
 t_matrix	*matrix_rotate_z(double rad);
 t_matrix	*matrix_scale(double x, double y, double z);
-t_matrix	*matrix_shear(double xy , double xz , double yx , double yz , double zx , double zy);
+t_matrix	*matrix_shear(t_shear *shear);
 t_matrix	*matrix_submatrix(t_matrix *m, int row, int col);
 t_matrix	*matrix_translate(double x, double y, double z);
 t_matrix	*matrix_transpose(t_matrix	*m);

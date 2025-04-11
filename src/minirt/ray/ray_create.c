@@ -19,5 +19,5 @@ t_ray	ray_create(t_tuple origin, t_tuple direction)
 
 	r.origin = origin;
 	r.direction = direction;
-	return r;
+	return (r);
 }

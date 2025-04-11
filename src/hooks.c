@@ -12,6 +12,7 @@
 
 #include "../include/minirt.h"
 #include "../libs/minilibx-linux/mlx.h"
+
 int	cross(t_config *config)
 {
 	clean_exit(config);

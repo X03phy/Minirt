@@ -19,10 +19,10 @@
 typedef struct s_material
 {
 	t_tuple	color;
-	double ambient;
-	double diffuse;
-	double specular;
-	double shininess;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
 }	t_material;
 
 typedef struct s_sphere
