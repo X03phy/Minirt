@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/11 14:21:39 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:42:15 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,10 +192,10 @@ t_plane		*listptr_to_plane(t_list *elem);
 t_cylinder	*listptr_to_cylinder(t_list *elem);
 
 // render
-void	render(t_config *c);
-int		render_sphere(t_config *c, t_intersection *xs, t_render *render);
-int		render_plane(t_config *c, t_intersection *xs, t_render *render);
-int		render_cylinder(t_config *c, t_intersection *xs, t_render *render);
-int		render_disk(t_config *c, t_intersection *xs, t_render *render);
+void		render(t_config *c);
+int			render_sphere(t_config *c, t_intersection *xs, t_render *render);
+int			render_plane(t_config *c, t_intersection *xs, t_render *render);
+int			render_cylinder(t_config *c, t_intersection *xs, t_render *render);
+int			render_disk(t_config *c, t_intersection *xs, t_render *render);
 
 #endif
