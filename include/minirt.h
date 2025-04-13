@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/11 14:21:39 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:12:42 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_render
 	bool	in_shadow;
 }	t_render;
 
-typedef struct	s_lighting
+typedef struct s_lighting
 {
 	t_material	m;
 	t_light		l;
@@ -116,7 +116,6 @@ typedef struct	s_lighting
 	t_tuple		eyev;
 	t_tuple		normal_vec;
 	bool		in_shadow;
-	// interne
 	t_tuple		lightv;
 	t_color		light_real_color;
 	t_color		ambient;
@@ -156,9 +155,7 @@ void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-// t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev,
-				// t_tuple normalv, t_config *c, bool in_shadow);
-t_color	lighting(t_lighting *l, t_config *c, bool in_shadow);
+t_color		lighting(t_lighting *l, t_config *c, bool in_shadow);
 bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
@@ -179,6 +176,11 @@ bool		parse_camera(t_config *c, char **infos, int currline);
 
 void		print_config(t_config *c);
 bool		check_config(t_config *config);
+bool		check_colors_error(t_config *config);
+bool		null_vec(t_tuple v);
+bool		invalid_vec(t_tuple v);
+bool		check_vectors(t_config *c);
+bool		size_checks(t_config *config);
 
 void		print_ambient(t_ambient_light *a);
 void		print_camera(t_camera *c);
@@ -192,10 +194,10 @@ t_plane		*listptr_to_plane(t_list *elem);
 t_cylinder	*listptr_to_cylinder(t_list *elem);
 
 // render
-void	render(t_config *c);
-int		render_sphere(t_config *c, t_intersection *xs, t_render *render);
-int		render_plane(t_config *c, t_intersection *xs, t_render *render);
-int		render_cylinder(t_config *c, t_intersection *xs, t_render *render);
-int		render_disk(t_config *c, t_intersection *xs, t_render *render);
+void		render(t_config *c);
+int			render_sphere(t_config *c, t_intersection *xs, t_render *render);
+int			render_plane(t_config *c, t_intersection *xs, t_render *render);
+int			render_cylinder(t_config *c, t_intersection *xs, t_render *render);
+int			render_disk(t_config *c, t_intersection *xs, t_render *render);
 
 #endif

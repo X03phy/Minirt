@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/11 11:58:18 by ebonutto         ###   ########.fr        #
+#    Updated: 2025/04/13 14:18:02 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ SRCPARSING =	minirt/parsing/parsing.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c \
 				minirt/parsing/print_config2.c \
-				minirt/parsing/checks.c
+				minirt/parsing/checks/checks.c \
+				minirt/parsing/checks/vec_checks.c \
+				minirt/parsing/checks/size_checks.c \
+				minirt/parsing/checks/color_checks.c
 
 SRC_RAY = minirt/ray/ray_create.c \
 		  minirt/ray/ray_position.c \
