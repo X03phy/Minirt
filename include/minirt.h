@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/11 15:21:42 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:12:42 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,6 @@ void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-// t_color		lighting(t_material m, t_light l, t_tuple p, t_tuple eyev,
-				// t_tuple normalv, t_config *c, bool in_shadow);
 t_color		lighting(t_lighting *l, t_config *c, bool in_shadow);
 bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
 int			color_to_int(t_color color);
@@ -178,6 +176,11 @@ bool		parse_camera(t_config *c, char **infos, int currline);
 
 void		print_config(t_config *c);
 bool		check_config(t_config *config);
+bool		check_colors_error(t_config *config);
+bool		null_vec(t_tuple v);
+bool		invalid_vec(t_tuple v);
+bool		check_vectors(t_config *c);
+bool		size_checks(t_config *config);
 
 void		print_ambient(t_ambient_light *a);
 void		print_camera(t_camera *c);
