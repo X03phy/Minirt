@@ -71,6 +71,7 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 	if (xs)
 	{
 		render->x_point = ray_position(render->ray, xs->t);
+		// xs->object->pattern = pattern_checkerboard(&(render->x_point));
 		if (xs->object->type == SPHERE)
 			color = render_sphere(&configdup, xs, render);
 		else if (xs->object->type == PLANE)
@@ -79,6 +80,8 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 			color = render_cylinder(&configdup, xs, render);
 		else if (xs->object->type == DISK)
 			color = render_disk(&configdup, xs, render);
+		else if (xs->object->type == CONE)
+			color = render_cone(&configdup, xs, render);
 	
 		pthread_mutex_lock(thdata->config_mut);
 		my_mlx_pixel_put(&c->img, x, y, color);
