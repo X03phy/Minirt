@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 14:40:06 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:04:42 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	fill_plan(t_config *c, char **infos, t_object_node *node)
 	((t_plane *)node->obj)->id = ++(c->total_objects);
 	((t_plane *)node->obj)->center = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
-	((t_plane *)node->obj)->orientation_vec = vector_create(
-			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
+	((t_plane *)node->obj)->orientation_vec = vector_normalize(vector_create(
+			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
 	((t_plane *)node->obj)->color = point_create(
 			ft_atoi(infos[7]) / 255.0,
 			ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
