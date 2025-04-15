@@ -14,11 +14,8 @@
 
 bool	parse_light(t_config *c, char **infos, int currline)
 {
-	if (c->light != NULL)
-	{
-		c->err.msg = TOO_MANY_ELEMENT;
+	if (c->light)
 		return (false);
-	}
 	if (!check_only_valid_float(&infos[1]))
 	{
 		c->err.msg = INVALID_NUMBER;
@@ -28,8 +25,6 @@ bool	parse_light(t_config *c, char **infos, int currline)
 	if (ft_tabsize(infos) != 8)
 		return (false);
 	c->light = ft_calloc(sizeof(t_light), 1);
-	if (!c->light)
-		return (false);
 	c->light->position = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	c->light->brightness = ft_atod(infos[4]);

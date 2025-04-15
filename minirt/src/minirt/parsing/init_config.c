@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 12:28:30 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 12:20:00 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:52:04 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_config	*init_config(int ac, char **av)
 	c->ac = ac;
 	c->av = av;
 	c->err.line = -1;
-	c->win_height = 1000;
-	c->win_width = 1000;
+	c->win_height = WINH;
+	c->win_width = WINW;
 	return (c);
 }
