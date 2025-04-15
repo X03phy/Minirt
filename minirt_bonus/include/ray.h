@@ -24,7 +24,7 @@ bool			ray_sphere_intersection(t_sphere *s, t_ray r, double *x);
 bool			ray_plane_intersection(t_plane *p, t_ray r, double *x);
 bool			ray_disk_intersection(t_disk *d, t_ray r, double *x);
 t_ray			ray_transform(t_ray r, t_matrix *m);
-t_intersection	*hit(t_config	*c, t_ray r);
+t_intersection	*hit(t_config	*c, t_ray r, t_multi *thdata);
 bool			ray_cylinder_intersection(t_cylinder *cylinder,
 					t_ray ray, double *x);
 bool			ray_cone_intersection(t_cone *c, t_ray r, double *x);

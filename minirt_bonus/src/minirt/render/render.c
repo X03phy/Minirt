@@ -40,7 +40,7 @@ void	hit_that(t_config *c, t_render *render, int x, int y)
 {
 	t_intersection	*xs;
 
-	xs = hit(c, render->ray);
+	xs = hit(c, render->ray, NULL);
 	if (xs)
 	{
 		render->x_point = ray_position(render->ray, xs->t);

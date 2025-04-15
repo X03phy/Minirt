@@ -13,6 +13,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include <pthread.h>
+# include <bits/pthreadtypes.h>
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
@@ -152,7 +154,18 @@ typedef struct s_config
 	t_list			*objects_list;
 	int				total_objects;
 	t_lighting		l;
+	pthread_mutex_t	config_mut;
 }	t_config;
+
+typedef struct s_multi
+{
+	int				idx;
+	int				minpx;
+	int				maxpx;
+	t_config		*config;
+	t_render		render;
+	pthread_mutex_t	*config_mut;
+}	t_multi;
 
 void		clean_exit(t_config *config);
 void		install_hooks(t_config *config);
@@ -166,7 +179,7 @@ void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id);
+bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id, t_multi *thdata);
 t_color		lighting(t_lighting *l, t_light *light, t_config *c);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
@@ -213,7 +226,11 @@ int			render_cylinder(t_config *c, t_intersection *xs, t_render *render);
 int			render_disk(t_config *c, t_intersection *xs, t_render *render);
 int			render_cone(t_config *c, t_intersection *xs, t_render *render);
 
+
+bool		render_multi(t_config *c);
+
 t_pattern_type	pattern_checkerboard(t_tuple *point);
 float		define_intensity(t_pattern_type type);
+
 
 #endif

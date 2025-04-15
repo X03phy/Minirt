@@ -99,6 +99,7 @@ int	main(int ac, char **av)
 	if (c)
 		print_config(c);
 	render(c);
+	// render_multi(c);
 	clean_exit(c);
 	return (EXIT_SUCCESS);
 }
