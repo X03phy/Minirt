@@ -78,7 +78,7 @@ static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r)
 	hit_loop_result(result, tmp, t, intersection_found);
 }
 
-t_intersection	*hit(t_config	*c, t_ray r)
+t_intersection	*hit(t_config	*c, t_ray r, t_multi *thdata)
 {
 	t_intersection	*result;
 	t_list			*tmp;
@@ -93,10 +93,15 @@ t_intersection	*hit(t_config	*c, t_ray r)
 	tmp = c->objects_list;
 	while (tmp)
 	{
+		// if (thdata)
+		// 	pthread_mutex_lock(thdata->config_mut);
 		hit_loop(result, tmp, r);
+		// if (thdata)
+		// 	pthread_mutex_unlock(thdata->config_mut);
 		tmp = tmp->next;
 	}
 	if (result->object)
 		return (result);
 	return (free(result), NULL);
+	(void)thdata;
 }

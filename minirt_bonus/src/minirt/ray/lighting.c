@@ -65,7 +65,7 @@ t_color	lighting(t_lighting *l, t_light *light, t_config *c)
 {
 	bool	in_shadow;
 
-	in_shadow = is_in_shadow(c, light, l->p, 23);
+	in_shadow = is_in_shadow(c, light, l->p, 23, NULL);
 	l->lightv = vector_normalize(tuple_substitute(light->position, l->p));
 	l->light_real_color = tuple_multiply(light->color, light->brightness);
 	l->ambient = tuple_mult_tuple(l->m.color,

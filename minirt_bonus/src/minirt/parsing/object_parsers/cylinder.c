@@ -32,6 +32,8 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 	((t_disk *)node->obj)->radius = cy->diameter / 2;
 	((t_disk *)node->obj)->color = cy->color;
 	((t_disk *)node->obj)->material = cy->material;
+	((t_disk *)node->obj)->material.specular = 0.1;
+	((t_disk *)node->obj)->material.shininess = 10.0;
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

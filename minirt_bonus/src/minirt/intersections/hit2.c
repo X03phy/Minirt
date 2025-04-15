@@ -14,7 +14,7 @@
 #include "../../../include/ray.h"
 #include <stdint.h>
 
-bool	is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id)
+bool	is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id, t_multi *thdata)
 {
 	t_tuple			v;
 	double			distance;
@@ -28,7 +28,7 @@ bool	is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id)
 	distance = vector_magnitude(v);
 	direction = vector_normalize(v);
 	offset_point = tuple_add(xpoint, tuple_multiply(direction, ACNE_DECALAGE));
-	xs = hit(c, ray_create(offset_point, direction));
+	xs = hit(c, ray_create(offset_point, direction), thdata);
 	if (xs)
 	{
 		if (get_obj_id(xs->object) == id)

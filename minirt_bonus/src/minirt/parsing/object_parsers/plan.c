@@ -24,6 +24,8 @@ static void	fill_plan(t_config *c, char **infos, t_object_node *node)
 			ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
 	((t_plane *)node->obj)->material = default_material(
 			((t_plane *)node->obj)->color);
+	((t_plane *)node->obj)->material.specular = 0.1;
+	((t_plane *)node->obj)->material.shininess = 10.0;
 }
 
 bool	parse_plan(t_config *c, char **infos, int currline)

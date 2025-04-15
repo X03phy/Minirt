@@ -12,7 +12,7 @@
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g #-fsanitize=address,null
+CFLAGS = -Werror -Wextra -Wall -g -pthread #-fsanitize=address,null
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -67,6 +67,7 @@ SRCUTILS = minirt/utils/utils.c
 SRCRENDER = minirt/render/render.c \
 			minirt/render/render_obj.c \
 			minirt/render/pattern.c \
+			minirt/render/render_multi.c
 
 SRC = 	$(SRCPARSING) \
 		$(SRCMLXUTILS) \

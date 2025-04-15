@@ -31,6 +31,8 @@ static bool	parse_disk(t_config *c, t_cone *cy)
 	((t_disk *)node->obj)->radius = tan(cy->angle) * cy->height;         // tan(teta) = r / H
 	((t_disk *)node->obj)->color = cy->color;
 	((t_disk *)node->obj)->material = cy->material;
+	((t_disk *)node->obj)->material.specular = 0.1;
+	((t_disk *)node->obj)->material.shininess = 10.0;
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);
