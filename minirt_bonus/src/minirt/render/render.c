@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:45:53 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 12:09:55 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:28:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void	hit_that(t_config *c, t_render *render, int x, int y)
 	if (xs)
 	{
 		render->x_point = ray_position(render->ray, xs->t);
-		xs->object->pattern = pattern_checkerboard(&(render->x_point));
-		// render->in_shadow = is_in_shadow(c, render->x_point,
-		// 		get_obj_id(xs->object));
 		if (xs->object->type == SPHERE)
 			my_mlx_pixel_put(&c->img, x, y,
 				render_sphere(c, xs, render));

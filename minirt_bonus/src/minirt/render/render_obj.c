@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 13:56:02 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:26:17 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	t_list	*tmp;
 
 
-	float intensity = define_intensity(xs->object->pattern);
+	float intensity;
 
 
 
@@ -40,6 +40,8 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
 	}
+	xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
+	intensity = define_intensity(xs->object->pattern);
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }
@@ -48,9 +50,6 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
 	float	intensity;
-
-	intensity = define_intensity(xs->object->pattern);
-	// color = tuple_multiply(color, intensity);
 
 	t_list	*tmp;
 
@@ -70,6 +69,9 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
 	}
+	xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(((t_plane *)xs->object->obj)->orientation_vec));
+	intensity = define_intensity(xs->object->pattern);
+	// color = tuple_multiply(color, intensity);
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }
