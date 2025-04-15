@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 14:32:34 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:39:50 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	t_tuple	color;
 	t_list	*tmp;
 
+
+	float intensity = define_intensity(xs->object->pattern);
+
+
+
 	color = tuple_create(0, 0, 0, 0);
 	tmp = c->spotlights;
+
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 				((t_sphere *)xs->object->obj)->center));
@@ -40,6 +46,11 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
+	float	intensity;
+
+	intensity = define_intensity(xs->object->pattern);
+	// color = tuple_multiply(color, intensity);
+
 	t_list	*tmp;
 
 	color = tuple_create(0, 0, 0, 0);
@@ -58,6 +69,7 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
 	}
+  color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }
 

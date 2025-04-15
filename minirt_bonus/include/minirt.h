@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 16:26:53 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:36:21 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,8 @@ int			render_plane(t_config *c, t_intersection *xs, t_render *render);
 int			render_cylinder(t_config *c, t_intersection *xs, t_render *render);
 int			render_disk(t_config *c, t_intersection *xs, t_render *render);
 int			render_cone(t_config *c, t_intersection *xs, t_render *render);
+
+t_pattern_type	pattern_checkerboard(t_tuple *point);
+float		define_intensity(t_pattern_type type);
 
 #endif
