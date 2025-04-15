@@ -45,8 +45,8 @@ void	hit_that(t_config *c, t_render *render, int x, int y)
 	{
 		render->x_point = ray_position(render->ray, xs->t);
 		// pattern_checkerboard(&(render->x_point));
-		render->in_shadow = is_in_shadow(c, render->x_point,
-				get_obj_id(xs->object));
+		// render->in_shadow = is_in_shadow(c, render->x_point,
+		// 		get_obj_id(xs->object));
 		if (xs->object->type == SPHERE)
 			my_mlx_pixel_put(&c->img, x, y,
 				render_sphere(c, xs, render));

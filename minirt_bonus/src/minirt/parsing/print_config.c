@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 12:35:40 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:14:50 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ void	print_cylinder(t_cylinder *c)
 	tuple_print(&c->color);
 }
 
-void	print_cone(t_cone *c)
-{
-	printf(UBLU"CONE = \n"RESET);
-	printf(BHBLU"ID : %d \n"RESET, c->id);
-	printf("Summit : \n\t");
-	tuple_print(&c->summit);
-	printf("Orientation : \n\t");
-	tuple_print(&c->orientation_vec);
-	printf("\tAngle : %f Height : %f\nColor : ", c->angle, c->height);
-	tuple_print(&c->color);
-}
-
 void	print_disk(t_disk *p)
 {
 	printf(UCYN"DISK = \n"RESET);
@@ -47,6 +35,18 @@ void	print_disk(t_disk *p)
 	printf("\tRadius : %f\n", p->radius);
 	printf("\tColor :");
 	tuple_print(&p->color);
+}
+
+void	print_cone(t_cone *c)
+{
+	printf(UBLU"CONE = \n"RESET);
+	printf(BHBLU"ID : %d \n"RESET, c->id);
+	printf("Summit : \n\t");
+	tuple_print(&c->summit);
+	printf("Orientation : \n\t");
+	tuple_print(&c->orientation_vec);
+	printf("\tAngle : %f Height : %f\nColor : ", c->angle, c->height);
+	tuple_print(&c->color);
 }
 
 void	print_objects(t_list *obj)
@@ -69,12 +69,26 @@ void	print_objects(t_list *obj)
 	}
 }
 
+void	print_lights(t_list *spotlights)
+{
+	t_list	*tmp;
+
+	if (!spotlights)
+		return ;
+	tmp = spotlights;
+	while (tmp)
+	{
+		print_light((t_light *)tmp->content);
+		tmp = tmp->next;
+	}
+}
+
 void	print_config(t_config *c)
 {
 	if (!c)
 		return ;
 	print_ambient(c->ambient_light);
 	print_camera(c->camera);
-	print_light(c->light);
+	print_lights(c->spotlights);
 	print_objects(c->objects_list);
 }

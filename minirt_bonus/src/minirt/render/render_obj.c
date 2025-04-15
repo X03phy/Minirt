@@ -15,31 +15,49 @@
 int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
+	t_list	*tmp;
 
+	color = tuple_create(0, 0, 0, 0);
+	tmp = c->spotlights;
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 				((t_sphere *)xs->object->obj)->center));
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_sphere *)xs->object->obj)->material;
-	c->l.l = *(c->light);
+	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, c, render->in_shadow);
+	color = lighting(&c->l, (t_light *)tmp->content, c);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
+		tmp = tmp->next;
+	}
 	return (color_to_int(color));
 }
 
 int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
+	t_list	*tmp;
 
+	color = tuple_create(0, 0, 0, 0);
+	tmp = c->spotlights;
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = ((t_plane *)xs->object->obj)->orientation_vec;
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_plane *)xs->object->obj)->material;
-	c->l.l = *(c->light);
+	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, c, render->in_shadow);
+	color = lighting(&c->l, (t_light *)tmp->content, c);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
+		tmp = tmp->next;
+	}
 	return (color_to_int(color));
 }
 
@@ -48,7 +66,10 @@ int	render_cylinder(t_config *c, t_intersection *xs, t_render *render)
 	t_tuple	oc;
 	t_tuple	proj;
 	t_tuple	color;
+	t_list	*tmp;
 
+	color = tuple_create(0, 0, 0, 0);
+	tmp = c->spotlights->next;
 	oc = tuple_substitute(render->x_point,
 			((t_cylinder *)xs->object->obj)->center);
 	proj = tuple_multiply(((t_cylinder *)xs->object->obj)->orientation_vec,
@@ -58,24 +79,38 @@ int	render_cylinder(t_config *c, t_intersection *xs, t_render *render)
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_cylinder *)xs->object->obj)->material;
-	c->l.l = *(c->light);
+	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, c, render->in_shadow);
+	color = lighting(&c->l, (t_light *)c->spotlights->content, c);
+	while (tmp)
+	{
+		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
+		tmp = tmp->next;
+	}
 	return (color_to_int(color));
 }
 
 int	render_disk(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
+	t_list	*tmp;
 
+	color = tuple_create(0, 0, 0, 0);
+	tmp = c->spotlights;
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = ((t_disk *)xs->object->obj)->orientation_vec;
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_disk *)xs->object->obj)->material;
-	c->l.l = *(c->light);
+	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, c, render->in_shadow);
+	color = lighting(&c->l, (t_light *)tmp->content, c);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
+		tmp = tmp->next;
+	}
 	return (color_to_int(color));
 }
 
@@ -100,16 +135,23 @@ t_tuple	cone_normal_at(t_cone *cone, t_tuple point)
 int	render_cone(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
+	t_list	*tmp;
 
 	ft_bzero(&c->l, sizeof(t_lighting));
-
+	color = tuple_create(0, 0, 0, 0);
+	tmp = c->spotlights;
 	c->l.normal_vec = cone_normal_at((t_cone *)xs->object->obj, render->x_point);
-
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_cone *)xs->object->obj)->material;
-	c->l.l = *(c->light);
+	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, c, render->in_shadow);
+	color = lighting(&c->l, (t_light *)tmp->content, c);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
+		tmp = tmp->next;
+	}
 	return (color_to_int(color));
 }
