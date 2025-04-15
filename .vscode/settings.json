@@ -7,6 +7,8 @@
 		"minirt.h": "c",
 		"stdbool.h": "c",
 		"cmath": "c",
-		"ray.h": "c"
+		"ray.h": "c",
+		"libft.h": "c",
+		"get_next_line.h": "c"
 	}
 }
