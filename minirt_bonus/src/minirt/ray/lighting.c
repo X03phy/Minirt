@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:30:34 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/09 11:26:38 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:14:40 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ static void	calculate_diff_spec(t_lighting *l)
 		reflectv = vector_reflect(tuple_negate(l->lightv), l->normal_vec);
 		reflect_dot_eye = vector_dot(reflectv, l->eyev);
 		if (reflect_dot_eye > 0)
+		{
 			l->specular = tuple_multiply(point_create(1, 1, 1), l->m.specular
 					* pow(reflect_dot_eye, l->m.shininess));
-			// l->specular = tuple_multiply(l->light_real_color, l->m.specular
+		}
+					// l->specular = tuple_multiply(l->light_real_color, l->m.specular
 			// 		* pow(reflect_dot_eye, l->m.shininess));
 	}
 }
