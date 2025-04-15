@@ -19,6 +19,22 @@ bool	check_invalid_color(t_color c)
 		|| (c.z < 0.0 || c.z > 1.0));
 }
 
+bool	check_spotlights(t_list *spotlights)
+{
+	t_list	*tmp;
+
+	if (!spotlights)
+		return (false);
+	tmp = spotlights;
+	while (tmp)
+	{
+		if (check_invalid_color(((t_light *)tmp->content)->color))
+			return (true);
+		tmp = tmp->next;
+	}
+	return (false);
+}
+
 bool	check_colors_error(t_config *config)
 {
 	t_list			*tmp;

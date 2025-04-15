@@ -33,6 +33,8 @@
 # define ACNE_DECALAGE 0.0001
 # define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0"
 # define SCENE_TYPE_NUM 6
+# define WINH 1000
+# define WINW 1000
 
 // errors messages
 # define INVALID_FILE "Invalid file : %s\n"
