@@ -28,6 +28,8 @@ bool	size_checks(t_config *config)
 {
 	t_list	*tmp;
 
+	if (config->camera->fov <= 0 || config->camera->fov > 180)
+		return (true);
 	tmp = config->objects_list;
 	while (tmp)
 	{

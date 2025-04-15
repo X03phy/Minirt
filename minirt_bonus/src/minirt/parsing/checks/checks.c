@@ -38,13 +38,13 @@ bool	check_one(t_config *config)
 		config->err.msg = "No object to display.\n";
 		return (false);
 	}
-	if (!config->ambient_light || !config->camera || !config->light)
+	if (!config->ambient_light || !config->camera || !config->spotlights)
 	{
 		if (!config->ambient_light)
 			config->err.msg = "No ambient light !\n";
 		else if (!config->camera)
 			config->err.msg = "No camera !\n";
-		else if (!config->light)
+		else if (!config->spotlights)
 			config->err.msg = "No spotlight !\n";
 		return (false);
 	}
