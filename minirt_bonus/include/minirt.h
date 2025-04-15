@@ -33,6 +33,8 @@
 # define ACNE_DECALAGE 0.0001
 # define SCENE_TYPE "A\0C\0L\0sp\0pl\0cy\0co\0"
 # define SCENE_TYPE_NUM 7
+# define WINH 1000
+# define WINW 1000
 
 // errors messages
 # define INVALID_FILE "Invalid file : %s\n"
@@ -124,6 +126,7 @@ typedef struct s_lighting
 	t_tuple		eyev;
 	t_tuple		normal_vec;
 	bool		in_shadow;
+	t_list		*spotlights;
 	t_tuple		lightv;
 	t_color		light_real_color;
 	t_color		ambient;
@@ -145,7 +148,7 @@ typedef struct s_config
 	t_parsefunc		*funcs;
 	t_ambient_light	*ambient_light;
 	t_camera		*camera;
-	t_light			*light;
+	t_list			*spotlights;
 	t_list			*objects_list;
 	int				total_objects;
 	t_lighting		l;
@@ -163,8 +166,8 @@ void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-t_color		lighting(t_lighting *l, t_config *c, bool in_shadow);
-bool		is_in_shadow(t_config *c, t_tuple xpoint, int id);
+bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id);
+t_color		lighting(t_lighting *l, t_light *light, t_config *c);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
 bool		check_only_valid_float(char **tab);

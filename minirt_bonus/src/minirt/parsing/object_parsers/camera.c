@@ -13,7 +13,7 @@
 #include "../../../../include/minirt.h"
 
 bool	parse_camera(t_config *c, char **infos, int currline)
-{	
+{
 	if (c->camera != NULL)
 	{
 		c->err.msg = TOO_MANY_ELEMENT;

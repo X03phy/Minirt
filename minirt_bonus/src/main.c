@@ -12,11 +12,11 @@
 
 #include "../include/minirt.h"
 
-void	clean_obj_list(t_list	**lst)
+void	clean_obj_list(t_list	**lst, t_list **spotlight)
 {
 	t_list	*tmp;
 
-	if (!lst)
+	if (!lst || !spotlight)
 		return ;
 	while (*lst)
 	{
@@ -27,6 +27,14 @@ void	clean_obj_list(t_list	**lst)
 		*lst = tmp;
 	}
 	*lst = NULL;
+	while (*spotlight)
+	{
+		tmp = (*spotlight)->next;
+		free((*spotlight)->content);
+		free(*spotlight);
+		*spotlight = tmp;
+	}
+	*spotlight = NULL;
 }
 
 void	clean_exit(t_config *config)
@@ -42,9 +50,8 @@ void	clean_exit(t_config *config)
 			mlx_destroy_display(config->mlx);
 			free(config->mlx);
 		}
-		clean_obj_list(&config->objects_list);
+		clean_obj_list(&config->objects_list, &config->spotlights);
 		free(config->ambient_light);
-		free(config->light);
 		free(config->camera);
 		free(config->funcs);
 		free(config);

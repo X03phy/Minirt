@@ -6,13 +6,13 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 12:25:34 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:32:05 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../include/minirt.h"
 
-static bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
+bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 {
 	t_object_node	*node;
 	t_list			*lsttmp;
