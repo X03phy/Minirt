@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:32:05 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:40:41 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 	((t_disk *)node->obj)->radius = cy->diameter / 2;
 	((t_disk *)node->obj)->color = cy->color;
 	((t_disk *)node->obj)->material = cy->material;
+	((t_disk *)node->obj)->material.specular = 0.1;
+	((t_disk *)node->obj)->material.shininess = 10.0;
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

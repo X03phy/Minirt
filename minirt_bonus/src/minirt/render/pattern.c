@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:48:27 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/15 11:59:20 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/15 13:47:48 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 
 t_pattern_type	pattern_checkerboard(t_tuple *point)
 {
-	(void)point;
-	if (((int)floor(point->x) + (int)floor(point->y) + (int)floor(point->z)) % 2 == 0)
+	if (((int)floor(point->x)+(int)floor(point->y)) % 2 == 0)
 		return (NONE);
 	return (CHECKERBOARD);
 }
