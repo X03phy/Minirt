@@ -53,6 +53,11 @@ void	print_plane(t_plane *p)
 	tuple_print(&p->orientation_vec);
 	printf("\tColor :");
 	tuple_print(&p->color);
+	if (p->checked)
+		printf("\tChecked : %s\n", GRN"true"RESET);
+	else
+		printf("\tChecked : %s\n", RED"false"RESET);
+	
 }
 
 void	print_sphere(t_sphere *s)
@@ -63,4 +68,8 @@ void	print_sphere(t_sphere *s)
 	tuple_print(&s->center);
 	printf("\tRadius : %f\n\tColor : ", s->radius);
 	tuple_print(&s->color);
+	if (s->checked)
+		printf("\tChecked : %s\n", GRN"true"RESET);
+	else
+		printf("\tChecked : %s\n", RED"false"RESET);
 }

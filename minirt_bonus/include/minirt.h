@@ -167,7 +167,7 @@ typedef struct s_multi
 	pthread_mutex_t	*config_mut;
 }	t_multi;
 
-void		clean_exit(t_config *config);
+int		clean_exit(t_config *config);
 void		install_hooks(t_config *config);
 
 // tests

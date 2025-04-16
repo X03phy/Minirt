@@ -32,6 +32,7 @@ typedef struct s_sphere
 	double		radius;
 	t_color		color;
 	t_material	material;
+	bool		checked;
 }	t_sphere;
 
 typedef struct s_plane
@@ -41,6 +42,7 @@ typedef struct s_plane
 	t_tuple		orientation_vec;
 	t_color		color;
 	t_material	material;
+	bool		checked;
 }	t_plane;
 
 typedef struct s_disk
