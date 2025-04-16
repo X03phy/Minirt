@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 09:54:49 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/14 12:14:31 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:46:35 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libs/libft/include/tuple.h"
 # include "color.h"
+# include "img.h"
 
 typedef struct s_material
 {
@@ -33,6 +34,12 @@ typedef struct s_sphere
 	t_color		color;
 	t_material	material;
 	bool		checked;
+	bool		textured;
+	char		*texture_name;
+	t_img		texture;
+	bool		bumped;
+	char		*bump_name;
+	t_img		bump;
 }	t_sphere;
 
 typedef struct s_plane
@@ -43,6 +50,10 @@ typedef struct s_plane
 	t_color		color;
 	t_material	material;
 	bool		checked;
+	bool		textured;
+	bool		bumped;
+	t_img		texture;
+	t_img		bump;
 }	t_plane;
 
 typedef struct s_disk

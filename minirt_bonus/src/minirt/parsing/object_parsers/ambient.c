@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:07:04 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 09:24:16 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:46 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	parse_ambient(t_config *c, char **infos, int currline)
 	}
 	if (ft_tabsize(infos) != 5)
 		return (false);
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 4))
 	{
 		c->err.msg = INVALID_NUMBER;
 		c->err.line = currline;

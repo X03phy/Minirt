@@ -30,6 +30,7 @@
 # include "../libs/libft/include/matrix.h"
 # include "color.h"
 # include "objects.h"
+# include "img.h"
 
 # define EPSILON 0.00001
 # define ACNE_DECALAGE 0.0001
@@ -45,15 +46,6 @@
 # define TOO_MANY_ELEMENT "Ambient light, camera \
 	and light can only be defined once !\n"
 # define INVALID_NUMBER	"Invalid number at line %d\n"
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixels;
-	int		line_len;
-	int		endian;
-}	t_img;
 
 typedef enum e_object_type
 {
@@ -176,7 +168,7 @@ typedef struct s_multi
 	pthread_mutex_t	*config_mut;
 }	t_multi;
 
-int		clean_exit(t_config *config);
+int			clean_exit(t_config *config);
 void		install_hooks(t_config *config);
 
 // tests
@@ -193,7 +185,7 @@ bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id, t_multi 
 t_color		lighting(t_lighting *l, t_light *light, t_config *c);
 int			color_to_int(t_color color);
 t_material	default_material(t_color color);
-bool		check_only_valid_float(char **tab);
+bool		check_only_valid_float(char **tab, int maxindex);
 int			get_obj_id(t_object_node *obj);
 
 // init
