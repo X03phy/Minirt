@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 17:25:33 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:48:08 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ typedef enum e_object_type
 typedef enum e_pattern_type
 {
 	NONE,
-	CHECKERBOARD
+	CHECKERBOARD,
+	BUMPMAP
 }	t_pattern_type;
 
 typedef struct s_object_node
@@ -75,6 +76,13 @@ typedef struct s_object_node
 	t_object_type	type;
 	void			*obj;
 	t_pattern_type	pattern;
+	void			*bump_map;          // Bump map associée à cet objet (si existe)
+	char			*bump_data;         // Données de la bump map
+	int				bump_width;         // Largeur de la bump map
+	int				bump_height;        // Hauteur de la bump map
+	int				bpp;                // Bits par pixel
+	int				size_line;          // Taille d'une ligne de la bump map
+	int				endian;             // Endianness de la bump map
 }	t_object_node;
 
 typedef struct s_error
