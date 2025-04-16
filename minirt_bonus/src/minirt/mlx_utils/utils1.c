@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:18:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/02 11:19:12 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:42:46 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_len + x * (data->bits_per_pixels / 8));
 	*(unsigned int *)dst = color;
+}
+
+unsigned int	mlx_get_color(t_img *data, int x, int y)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_len + x * (data->bits_per_pixels / 8));
+	return (*(unsigned int *)dst);
 }
 
 int	color_to_int(t_color color)

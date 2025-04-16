@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 17:26:17 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:43:22 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 		xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
 		intensity = define_intensity(xs->object->pattern);
 	}
-	color = tuple_multiply(color, intensity);
-	return (color_to_int(color));
+	return (get_texture_color(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
+	(void)color;
 }
 
 int	render_plane(t_config *c, t_intersection *xs, t_render *render)

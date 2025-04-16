@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:48:27 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/16 12:11:39 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:41:11 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,9 @@ t_pattern_type	pattern_sphere_checkerboard(t_tuple *point, t_tuple *vec)
 	return (CHECKERBOARD);
 }
 
-int	pattern_color(t_object_node *obj, int color)
+float		define_intensity(t_pattern_type type)
 {
-	float	intensity;
-
-	if (obj->pattern == CHECKERBOARD)
-	{
-		intensity = 0.8;
-	}
+	if (type == CHECKERBOARD)
+		return (0.8);
+	return (1);
 }
