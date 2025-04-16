@@ -18,7 +18,7 @@ bool	check_only_valid_float(char **tab)
 		return (false);
 	while (*tab)
 	{
-		if (!ft_is_double(*tab))
+		if (!ft_is_double(*tab) && ft_strcmp(*tab, "checked") != 0)
 			return (false);
 		tab++;
 	}

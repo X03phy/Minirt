@@ -12,7 +12,7 @@
 
 #include "../../../../include/minirt.h"
 
-static void	fill_sphere(t_config *c, char **infos, t_object_node *node)
+static bool	fill_sphere(t_config *c, char **infos, t_object_node *node)
 {
 	((t_sphere *)node->obj)->id = ++(c->total_objects);
 	((t_sphere *)node->obj)->center = point_create(
@@ -23,6 +23,11 @@ static void	fill_sphere(t_config *c, char **infos, t_object_node *node)
 			ft_atoi(infos[6]) / 255.0, ft_atoi(infos[7]) / 255.0);
 	((t_sphere *)node->obj)->material = default_material(
 			((t_sphere *)node->obj)->color);
+	if (infos[8] && ft_strcmp("checked", infos[8]) == 0)
+		((t_sphere *)node->obj)->checked = true;
+	else if (infos[8] && ft_strcmp("checked", infos[8]) != 0)
+		return (false);
+	return (true);
 }
 
 bool	parse_sphere(t_config *c, char **infos, int currline)
@@ -30,7 +35,7 @@ bool	parse_sphere(t_config *c, char **infos, int currline)
 	t_object_node	*node;
 	t_list			*lsttmp;
 
-	if (ft_tabsize(infos) != 8)
+	if (ft_tabsize(infos) != 8 && ft_tabsize(infos) != 9)
 		return (false);
 	if (!check_only_valid_float(&infos[1]))
 	{
@@ -45,7 +50,8 @@ bool	parse_sphere(t_config *c, char **infos, int currline)
 	node->obj = ft_calloc(sizeof(t_sphere), 1);
 	if (!node->obj)
 		return (free(node), false);
-	fill_sphere(c, infos, node);
+	if (!fill_sphere(c, infos, node))
+		return (free(node), false);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

@@ -37,7 +37,7 @@ void	clean_obj_list(t_list	**lst, t_list **spotlight)
 	*spotlight = NULL;
 }
 
-void	clean_exit(t_config *config)
+int	clean_exit(t_config *config)
 {
 	if (config)
 	{
@@ -57,6 +57,7 @@ void	clean_exit(t_config *config)
 		free(config);
 	}
 	exit(0);
+	return (0);
 }
 
 void	ft_help(char *message)
@@ -98,8 +99,7 @@ int	main(int ac, char **av)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
-	render(c);
-	// render_multi(c);
-	clean_exit(c);
+	// render(c);
+	render_multi(c);
 	return (EXIT_SUCCESS);
 }

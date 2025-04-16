@@ -16,15 +16,11 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
 	t_list	*tmp;
-
-
-	float intensity;
-
-
+	float	intensity;
 
 	color = tuple_create(0, 0, 0, 0);
 	tmp = c->spotlights;
-
+	intensity = 1.0;
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 				((t_sphere *)xs->object->obj)->center));
@@ -40,8 +36,11 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
 	}
-	xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
-	intensity = define_intensity(xs->object->pattern);
+	if (((t_sphere *)xs->object->obj)->checked == true)
+	{
+		xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
+		intensity = define_intensity(xs->object->pattern);
+	}
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }
@@ -50,9 +49,9 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 {
 	t_tuple	color;
 	float	intensity;
-
 	t_list	*tmp;
 
+	intensity = 1.0;
 	color = tuple_create(0, 0, 0, 0);
 	tmp = c->spotlights;
 	ft_bzero(&c->l, sizeof(t_lighting));
@@ -68,10 +67,12 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 	{
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
+	}	
+	if (((t_plane *)xs->object->obj)->checked == true)
+	{
+		xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(c->l.normal_vec));
+		intensity = define_intensity(xs->object->pattern);
 	}
-	xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(((t_plane *)xs->object->obj)->orientation_vec));
-	intensity = define_intensity(xs->object->pattern);
-	// color = tuple_multiply(color, intensity);
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }

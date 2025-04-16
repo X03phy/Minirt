@@ -12,7 +12,7 @@
 
 #include "../../../../include/minirt.h"
 
-static void	fill_plan(t_config *c, char **infos, t_object_node *node)
+static bool	fill_plan(t_config *c, char **infos, t_object_node *node)
 {
 	((t_plane *)node->obj)->id = ++(c->total_objects);
 	((t_plane *)node->obj)->center = point_create(
@@ -26,6 +26,11 @@ static void	fill_plan(t_config *c, char **infos, t_object_node *node)
 			((t_plane *)node->obj)->color);
 	((t_plane *)node->obj)->material.specular = 0.1;
 	((t_plane *)node->obj)->material.shininess = 10.0;
+	if (infos[10] && ft_strcmp("checked", infos[10]) == 0)
+		((t_plane *)node->obj)->checked = true;
+	else if (infos[10] && ft_strcmp("checked", infos[10]) != 0)
+		return (false);
+	return (true);
 }
 
 bool	parse_plan(t_config *c, char **infos, int currline)
@@ -33,7 +38,7 @@ bool	parse_plan(t_config *c, char **infos, int currline)
 	t_object_node	*node;
 	t_list			*lsttmp;
 
-	if (ft_tabsize(infos) != 10)
+	if (ft_tabsize(infos) != 10 && ft_tabsize(infos) != 11)
 		return (false);
 	if (!check_only_valid_float(&infos[1]))
 	{
@@ -48,7 +53,8 @@ bool	parse_plan(t_config *c, char **infos, int currline)
 	node->obj = ft_calloc(sizeof(t_plane), 1);
 	if (!node->obj)
 		return (free(node), false);
-	fill_plan(c, infos, node);
+	if (!fill_plan(c, infos, node))
+		return (free(node), false);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
 		return (free(node), false);

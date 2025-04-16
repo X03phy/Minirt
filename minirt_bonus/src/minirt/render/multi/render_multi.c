@@ -10,17 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minirt.h"
+#include "../../../../include/minirt.h"
 #include <memory.h>
 #include <pthread.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include "../../../include/minirt.h"
-#include "../../../include/ray.h"
-#include "../../../libs/minilibx-linux/mlx.h"
+#include "../../../../include/ray.h"
+#include "../../../../libs/minilibx-linux/mlx.h"
 #include <math.h>
 
-// t_config	*dup_config(t_config *c, )
+// t_config	*dup_config(t_config *c)
 // {
 //
 // }
@@ -65,13 +64,11 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 	t_config		configdup;
 
 	ft_memcpy(&configdup, c, sizeof(t_config));
-
 	color = 0;
 	xs = hit(&configdup, render->ray, thdata);
 	if (xs)
 	{
 		render->x_point = ray_position(render->ray, xs->t);
-		// xs->object->pattern = pattern_checkerboard(&(render->x_point));
 		if (xs->object->type == SPHERE)
 			color = render_sphere(&configdup, xs, render);
 		else if (xs->object->type == PLANE)
@@ -82,13 +79,11 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 			color = render_disk(&configdup, xs, render);
 		else if (xs->object->type == CONE)
 			color = render_cone(&configdup, xs, render);
-	
 		pthread_mutex_lock(thdata->config_mut);
 		my_mlx_pixel_put(&c->img, x, y, color);
 		pthread_mutex_unlock(thdata->config_mut);
 		free(xs);
 	}
-	// (void)thdata;
 }
 
 static void	*render_loop2(void *thread_data)
