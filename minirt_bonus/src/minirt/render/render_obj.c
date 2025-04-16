@@ -69,14 +69,15 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 	{
 		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
 		tmp = tmp->next;
-	}	
+	}
 	if (((t_plane *)xs->object->obj)->checked == true)
 	{
 		xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(c->l.normal_vec));
 		intensity = define_intensity(xs->object->pattern);
 	}
-	color = tuple_multiply(color, intensity);
-	return (color_to_int(color));
+	return (get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
+	// color = tuple_multiply(color, intensity);
+	// return (color_to_int(color));
 }
 
 int	render_cylinder(t_config *c, t_intersection *xs, t_render *render)
