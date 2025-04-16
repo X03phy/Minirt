@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 14:41:24 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:34:34 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 	if (!node->obj)
 		return (free(node), false);
 	((t_disk *)node->obj)->id = ++(c->total_objects);
-	((t_disk *)node->obj)->orientation_vec = tuple_multiply(
-			cy->orientation_vec, hb);
+	((t_disk *)node->obj)->orientation_vec = vector_normalize(tuple_multiply(
+			cy->orientation_vec, hb));
 	((t_disk *)node->obj)->center = tuple_add(cy->center,
 			tuple_multiply(cy->orientation_vec, (cy->height / 2) * hb));
 	((t_disk *)node->obj)->radius = cy->diameter / 2;

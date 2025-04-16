@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:48:27 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/15 17:27:48 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:58:20 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pattern_type	pattern_plane_checkerboard(t_tuple *point, t_tuple *vec)
 
 	t_tuple n = *vec;
 
-	if (fabs(n.x) > fabs(n.y) && fabs(n.x) > fabs(n.z))
+	if (fabs(n.x) >= fabs(n.y) && fabs(n.x) >= fabs(n.z))
 	{
 		u = (int)floor(point->y);
 		v = (int)floor(point->z);

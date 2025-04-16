@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:54 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:18:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:34:20 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	parse_camera(t_config *c, char **infos, int currline)
 		return (false);
 	c->camera->position = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
-	c->camera->orientation_vec = vector_create(
-			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6]));
+	c->camera->orientation_vec = vector_normalize(vector_create(
+			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
 	c->camera->fov = ft_atoi(infos[7]);
 	return (true);
 }
