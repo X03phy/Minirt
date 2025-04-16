@@ -9,6 +9,7 @@
 		"cmath": "c",
 		"ray.h": "c",
 		"libft.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"math.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:45:53 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 17:28:36 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:58:23 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 bool	init_render(t_config *c, t_render *render)
 {
-	c->mlx = mlx_init();
-	if (c->mlx == NULL)
-		return (false);
+	// c->mlx = mlx_init();
+	// if (c->mlx == NULL)
+	// 	return (false);
 	c->mlx_win = mlx_new_window(c->mlx, 1000, 1000, "MiniRT");
 	c->img.img = mlx_new_image(c->mlx, 1000, 1000);
 	c->img.addr = mlx_get_data_addr(c->img.img,

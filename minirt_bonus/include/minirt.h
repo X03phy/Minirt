@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 11:48:08 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:25:18 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ typedef struct s_object_node
 	t_object_type	type;
 	void			*obj;
 	t_pattern_type	pattern;
-	void			*bump_map;          // Bump map associée à cet objet (si existe)
-	char			*bump_data;         // Données de la bump map
-	int				bump_width;         // Largeur de la bump map
-	int				bump_height;        // Hauteur de la bump map
-	int				bpp;                // Bits par pixel
-	int				size_line;          // Taille d'une ligne de la bump map
-	int				endian;             // Endianness de la bump map
+	// void			*bump_map;          // Bump map associée à cet objet (si existe)
+	// char			*bump_data;         // Données de la bump map
+	// int				bump_width;         // Largeur de la bump map
+	// int				bump_height;        // Hauteur de la bump map
+	// int				bpp;                // Bits par pixel
+	// int				size_line;          // Taille d'une ligne de la bump map
+	// int				endian;             // Endianness de la bump map
 }	t_object_node;
 
 typedef struct s_error
@@ -155,6 +155,7 @@ typedef struct s_config
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
+	t_img			earth;
 	t_parsefunc		*funcs;
 	t_ambient_light	*ambient_light;
 	t_camera		*camera;
@@ -187,6 +188,7 @@ void		test_phong(t_config *c);
 
 // utils
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
+unsigned int			mlx_get_color(t_img *data, int x, int y);
 bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id, t_multi *thdata);
 t_color		lighting(t_lighting *l, t_light *light, t_config *c);
 int			color_to_int(t_color color);
@@ -241,5 +243,6 @@ t_pattern_type	pattern_plane_checkerboard(t_tuple *point, t_tuple *vec);
 t_pattern_type	pattern_sphere_checkerboard(t_tuple *point, t_tuple *vec);
 float		define_intensity(t_pattern_type type);
 
+int		get_texture_color(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n);
 
 #endif
