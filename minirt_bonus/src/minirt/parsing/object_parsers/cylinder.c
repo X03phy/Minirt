@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:18:50 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 09:29:49 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:32 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	parse_cylinder(t_config *c, char **infos, int currline)
 
 	if (ft_tabsize(infos) != 12)
 		return (false);
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 11))
 		return (set_error(c, INVALID_NUMBER, currline));
 	node = ft_calloc(sizeof(t_object_node), 1);
 	if (!node)

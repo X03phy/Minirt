@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   img.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/05 10:04:52 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 16:56:34 by maecarva         ###   ########.fr       */
+/*   Created: 2025/04/16 16:40:44 by maecarva          #+#    #+#             */
+/*   Updated: 2025/04/16 17:08:03 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../include/minirt.h"
+#ifndef IMG_H
+# define IMG_H
 
-bool	check_only_valid_float(char **tab, int maxindex)
+typedef struct s_img
 {
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return (false);
-	while (tab[i] && i < maxindex)
-	{
-		if (!ft_is_double(tab[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
+	void	*img;
+	char	*addr;
+	int		bits_per_pixels;
+	int		line_len;
+	int		endian;
+	int		imgw;
+	int		imgh;
+}	t_img;
+#endif

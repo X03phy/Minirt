@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/15 17:04:42 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:18 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	parse_plan(t_config *c, char **infos, int currline)
 
 	if (ft_tabsize(infos) != 10 && ft_tabsize(infos) != 11)
 		return (false);
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 9))
 	{
 		c->err.msg = INVALID_NUMBER;
 		c->err.line = currline;

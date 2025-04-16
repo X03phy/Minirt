@@ -6,13 +6,13 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 13:59:39 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:18:51 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	clean_obj_list(t_list	**lst, t_list **spotlight)
+void	clean_obj_list(t_config *c,t_list	**lst, t_list **spotlight)
 {
 	t_list	*tmp;
 
@@ -21,6 +21,11 @@ void	clean_obj_list(t_list	**lst, t_list **spotlight)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
+		if (((t_object_node *)(*lst)->content)->type == SPHERE && ((t_sphere *)((t_object_node *)(*lst)->content)->obj)->textured)
+		{
+			free(((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture_name);
+			mlx_destroy_image(c->mlx, ((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture.img);
+		}
 		free(((t_object_node *)(*lst)->content)->obj);
 		free((*lst)->content);
 		free(*lst);
@@ -39,6 +44,7 @@ void	clean_obj_list(t_list	**lst, t_list **spotlight)
 
 int	clean_exit(t_config *config)
 {
+	clean_obj_list(config, &config->objects_list, &config->spotlights);
 	if (config)
 	{
 		if (config->mlx && config->img.img)
@@ -50,7 +56,6 @@ int	clean_exit(t_config *config)
 			mlx_destroy_display(config->mlx);
 			free(config->mlx);
 		}
-		clean_obj_list(&config->objects_list, &config->spotlights);
 		free(config->ambient_light);
 		free(config->camera);
 		free(config->funcs);
@@ -89,9 +94,15 @@ int	main(int ac, char **av)
 	c = init_config(ac, av);
 	if (!c)
 		return (perror("Can't initialize config : "), EXIT_FAILURE);
-	// if (ac != 2)
-	// 	return (ft_help("Invalid number of arguments."),
-	// 		clean_exit(c), EXIT_FAILURE);
+	if (ac < 2)
+		return (ft_help("Invalid number of arguments."),
+			clean_exit(c), EXIT_FAILURE);
+	
+	c->mlx = mlx_init();
+	if (c->mlx == NULL)
+		return (false);
+	
+
 	if (parse_scene(c, av[1]) == false)
 		return (ft_help("Invalid scene."), clean_exit(c), EXIT_FAILURE);
 	check_config(c);
@@ -99,39 +110,17 @@ int	main(int ac, char **av)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
-	
-	// t_config config;
 
-	// config.mlx = mlx_init();
-	// if (config.mlx == NULL)
-	// 	return (false);
-	// config.mlx_win = mlx_new_window(config.mlx, 1000, 500, "MiniRT");
-	// config.img.img = mlx_new_image(config.mlx, 1000, 500);
-	// config.img.addr = mlx_get_data_addr(config.img.img,
-	// 		&config.img.bits_per_pixels,
-	// 		&config.img.line_len, &config.img.endian);
+	render(c);
+	// clean_exit(c);
 	// int i;
 	// int	j;
 	// c->earth.img = mlx_xpm_file_to_image(c->mlx, av[2], &i, &j);
 	// c->earth.addr = mlx_get_data_addr(c->earth.img, &c->earth.bits_per_pixels, &c->earth.line_len, &c->earth.endian);
-	// unsigned int color = mlx_get_color(&config.earth, 500, 300);
-	// printf("color : %X\n", color);
-	// mlx_put_image_to_window(config.mlx, config.mlx_win, config.earth.img, 0, 0);
-	// mlx_loop(config.mlx);
-	// config.earth.addr = mlx_xpm_to_image(config.mlx, &config.earth.img, 1000, 500);
 	
-
-	int i;
-	int	j;
-	c->mlx = mlx_init();
-	if (c->mlx == NULL)
-		return (false);
-	c->earth.img = mlx_xpm_file_to_image(c->mlx, av[2], &i, &j);
-	c->earth.addr = mlx_get_data_addr(c->earth.img, &c->earth.bits_per_pixels, &c->earth.line_len, &c->earth.endian);
-	
-	render(c);
+	// render(c);
 	// render_multi(c);
-	mlx_destroy_image(c->mlx, c->earth.img);
+	// mlx_destroy_image(c->mlx, c->earth.img);
 	return (EXIT_SUCCESS);
 	(void)ac;
 	(void)av;

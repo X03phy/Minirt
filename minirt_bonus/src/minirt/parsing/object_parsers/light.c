@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:21 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:21:52 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:26 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	parse_light(t_config *c, char **infos, int currline)
 	t_list		*node;
 	t_light		*light;
 
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 7))
 	{
 		c->err.msg = INVALID_NUMBER;
 		c->err.line = currline;
