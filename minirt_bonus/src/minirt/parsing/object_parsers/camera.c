@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:06:54 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 09:24:56 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:42 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	parse_camera(t_config *c, char **infos, int currline)
 		c->err.msg = TOO_MANY_ELEMENT;
 		return (false);
 	}
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 7))
 	{
 		c->err.msg = INVALID_NUMBER;
 		c->err.line = currline;

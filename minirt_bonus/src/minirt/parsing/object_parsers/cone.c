@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:10:10 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/16 09:29:18 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:37 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	parse_disk(t_config *c, t_cone *cy)
 	((t_disk *)node->obj)->orientation_vec = cy->orientation_vec;
 	((t_disk *)node->obj)->center = tuple_add(cy->summit,
 			tuple_multiply(cy->orientation_vec, (cy->height)));
-	((t_disk *)node->obj)->radius = tan(cy->angle) * cy->height;         // tan(teta) = r / H
+	((t_disk *)node->obj)->radius = tan(cy->angle) * cy->height;
 	((t_disk *)node->obj)->color = cy->color;
 	((t_disk *)node->obj)->material = cy->material;
 	((t_disk *)node->obj)->material.specular = 0.1;
@@ -70,7 +70,7 @@ bool	parse_cone(t_config *c, char **infos, int currline)
 
 	if (ft_tabsize(infos) != 12)
 		return (false);
-	if (!check_only_valid_float(&infos[1]))
+	if (!check_only_valid_float(&infos[1], 11))
 		return (set_error(c, INVALID_NUMBER, currline));
 	node = ft_calloc(sizeof(t_object_node), 1);
 	if (!node)

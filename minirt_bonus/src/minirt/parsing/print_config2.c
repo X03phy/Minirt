@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 10:14:15 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:16:05 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:05:30 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,13 @@ void	print_sphere(t_sphere *s)
 		printf("\tChecked : %s\n", GRN"true"RESET);
 	else
 		printf("\tChecked : %s\n", RED"false"RESET);
+	if (s->textured)
+		printf("\tTextured : %s\n\t\ttexture_name : %s\n", GRN"true"RESET, s->texture_name);
+	else
+		printf("\tTextured : %s\n", RED"false"RESET);
+	if (s->bumped)
+		printf("\tBumped : %s\n", GRN"true"RESET);
+	else
+		printf("\tBumped : %s\n", RED"false"RESET);
+
 }
