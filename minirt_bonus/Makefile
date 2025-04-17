@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/16 16:42:14 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/17 16:05:09 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCRENDER = minirt/render/render.c \
 			minirt/render/render_obj.c \
 			minirt/render/pattern.c \
 			minirt/render/textures.c \
+			minirt/render/bump_maps.c \
 			minirt/render/multi/render_multi.c
 
 SRC = 	$(SRCPARSING) \
