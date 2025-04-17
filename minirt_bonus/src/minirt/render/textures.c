@@ -13,56 +13,79 @@
 #include "../../../include/minirt.h"
 #include <math.h>
 
+// void	dark_color(t_img *img, int x, int y)
+// {
+// 	int	r;
+// 	int	g;
+// 	int	b;
+// 	int	color_at_px;
+//
+// 	color_at_px = get_color_at_pixel(img, x, y);
+// 	r = color_at_px >> 16 & 0xFF;
+// 	g = color_at_px >> 8 & 0xFF;
+// 	b = color_at_px & 0xFF;
+// 	my_mlx_pixel_put(img, x, y, create_trgb(0xFF, r / 2, g / 2, b / 2));
+// }
+
+// int	create_trgb(int t, int r, int g, int b)
+// {
+// 	return (t << 24 | r << 16 | g << 8 | b);
+// }
+
 int	get_texture_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n)
 {
 	float x = 0.5 + atan2(n->z, n->x) / (2 * M_PI);
 	float y = 0.5 - asin(n->y) / M_PI;
-	float u = x * s->texture.imgw;
+	float u = x * s->texture.imgw + (s->texture.imgw / 4.0);
 	float v = y * s->texture.imgh;
-	return ((int)mlx_get_color(&s->texture, u, v));
+	int	colortexture = mlx_get_color(&s->texture, u, v);
+	int	bumpedtexture = 0;
+	
+	if (s->bump_name)
+	{
+		bumpedtexture = mlx_get_color(&s->bump, u, v);
+		return (colortexture * bumpedtexture);
+	}
+	return (colortexture);
 	(void)x_point;
 	(void)s;
 	(void)c;
 }
 
-// int	get_texture_color_plane(t_config *c, t_plane *p, t_tuple *x_point, t_tuple *n)
-// {
-//    (void)p;
-//    (void)x_point;
-//    (void)n;
-//    (void)c;
-//    float u = x_point->x - floor(x_point->x);
-//    float v = x_point->z - floor(x_point->z);
-//    int tex_u = u * 1000;
-//    int tex_v = v * 500;
-//    return ((int)mlx_get_color(&p->texture, tex_u, tex_v));
-// }
-
 int	get_texture_color_plane(t_config *c, t_plane *p, t_tuple *x_point, t_tuple *n)
 {
-	int u, v;
-
-	if (fabs(n->x) >= fabs(n->y) && fabs(n->x) >= fabs(n->z))
-	{
-		// u = (int)floor(x_point->y);
-		// v = (int)floor(x_point->z);
-		u = (int)x_point->y - floor(x_point->y);
-		v = (int)x_point->z - floor(x_point->z);
-	}
-	else if (fabs(n->y) > fabs(n->z))
-	{
-		u = (int)x_point->x - floor(x_point->x);
-		v = (int)x_point->z - floor(x_point->z);
-	}
-	else
-	{
-		// u = (int)floor(x_point->x);
-		// v = (int)floor(x_point->y);
-		u = (int)x_point->x - floor(x_point->x);
-		v = (int)x_point->y - floor(x_point->y);
-	}
-	int tex_u = u * p->texture.imgw;
-	int tex_v = v * p->texture.imgh;
-	return ((int)mlx_get_color(&p->texture, tex_u, tex_v));
-	(void)c;
+   (void)p;
+   (void)x_point;
+   (void)n;
+   (void)c;
+   float u = x_point->x - floor(x_point->x);
+   float v = x_point->z - floor(x_point->z);
+   int tex_u = u * p->texture.imgw;
+   int tex_v = v * p->texture.imgh;
+   return ((int)mlx_get_color(&p->texture, tex_u, tex_v));
 }
+
+// int	get_texture_color_plane(t_config *c, t_plane *p, t_tuple *x_point, t_tuple *n)
+// {
+// 	int u, v;
+//
+// 	if (fabs(n->x) >= fabs(n->y) && fabs(n->x) >= fabs(n->z))
+// 	{
+// 		u = (int)x_point->y - floor(x_point->y);
+// 		v = (int)x_point->z - floor(x_point->z);
+// 	}
+// 	else if (fabs(n->y) > fabs(n->z))
+// 	{
+// 		u = (int)x_point->x - floor(x_point->x);
+// 		v = (int)x_point->z - floor(x_point->z);
+// 	}
+// 	else
+// 	{
+// 		u = (int)x_point->x - floor(x_point->x);
+// 		v = (int)x_point->y - floor(x_point->y);
+// 	}
+// 	int tex_u = u * p->texture.imgw;
+// 	int tex_v = v * p->texture.imgh;
+// 	return ((int)mlx_get_color(&p->texture, tex_u, tex_v));
+// 	(void)c;
+// }

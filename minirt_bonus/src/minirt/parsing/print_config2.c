@@ -86,7 +86,7 @@ void	print_sphere(t_sphere *s)
 	else
 		printf("\tTextured : %s\n", RED"false"RESET);
 	if (s->bumped)
-		printf("\tBumped : %s\n", GRN"true"RESET);
+		printf("\tBumped : %s\n\t\tbump_name : %s\n", GRN"true"RESET, s->bump_name);
 	else
 		printf("\tBumped : %s\n", RED"false"RESET);
 
