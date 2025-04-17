@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 18:18:51 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:19:19 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ int	main(int ac, char **av)
 	if (c)
 		print_config(c);
 
-	// render(c);
-	render_multi(c);
+	render(c);
+	// render_multi(c);
 	return (EXIT_SUCCESS);
 	(void)ac;
 	(void)av;

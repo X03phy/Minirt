@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 18:31:01 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:54:05 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_sphere *)xs->object->obj)->material;
+	if (((t_sphere *)xs->object->obj)->textured == true)
+		c->l.m.color = int_to_color(get_texture_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
 	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
 	color = lighting(&c->l, (t_light *)tmp->content, c);
@@ -41,8 +43,6 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 		xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
 		intensity = define_intensity(xs->object->pattern);
 	}
-	else if (((t_sphere *)xs->object->obj)->textured == true)
-		return (get_texture_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }
@@ -61,6 +61,8 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_plane *)xs->object->obj)->material;
+	// if (((t_plane *)xs->object->obj)->textured == true)
+	// 	c->l.m.color = int_to_color(get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
 	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
 	color = lighting(&c->l, (t_light *)tmp->content, c);
@@ -75,8 +77,6 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 		xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(c->l.normal_vec));
 		intensity = define_intensity(xs->object->pattern);
 	}
-	else if (((t_plane *)xs->object->obj)->textured == true)
-		return (get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
 	color = tuple_multiply(color, intensity);
 	return (color_to_int(color));
 }

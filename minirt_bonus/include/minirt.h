@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 17:28:38 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:43:19 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ int			color_to_int(t_color color);
 t_material	default_material(t_color color);
 bool		check_only_valid_float(char **tab, int maxindex);
 int			get_obj_id(t_object_node *obj);
+t_color		int_to_color(int c);
 
 // init
 t_config	*init_config(int ac, char **av);
