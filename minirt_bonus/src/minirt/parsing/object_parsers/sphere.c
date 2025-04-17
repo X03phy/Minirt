@@ -15,8 +15,10 @@
 static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 {
 	char	*tmp;
+	char	*tmp2;
 
 	tmp = NULL;
+	tmp2 = NULL;
 	if (infos[8] && ft_strcmp("checked", infos[8]) == 0)
 		s->checked = true;
 	else if (ft_strnstr(infos[8], "text", ft_strlen(infos[8])) != NULL)
@@ -31,10 +33,32 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 		s->texture_name = tmp;
 		s->texture.img = mlx_xpm_file_to_image(c->mlx, tmp, &s->texture.imgw, &s->texture.imgh);
 		if (!s->texture.img)
-			return (false);
+			return (free(tmp), false);
 		s->texture.addr = mlx_get_data_addr(s->texture.img, &s->texture.bits_per_pixels, &s->texture.line_len, &s->texture.endian);
 		if (!s->texture.addr)
-			return (false);
+			return (free(tmp), false);
+		if (infos[9] == NULL)
+			return (true);
+		if (infos[9] && ft_strnstr(infos[9], "bump", ft_strlen(infos[8])) != NULL)
+		{
+			tmp2 = ft_strchr(infos[9], ':');
+			if (!tmp2)
+				return (false);
+			tmp2 = ft_strdup(tmp2 + 1);
+			if (!tmp2 || ft_strlen(tmp2) == 0)
+				return (free(tmp2), free(tmp), false);
+			s->bumped = true;
+			s->bump_name = tmp2;
+			s->bump.img = mlx_xpm_file_to_image(c->mlx, tmp2, &s->bump.imgw, &s->bump.imgh);
+			if (!s->bump.img)
+				return (free(tmp2), free(tmp), false);
+			s->bump.addr = mlx_get_data_addr(s->bump.img, &s->bump.bits_per_pixels, &s->bump.line_len, &s->bump.endian);
+			if (!s->bump.addr)
+				return (free(tmp2), free(tmp), false);
+		}
+		else
+			return (free(tmp2), 
+			free(tmp), mlx_destroy_image(c->mlx, s->texture.img), false);
 	}
 	else
 		return (false);
@@ -66,7 +90,7 @@ bool	parse_sphere(t_config *c, char **infos, int currline)
 	t_object_node	*node;
 	t_list			*lsttmp;
 
-	if (ft_tabsize(infos) != 8 && ft_tabsize(infos) != 9)
+	if (ft_tabsize(infos) <= 7 || ft_tabsize(infos) > 10)
 		return (false);
 	if (!check_only_valid_float(&infos[1], 7))
 	{

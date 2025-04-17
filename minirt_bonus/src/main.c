@@ -25,6 +25,11 @@ void	clean_obj_list(t_config *c,t_list	**lst, t_list **spotlight)
 		{
 			free(((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture_name);
 			mlx_destroy_image(c->mlx, ((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture.img);
+			if (((t_sphere *)((t_object_node *)(*lst)->content)->obj)->bumped)
+			{
+				free(((t_sphere *)((t_object_node *)(*lst)->content)->obj)->bump_name);
+				mlx_destroy_image(c->mlx, ((t_sphere *)((t_object_node *)(*lst)->content)->obj)->bump.img);
+			}
 		}
 		if (((t_object_node *)(*lst)->content)->type == PLANE && ((t_plane *)((t_object_node *)(*lst)->content)->obj)->textured)
 		{
