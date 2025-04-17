@@ -26,6 +26,11 @@ void	clean_obj_list(t_config *c,t_list	**lst, t_list **spotlight)
 			free(((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture_name);
 			mlx_destroy_image(c->mlx, ((t_sphere *)((t_object_node *)(*lst)->content)->obj)->texture.img);
 		}
+		if (((t_object_node *)(*lst)->content)->type == PLANE && ((t_plane *)((t_object_node *)(*lst)->content)->obj)->textured)
+		{
+			free(((t_plane *)((t_object_node *)(*lst)->content)->obj)->texture_name);
+			mlx_destroy_image(c->mlx, ((t_plane *)((t_object_node *)(*lst)->content)->obj)->texture.img);
+		}
 		free(((t_object_node *)(*lst)->content)->obj);
 		free((*lst)->content);
 		free(*lst);
@@ -111,16 +116,8 @@ int	main(int ac, char **av)
 	if (c)
 		print_config(c);
 
-	render(c);
-	// clean_exit(c);
-	// int i;
-	// int	j;
-	// c->earth.img = mlx_xpm_file_to_image(c->mlx, av[2], &i, &j);
-	// c->earth.addr = mlx_get_data_addr(c->earth.img, &c->earth.bits_per_pixels, &c->earth.line_len, &c->earth.endian);
-	
 	// render(c);
-	// render_multi(c);
-	// mlx_destroy_image(c->mlx, c->earth.img);
+	render_multi(c);
 	return (EXIT_SUCCESS);
 	(void)ac;
 	(void)av;

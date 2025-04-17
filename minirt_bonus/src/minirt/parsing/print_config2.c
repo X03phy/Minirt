@@ -57,6 +57,15 @@ void	print_plane(t_plane *p)
 		printf("\tChecked : %s\n", GRN"true"RESET);
 	else
 		printf("\tChecked : %s\n", RED"false"RESET);
+	if (p->textured)
+		printf("\tTextured : %s\n\t\ttexture_name : %s\n", GRN"true"RESET, p->texture_name);
+	else
+		printf("\tTextured : %s\n", RED"false"RESET);
+	if (p->bumped)
+		printf("\tBumped : %s\n", GRN"true"RESET);
+	else
+		printf("\tBumped : %s\n", RED"false"RESET);
+
 	
 }
 

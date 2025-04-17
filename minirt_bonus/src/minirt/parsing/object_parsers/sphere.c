@@ -12,7 +12,7 @@
 
 #include "../../../../include/minirt.h"
 
-static bool	handle_more_args(t_config *c, char **infos, t_sphere *s)
+static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 {
 	char	*tmp;
 
@@ -55,7 +55,7 @@ static bool	fill_sphere(t_config *c, char **infos, t_object_node *node)
 			((t_sphere *)node->obj)->color);
 	if (infos[8])
 	{
-		if (!handle_more_args(c, infos, (t_sphere *)node->obj))
+		if (!handle_more_args_sphere(c, infos, (t_sphere *)node->obj))
 			return (false);
 	}
 	return (true);
@@ -82,10 +82,10 @@ bool	parse_sphere(t_config *c, char **infos, int currline)
 	if (!node->obj)
 		return (free(node), false);
 	if (!fill_sphere(c, infos, node))
-		return (free(node), false);
+		return (free(node->obj), free(node), false);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
-		return (free(node), false);
+		return (free(node->obj), free(node), false);
 	ft_lstadd_back(&c->objects_list, lsttmp);
 	return (true);
 }

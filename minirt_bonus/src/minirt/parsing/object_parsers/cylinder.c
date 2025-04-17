@@ -36,7 +36,7 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 	((t_disk *)node->obj)->material.shininess = 10.0;
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
-		return (free(node), false);
+		return (free(node->obj), free(node), false);
 	ft_lstadd_back(&c->objects_list, lsttmp);
 	return (true);
 }
@@ -83,7 +83,7 @@ bool	parse_cylinder(t_config *c, char **infos, int currline)
 	fill_cylinder(c, infos, node);
 	lsttmp = ft_lstnew(node);
 	if (!lsttmp)
-		return (free(node), false);
+		return (free(node->obj), free(node), false);
 	ft_lstadd_back(&c->objects_list, lsttmp);
 	parse_disk(c, (t_cylinder *)node->obj, 1);
 	parse_disk(c, (t_cylinder *)node->obj, -1);
