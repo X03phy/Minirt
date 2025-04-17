@@ -82,7 +82,7 @@ typedef struct s_cylinder
 typedef struct s_cone {
 	int			id;
 	t_tuple		summit;
-	t_tuple 	orientation_vec;
+	t_tuple		orientation_vec;
 	double		angle;
 	double		height;
 	t_color		color;
@@ -110,5 +110,3 @@ typedef struct s_light
 }	t_light;
 
 #endif
-
-

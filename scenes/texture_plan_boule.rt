@@ -2,4 +2,4 @@ A	0.8										255,255,255
 C	0,0,-4		0,0,1	40
 L	5,10,-30	0.7		255,255,255
 sp 0,0,0	0.5		255,255,255 text:../textures/earthmap1k.xpm bump:../textures/earthbump1k.xpm
-pl	0,0,8			0,0,-1					25,125,225
+pl	0,0,8			0,0,-1					25,125,225 text:../textures/kaaris.xpm

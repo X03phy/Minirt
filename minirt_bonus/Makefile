@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/16 16:42:14 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/17 16:58:38 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCPARSING =	minirt/parsing/parsing.c \
 				minirt/parsing/init_config.c \
 				minirt/parsing/print_config.c \
 				minirt/parsing/print_config2.c \
+				minirt/parsing/print_config3.c \
 				minirt/parsing/checks/checks.c \
 				minirt/parsing/checks/vec_checks.c \
 				minirt/parsing/checks/size_checks.c \
@@ -78,6 +79,7 @@ SRC = 	$(SRCPARSING) \
 		$(SRCRENDER) \
 		main.c \
 	  	hooks.c \
+	  	clean.c \
 
 SRCS = $(addprefix src/, $(SRC))
 OBJS = $(addprefix obj/, $(SRC:.c=.o))

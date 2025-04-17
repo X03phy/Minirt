@@ -61,8 +61,8 @@ int	render_plane(t_config *c, t_intersection *xs, t_render *render)
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_plane *)xs->object->obj)->material;
-	// if (((t_plane *)xs->object->obj)->textured == true)
-	// 	c->l.m.color = int_to_color(get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
+	if (((t_plane *)xs->object->obj)->textured == true)
+		c->l.m.color = int_to_color(get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
 	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
 	color = lighting(&c->l, (t_light *)tmp->content, c);

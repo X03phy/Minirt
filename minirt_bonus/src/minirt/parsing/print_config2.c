@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 10:14:15 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 17:05:30 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:56:24 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,14 @@ void	print_plane(t_plane *p)
 	else
 		printf("\tChecked : %s\n", RED"false"RESET);
 	if (p->textured)
-		printf("\tTextured : %s\n\t\ttexture_name : %s\n", GRN"true"RESET, p->texture_name);
+		printf("\tTextured : %s\n\t\ttexture_name : %s\n",
+			GRN"true"RESET, p->texture_name);
 	else
 		printf("\tTextured : %s\n", RED"false"RESET);
 	if (p->bumped)
 		printf("\tBumped : %s\n", GRN"true"RESET);
 	else
 		printf("\tBumped : %s\n", RED"false"RESET);
-
-	
 }
 
 void	print_sphere(t_sphere *s)
@@ -82,12 +81,12 @@ void	print_sphere(t_sphere *s)
 	else
 		printf("\tChecked : %s\n", RED"false"RESET);
 	if (s->textured)
-		printf("\tTextured : %s\n\t\ttexture_name : %s\n", GRN"true"RESET, s->texture_name);
+		printf("\tTextured : %s\n\t\ttexture_name : %s\n",
+			GRN"true"RESET, s->texture_name);
 	else
 		printf("\tTextured : %s\n", RED"false"RESET);
 	if (s->bumped)
 		printf("\tBumped : %s\n\t\tbump_name : %s\n", GRN"true"RESET, s->bump_name);
 	else
 		printf("\tBumped : %s\n", RED"false"RESET);
-
 }

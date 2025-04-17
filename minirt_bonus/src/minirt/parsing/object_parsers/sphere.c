@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:17:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 18:13:02 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:08:53 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 			return (free(tmp), false);
 		s->textured = true;
 		s->texture_name = tmp;
-		s->texture.img = mlx_xpm_file_to_image(c->mlx, tmp, &s->texture.imgw, &s->texture.imgh);
+		s->texture.img = mlx_xpm_file_to_image(c->mlx,
+				tmp, &s->texture.imgw, &s->texture.imgh);
 		if (!s->texture.img)
 			return (free(tmp), false);
-		s->texture.addr = mlx_get_data_addr(s->texture.img, &s->texture.bits_per_pixels, &s->texture.line_len, &s->texture.endian);
+		s->texture.addr = mlx_get_data_addr(s->texture.img,
+				&s->texture.bits_per_pixels,
+				&s->texture.line_len, &s->texture.endian);
 		if (!s->texture.addr)
 			return (free(tmp), false);
 		if (infos[9] == NULL)
 			return (true);
-		if (infos[9] && ft_strnstr(infos[9], "bump", ft_strlen(infos[8])) != NULL)
+		if (ft_strnstr(infos[9], "text", ft_strlen(infos[9])) == infos[0])
 		{
 			tmp2 = ft_strchr(infos[9], ':');
 			if (!tmp2)
@@ -49,16 +52,19 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 				return (free(tmp2), free(tmp), false);
 			s->bumped = true;
 			s->bump_name = tmp2;
-			s->bump.img = mlx_xpm_file_to_image(c->mlx, tmp2, &s->bump.imgw, &s->bump.imgh);
+			s->bump.img = mlx_xpm_file_to_image(
+					c->mlx, tmp2, &s->bump.imgw, &s->bump.imgh);
 			if (!s->bump.img)
 				return (free(tmp2), free(tmp), false);
-			s->bump.addr = mlx_get_data_addr(s->bump.img, &s->bump.bits_per_pixels, &s->bump.line_len, &s->bump.endian);
+			s->bump.addr = mlx_get_data_addr(s->bump.img,
+					&s->bump.bits_per_pixels,
+					&s->bump.line_len, &s->bump.endian);
 			if (!s->bump.addr)
 				return (free(tmp2), free(tmp), false);
 		}
 		else
-			return (free(tmp2), 
-			free(tmp), mlx_destroy_image(c->mlx, s->texture.img), false);
+			return (free(tmp2),
+				free(tmp), mlx_destroy_image(c->mlx, s->texture.img), false);
 	}
 	else
 		return (false);

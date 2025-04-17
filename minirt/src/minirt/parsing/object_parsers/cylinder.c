@@ -26,7 +26,7 @@ bool	parse_disk(t_config *c, t_cylinder *cy, int hb)
 		return (free(node), false);
 	((t_disk *)node->obj)->id = ++(c->total_objects);
 	((t_disk *)node->obj)->orientation_vec = vector_normalize(tuple_multiply(
-			cy->orientation_vec, hb));
+				cy->orientation_vec, hb));
 	((t_disk *)node->obj)->center = tuple_add(cy->center,
 			tuple_multiply(cy->orientation_vec, (cy->height / 2) * hb));
 	((t_disk *)node->obj)->radius = cy->diameter / 2;

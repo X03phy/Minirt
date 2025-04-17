@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 12:43:19 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:58:28 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,6 @@ typedef struct s_object_node
 	t_object_type	type;
 	void			*obj;
 	t_pattern_type	pattern;
-	// void			*bump_map;          // Bump map associée à cet objet (si existe)
-	// char			*bump_data;         // Données de la bump map
-	// int				bump_width;         // Largeur de la bump map
-	// int				bump_height;        // Hauteur de la bump map
-	// int				bpp;                // Bits par pixel
-	// int				size_line;          // Taille d'une ligne de la bump map
-	// int				endian;             // Endianness de la bump map
 }	t_object_node;
 
 typedef struct s_error
@@ -168,76 +161,84 @@ typedef struct s_multi
 	pthread_mutex_t	*config_mut;
 }	t_multi;
 
-int			clean_exit(t_config *config);
-void		install_hooks(t_config *config);
+typedef struct s_cone_math
+{
+	t_tuple		v;
+	double		cos_theta;
+	double		cos2;
+	double		dv;
+	double		vv;
+	double		d_dot_d;
+	double		v_dot_d;
+	double		v_dot_v;
+	double		discriminant;
+	t_tuple		hit_point;
+	t_tuple		oia;
+	double		proj;
+}	t_cone_math;
 
-// tests
-void		tuples_tests(void);
-void		tuples_proj_test(void);
-void		test_circle(t_config *c);
-void		test_eclairage(t_config *c);
-void		test_phong(t_config *c);
+int				clean_exit(t_config *config);
+void			install_hooks(t_config *config);
 
 // utils
-void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
-unsigned int			mlx_get_color(t_img *data, int x, int y);
-bool		is_in_shadow(t_config *c, t_light *light, t_tuple xpoint, int id, t_multi *thdata);
-t_color		lighting(t_lighting *l, t_light *light, t_config *c);
-int			color_to_int(t_color color);
-t_material	default_material(t_color color);
-bool		check_only_valid_float(char **tab, int maxindex);
-int			get_obj_id(t_object_node *obj);
-t_color		int_to_color(int c);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+unsigned int	mlx_get_color(t_img *data, int x, int y);
+bool			is_in_shadow(t_config *c, t_light *light, t_tuple xpoint,
+					t_multi *thdata);
+t_color			lighting(t_lighting *l, t_light *light, t_config *c);
+int				color_to_int(t_color color);
+t_material		default_material(t_color color);
+bool			check_only_valid_float(char **tab, int maxindex);
+int				get_obj_id(t_object_node *obj);
+t_color			int_to_color(int c);
 
 // init
-t_config	*init_config(int ac, char **av);
+t_config		*init_config(int ac, char **av);
 
 // parsing
-bool		parse_scene(t_config *c, char *filepath);
-bool		parse_sphere(t_config *c, char **infos, int currline);
-bool		parse_plan(t_config *c, char **infos, int currline);
-bool		parse_cylinder(t_config *c, char **infos, int currline);
-bool		parse_cone(t_config *c, char **infos, int currline);
-bool		parse_ambient(t_config *c, char **infos, int currline);
-bool		parse_light(t_config *c, char **infos, int currline);
-bool		parse_camera(t_config *c, char **infos, int currline);
+bool			parse_scene(t_config *c, char *filepath);
+bool			parse_sphere(t_config *c, char **infos, int currline);
+bool			parse_plan(t_config *c, char **infos, int currline);
+bool			parse_cylinder(t_config *c, char **infos, int currline);
+bool			parse_cone(t_config *c, char **infos, int currline);
+bool			parse_ambient(t_config *c, char **infos, int currline);
+bool			parse_light(t_config *c, char **infos, int currline);
+bool			parse_camera(t_config *c, char **infos, int currline);
 
-void		print_config(t_config *c);
-bool		check_config(t_config *config);
-bool		check_colors_error(t_config *config);
-bool		null_vec(t_tuple v);
-bool		invalid_vec(t_tuple v);
-bool		check_vectors(t_config *c);
-bool		size_checks(t_config *config);
+void			print_config(t_config *c);
+bool			check_config(t_config *config);
+bool			check_colors_error(t_config *config);
+bool			null_vec(t_tuple v);
+bool			invalid_vec(t_tuple v);
+bool			check_vectors(t_config *c);
+bool			size_checks(t_config *config);
 
-void		print_ambient(t_ambient_light *a);
-void		print_camera(t_camera *c);
-void		print_light(t_light *l);
-void		print_plane(t_plane *p);
-void		print_sphere(t_sphere *s);
-
-// cast
-t_sphere	*listptr_to_sphere(t_list *elem);
-t_plane		*listptr_to_plane(t_list *elem);
-t_cylinder	*listptr_to_cylinder(t_list *elem);
+void			print_ambient(t_ambient_light *a);
+void			print_camera(t_camera *c);
+void			print_light(t_light *l);
+void			print_plane(t_plane *p);
+void			print_sphere(t_sphere *s);
+void			print_lights(t_list *spotlights);
 
 // render
-void		render(t_config *c);
-int			render_sphere(t_config *c, t_intersection *xs, t_render *render);
-int			render_plane(t_config *c, t_intersection *xs, t_render *render);
-int			render_cylinder(t_config *c, t_intersection *xs, t_render *render);
-int			render_disk(t_config *c, t_intersection *xs, t_render *render);
-int			render_cone(t_config *c, t_intersection *xs, t_render *render);
-
-
-bool		render_multi(t_config *c);
+void			render(t_config *c);
+int				render_sphere(t_config *c,
+					t_intersection *xs, t_render *render);
+int				render_plane(t_config *c, t_intersection *xs, t_render *render);
+int				render_cylinder(t_config *c,
+					t_intersection *xs, t_render *render);
+int				render_disk(t_config *c, t_intersection *xs, t_render *render);
+int				render_cone(t_config *c, t_intersection *xs, t_render *render);
+bool			render_multi(t_config *c);
 
 t_pattern_type	pattern_plane_checkerboard(t_tuple *point, t_tuple *vec);
 t_pattern_type	pattern_sphere_checkerboard(t_tuple *point, t_tuple *vec);
-float		define_intensity(t_pattern_type type);
+float			define_intensity(t_pattern_type type);
 
 // texture 
-int		get_texture_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n);
-int		get_texture_color_plane(t_config *c, t_plane *p, t_tuple *x_point, t_tuple *n);
+int				get_texture_color_sphere(t_config *c, t_sphere *s,
+					t_tuple *x_point, t_tuple *n);
+int				get_texture_color_plane(t_config *c, t_plane *p,
+					t_tuple *x_point, t_tuple *n);
 
 #endif
