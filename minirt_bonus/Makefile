@@ -69,6 +69,7 @@ SRCRENDER = minirt/render/render.c \
 			minirt/render/render_obj.c \
 			minirt/render/pattern.c \
 			minirt/render/textures.c \
+			minirt/render/bump_maps.c \
 			minirt/render/multi/render_multi.c
 
 SRC = 	$(SRCPARSING) \
