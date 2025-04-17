@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:18:55 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 13:42:46 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:43:23 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ int	color_to_int(t_color color)
 	return (
 		(r << 16 | g << 8 | b)
 	);
+}
+
+t_color	int_to_color(int c)
+{
+	t_color	color;
+
+	color.x = ((c >> 16) & 0xFF) / 255.0;
+	color.y = ((c >> 8) & 0xFF) / 255.0;
+	color.z = (c & 0xFF) / 255.0;
+	return (color);
 }
