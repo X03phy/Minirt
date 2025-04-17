@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 16:58:50 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:33:30 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 		((t_sphere *)xs->object->obj)->center));
-	if (((t_sphere *)xs->object->obj)->bumped == true)
-	{
-		c->l.normal_vec = get_bump_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec));
-	}
+	// if (((t_sphere *)xs->object->obj)->bumped == true)
+	// {
+	// 	c->l.normal_vec = get_bump_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec));
+	// }
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_sphere *)xs->object->obj)->material;
