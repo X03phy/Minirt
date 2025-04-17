@@ -1,5 +1,5 @@
 A 1           255,255,255
 C 0,0,-3 0,0,1 20
 L -5,10,-10 0.4 255,255,255
-sp 0.25,0,0   0.2 255,255,255 text:../textures/kaaris.xpm
+sp 0.25,0,0   0.2 255,255,255 text:../textures/earthmap1k.xpm bump:../textures/earthbump1k.xpm
 sp -0.25,0,0   0.2 255,255,255 checked

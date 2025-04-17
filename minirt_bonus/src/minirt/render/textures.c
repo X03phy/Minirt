@@ -27,10 +27,31 @@
 // 	my_mlx_pixel_put(img, x, y, create_trgb(0xFF, r / 2, g / 2, b / 2));
 // }
 
-// int	create_trgb(int t, int r, int g, int b)
-// {
-// 	return (t << 24 | r << 16 | g << 8 | b);
-// }
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	handle_colors(int c1, int c2)
+{
+	t_color	color1;
+	t_color	color2;
+
+	color1 = tuple_create(
+		c1 >> 16 & 0xFF,
+		c1 >> 8 & 0xFF,
+		c1 & 0xFF,
+		0
+	);	
+	color2 = tuple_create(
+		c2 >> 16 & 0xFF,
+		c2 >> 8 & 0xFF,
+		c2 & 0xFF,
+		0
+	);
+
+	return (color_to_int(tuple_mult_tuple(color1, color2)));
+}
 
 int	get_texture_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n)
 {
@@ -39,13 +60,13 @@ int	get_texture_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple
 	float u = x * s->texture.imgw + (s->texture.imgw / 4.0);
 	float v = y * s->texture.imgh;
 	int	colortexture = mlx_get_color(&s->texture, u, v);
-	int	bumpedtexture = 0;
-	
-	if (s->bump_name)
-	{
-		bumpedtexture = mlx_get_color(&s->bump, u, v);
-		return (colortexture * bumpedtexture);
-	}
+	// int	bumpedtexture = 0;
+	//
+	// if (s->bump_name)
+	// {
+	// 	bumpedtexture = mlx_get_color(&s->bump, u, v);
+	// 	return (handle_colors(colortexture, bumpedtexture));
+	// }
 	return (colortexture);
 	(void)x_point;
 	(void)s;

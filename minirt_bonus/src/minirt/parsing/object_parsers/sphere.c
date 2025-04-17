@@ -37,6 +37,8 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 		s->texture.addr = mlx_get_data_addr(s->texture.img, &s->texture.bits_per_pixels, &s->texture.line_len, &s->texture.endian);
 		if (!s->texture.addr)
 			return (free(tmp), false);
+		if (infos[9] == NULL)
+			return (true);
 		if (infos[9] && ft_strnstr(infos[9], "bump", ft_strlen(infos[8])) != NULL)
 		{
 			tmp2 = ft_strchr(infos[9], ':');
