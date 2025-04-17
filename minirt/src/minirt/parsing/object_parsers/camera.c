@@ -33,7 +33,7 @@ bool	parse_camera(t_config *c, char **infos, int currline)
 	c->camera->position = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	c->camera->orientation_vec = vector_normalize(vector_create(
-			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
+				ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
 	c->camera->fov = ft_atoi(infos[7]);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:05 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/10 10:14:50 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:57:58 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,6 @@ void	print_objects(t_list *obj)
 		else
 			printf(RED"WRONG obj type.\n"RESET);
 		obj = obj->next;
-	}
-}
-
-void	print_lights(t_list *spotlights)
-{
-	t_list	*tmp;
-
-	if (!spotlights)
-		return ;
-	tmp = spotlights;
-	while (tmp)
-	{
-		print_light((t_light *)tmp->content);
-		tmp = tmp->next;
 	}
 }
 

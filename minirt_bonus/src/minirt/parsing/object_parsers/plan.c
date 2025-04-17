@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:19:02 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/16 16:59:18 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:02:48 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static bool	handle_more_args_plane(t_config *c, char **infos, t_plane *p)
 	char	*tmp;
 
 	tmp = NULL;
-	if (infos[8] && ft_strcmp("checked", infos[10]) == 0)
+	if (infos[10] && ft_strcmp("checked", infos[10]) == 0)
 		p->checked = true;
-	else if (ft_strnstr(infos[10], "text", ft_strlen(infos[10])) != NULL)
+	else if (ft_strnstr(infos[10], "text", ft_strlen(infos[10])) == infos[10])
 	{
 		tmp = ft_strchr(infos[10], ':');
 		if (!tmp)
@@ -29,17 +29,19 @@ static bool	handle_more_args_plane(t_config *c, char **infos, t_plane *p)
 			return (free(tmp), false);
 		p->textured = true;
 		p->texture_name = tmp;
-		p->texture.img = mlx_xpm_file_to_image(c->mlx, tmp, &p->texture.imgw, &p->texture.imgh);
+		p->texture.img = mlx_xpm_file_to_image(c->mlx,
+				tmp, &p->texture.imgw, &p->texture.imgh);
 		if (!p->texture.img)
 			return (false);
-		p->texture.addr = mlx_get_data_addr(p->texture.img, &p->texture.bits_per_pixels, &p->texture.line_len, &p->texture.endian);
+		p->texture.addr = mlx_get_data_addr(p->texture.img,
+				&p->texture.bits_per_pixels,
+				&p->texture.line_len, &p->texture.endian);
 		if (!p->texture.addr)
 			return (false);
 	}
 	else
 		return (false);
 	return (true);
-	(void)c;
 }
 
 static bool	fill_plan(t_config *c, char **infos, t_object_node *node)
@@ -48,7 +50,7 @@ static bool	fill_plan(t_config *c, char **infos, t_object_node *node)
 	((t_plane *)node->obj)->center = point_create(
 			ft_atod(infos[1]), ft_atod(infos[2]), ft_atod(infos[3]));
 	((t_plane *)node->obj)->orientation_vec = vector_normalize(vector_create(
-			ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
+				ft_atod(infos[4]), ft_atod(infos[5]), ft_atod(infos[6])));
 	((t_plane *)node->obj)->color = point_create(
 			ft_atoi(infos[7]) / 255.0,
 			ft_atoi(infos[8]) / 255.0, ft_atoi(infos[9]) / 255.0);
