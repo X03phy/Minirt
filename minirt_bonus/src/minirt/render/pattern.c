@@ -12,14 +12,6 @@
 
 #include "../../../include/minirt.h"
 
-// t_pattern_type	pattern_checkerboard(t_tuple *point)
-// {
-// 	(void)point;
-// 	if (((int)round(point->x + point->y + point->z)) % 2 == 0)
-// 		return (NONE);
-// 	return (CHECKERBOARD);
-// }
-
 t_pattern_type	pattern_plane_checkerboard(t_tuple *point, t_tuple *vec)
 {
 	int u, v;

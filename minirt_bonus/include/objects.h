@@ -51,8 +51,10 @@ typedef struct s_plane
 	t_material	material;
 	bool		checked;
 	bool		textured;
-	bool		bumped;
+	char		*texture_name;
 	t_img		texture;
+	bool		bumped;
+	char		*bump_name;
 	t_img		bump;
 }	t_plane;
 
