@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 12:43:19 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:39:50 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,6 @@ float		define_intensity(t_pattern_type type);
 // texture 
 int		get_texture_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n);
 int		get_texture_color_plane(t_config *c, t_plane *p, t_tuple *x_point, t_tuple *n);
+t_tuple	get_bump_color_sphere(t_config *c, t_sphere *s, t_tuple *x_point, t_tuple *n);
 
 #endif
