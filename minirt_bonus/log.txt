@@ -1,0 +1,46 @@
+[0;32mAmbient lighting = 
+[0m	Ratio : 3.000000 
+Color : POINT { x: 1.000000, y: 1.000000, z: 1.000000, w: 1 }
+[0;34mCamera = 
+[0mPosition : 
+	POINT { x: 0.000000, y: 0.000000, z: -1.000000, w: 1 }
+Orientation : 
+	VEC { x: 0.000000, y: 0.000000, z: 1.000000, w: 0 }
+	Fov : 70
+[0;35mLight = 
+[0mPosition : 
+	POINT { x: -5.000000, y: 10.000000, z: -2.000000, w: 1 }
+	Brightness : 0.700000
+	Color : POINT { x: 1.000000, y: 1.000000, z: 1.000000, w: 1 }
+[4;33mSPHERE = 
+[0m[1;93mID : 1 
+[0mCenter : 
+	POINT { x: -1.000000, y: 0.000000, z: 2.000000, w: 1 }
+	Radius : 0.500000
+	Color : POINT { x: 1.000000, y: 0.000000, z: 0.000000, w: 1 }
+	Checked : [0;31mfalse[0m
+	Textured : [0;32mtrue[0m
+		texture_name : ../textures/earthmap1k.xpm
+	Bumped : [0;31mfalse[0m
+[4;33mSPHERE = 
+[0m[1;93mID : 2 
+[0mCenter : 
+	POINT { x: 0.200000, y: 0.000000, z: 2.000000, w: 1 }
+	Radius : 0.500000
+	Color : POINT { x: 1.000000, y: 0.000000, z: 0.000000, w: 1 }
+	Checked : [0;31mfalse[0m
+	Textured : [0;32mtrue[0m
+		texture_name : ../textures/earthmap1k.xpm
+	Bumped : [0;32mtrue[0m
+		bump_name : ../textures/earthbump1k.xpm
+[4;36mPLANE = 
+[0m[1;96mID : 3 
+[0mCenter : 
+	POINT { x: 0.000000, y: -1.000000, z: 0.000000, w: 1 }
+Orientation : 
+	VEC { x: 0.000000, y: 1.000000, z: 0.000000, w: 0 }
+	Color :POINT { x: 1.000000, y: 0.000000, z: 1.000000, w: 1 }
+	Checked : [0;31mfalse[0m
+	Textured : [0;32mtrue[0m
+		texture_name : ../textures/venusmap.xpm
+	Bumped : [0;31mfalse[0m
