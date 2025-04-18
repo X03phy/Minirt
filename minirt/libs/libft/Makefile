@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 14:24:44 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/06 11:44:04 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/18 18:06:43 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
-CFLAGS = -Werror -Wall -Wextra -g -O3
+CFLAGS = -Werror -Wall -Wextra -g3
 AR = ar rcs
 
 SRC_PATH = src/

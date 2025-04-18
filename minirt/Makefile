@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/13 14:18:02 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/18 18:01:10 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g #-fsanitize=address,null
+CFLAGS = -Werror -Wextra -Wall -g3 #-fsanitize=address,null
 
 SRC_PATH = src/
 OBJ_PATH = obj/
