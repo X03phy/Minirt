@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 21:35:34 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:51:15 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	main(int ac, char **av)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
-	render(c);	
+	// render(c);
+	render_multi(c);
 	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 	install_hooks(c);
 	mlx_loop(c->mlx);
-	// render_multi(c);
 	return (EXIT_SUCCESS);
 }

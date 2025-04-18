@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:21:13 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/13 17:25:00 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:51:56 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,6 @@ bool	render_multi(t_config *c)
 		printf("thread num %d will render pixel from %d to %d\n", thread_data[j].idx, thread_data[j].minpx, thread_data[j].maxpx);
 	}
 	
-	c->mlx = mlx_init();
-	if (c->mlx == NULL)
-		return (false);
 	c->mlx_win = mlx_new_window(c->mlx, WINW, WINH, "MiniRT");
 	c->img.img = mlx_new_image(c->mlx, WINW, WINH);
 	c->img.addr = mlx_get_data_addr(c->img.img,
@@ -168,8 +165,5 @@ bool	render_multi(t_config *c)
 	}
 
 	clean_threads(c, &thread_data);
-	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
-	install_hooks(c);
-	mlx_loop(c->mlx);
 	return (true);
 }
