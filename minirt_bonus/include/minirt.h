@@ -149,6 +149,7 @@ typedef struct s_config
 	int				total_objects;
 	t_lighting		l;
 	pthread_mutex_t	config_mut;
+	struct s_multi	*thdatas;
 }	t_config;
 
 typedef struct s_multi
