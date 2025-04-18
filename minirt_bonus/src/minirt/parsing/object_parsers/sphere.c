@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:17:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 17:08:53 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:53:40 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 			return (free(tmp), false);
 		if (infos[9] == NULL)
 			return (true);
-		if (ft_strnstr(infos[9], "text", ft_strlen(infos[9])) == infos[0])
+		if (ft_strnstr(infos[9], "bump", ft_strlen(infos[9])) == infos[0])
 		{
 			tmp2 = ft_strchr(infos[9], ':');
 			if (!tmp2)
