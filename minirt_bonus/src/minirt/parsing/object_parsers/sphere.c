@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:17:48 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 11:53:40 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:50:37 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 	tmp2 = NULL;
 	if (infos[8] && ft_strcmp("checked", infos[8]) == 0)
 		s->checked = true;
-	else if (ft_strnstr(infos[8], "text", ft_strlen(infos[8])) != NULL)
+	else if (ft_strnstr(infos[8], "text", ft_strlen(infos[8])) == infos[8])
 	{
 		tmp = ft_strchr(infos[8], ':');
 		if (!tmp)

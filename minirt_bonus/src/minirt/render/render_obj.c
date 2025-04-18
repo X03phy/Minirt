@@ -6,11 +6,20 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 13:42:06 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:35:04 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
+static t_tuple    color_to_normal(t_color color)
+{
+    t_tuple    normal;
+
+    normal.x = (double)color.x / 127.5 - 1;
+    normal.y = (double)color.y / 127.5 - 1;
+    normal.z = (double)color.z / 127.5 - 1;
+    return (normal);
+}
 
 int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 {
@@ -24,17 +33,27 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 		((t_sphere *)xs->object->obj)->center));
-	if (((t_sphere *)xs->object->obj)->bumped == true)
-	{
-		t_tuple cn = int_to_color(get_texture_color_sphere(c, ((t_sphere *)xs->object->obj),
-			&render->x_point, &c->l.normal_vec));
-		c->l.normal_vec = get_bump_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec), &cn);
-	}
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_sphere *)xs->object->obj)->material;
+
 	if (((t_sphere *)xs->object->obj)->textured == true)
+	{
 		c->l.m.color = int_to_color(get_texture_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
+		// printf("ID sphere : %d\n", ((t_sphere *)xs->object->obj)->id);
+		// tuple_print(&c->l.normal_vec);
+		if (((t_sphere *)xs->object->obj)->bumped == true)
+		{
+			t_tuple cn = color_to_normal(int_to_color(get_bump_normal_sphere(c, ((t_sphere *)xs->object->obj),
+			&render->x_point, &c->l.normal_vec)));
+			
+			c->l.normal_vec = get_bump_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec), &cn);
+		}
+		// printf("ID sphere : %d\n", ((t_sphere *)xs->object->obj)->id);
+		// tuple_print(&c->l.normal_vec);
+		// printf("\n");
+		
+	}
 	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
 	color = lighting(&c->l, (t_light *)tmp->content, c);
