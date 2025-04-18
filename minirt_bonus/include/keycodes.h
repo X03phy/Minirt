@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:47:46 by maecarva          #+#    #+#             */
-/*   Updated: 2025/01/14 17:42:40 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:50:07 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define N 110
 # define C 99
 # define H 104
+# define P 112
 
 #endif

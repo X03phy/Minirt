@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:45:53 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 11:17:12 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:52:07 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "../../../include/ray.h"
 #include "../../../libs/minilibx-linux/mlx.h"
 #include <math.h>
-
-// c->mlx = mlx_init();
-// if (c->mlx == NULL)
-// 	return (false);
 
 bool	init_render(t_config *c, t_render *render)
 {
@@ -95,23 +91,20 @@ void	render_loop(t_config *c, t_render *render)
 
 void	render(t_config *c)
 {
-	t_render	render;
+	// t_render	render;
 
-	if (init_render(c, &render) == false)
+	if (init_render(c, &c->render) == false)
 		return ;
-	render.forward = vector_normalize(c->camera->orientation_vec);
-	if (fabs(render.forward.x) < 0.00001 && fabs(render.forward.z) < 0.00001)
-		render.up = vector_create(0, 0, 1);
+	c->render.forward = vector_normalize(c->camera->orientation_vec);
+	if (fabs(c->render.forward.x) < 0.00001 && fabs(c->render.forward.z) < 0.00001)
+		c->render.up = vector_create(0, 0, 1);
 	else
-		render.up = vector_create(0, 1, 0);
-	render.right = vector_normalize(vector_cross_product(render.forward,
-				render.up));
-	render.right = tuple_multiply(render.right, -1);
-	render.up = vector_normalize(vector_cross_product(render.right,
-				render.forward));
-	render.up = tuple_multiply(render.up, -1);
-	render_loop(c, &render);
-	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
-	install_hooks(c);
-	mlx_loop(c->mlx);
+		c->render.up = vector_create(0, 1, 0);
+	c->render.right = vector_normalize(vector_cross_product(c->render.forward,
+				c->render.up));
+	c->render.right = tuple_multiply(c->render.right, -1);
+	c->render.up = vector_normalize(vector_cross_product(c->render.right,
+				c->render.forward));
+	c->render.up = tuple_multiply(c->render.up, -1);
+	render_loop(c, &c->render);
 }

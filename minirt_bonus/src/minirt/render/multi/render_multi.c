@@ -27,7 +27,7 @@
 bool	clean_threads(t_config *c, t_multi **multi)
 {
 	pthread_mutex_destroy(&c->config_mut);
-	free(*multi);
+	// free(*multi);
 	return (false);
 	(void)c;
 	(void)multi;
@@ -115,6 +115,7 @@ static void	*render_loop2(void *thread_data)
 			hit_that2(thdata->config, &thdata->render, x, y, thdata);
 		}
 	}
+	printf("Thread %d has exited\n", thdata->idx);
 	return (NULL);
 }
 
@@ -165,10 +166,10 @@ bool	render_multi(t_config *c)
 	for (int m = 0; m < numofcpus; m++) {
 		pthread_join(tids[m], NULL);
 	}
+
+	clean_threads(c, &thread_data);
 	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 	install_hooks(c);
 	mlx_loop(c->mlx);
-
-	clean_threads(c, &thread_data);
 	return (true);
 }

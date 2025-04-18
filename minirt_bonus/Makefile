@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/17 16:58:38 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/18 21:31:04 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,12 +72,15 @@ SRCRENDER = minirt/render/render.c \
 			minirt/render/bump_maps.c \
 			minirt/render/multi/render_multi.c
 
+SRCHOOKS = minirt/hooks/gen_ray.c
+
 SRC = 	$(SRCPARSING) \
 		$(SRCMLXUTILS) \
 		$(SRCUTILS) \
 		$(SRC_RAY) \
 		$(SRC_HIT) \
 		$(SRCRENDER) \
+		$(SRCHOOKS) \
 		main.c \
 	  	hooks.c \
 	  	clean.c \
