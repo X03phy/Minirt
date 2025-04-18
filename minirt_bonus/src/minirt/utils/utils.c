@@ -20,6 +20,7 @@ t_material	default_material(t_color color)
 	m.diffuse = 0.9;
 	m.specular = 0.9;
 	m.shininess = 200.0;
+	m.reflection = 0.4;
 	m.color = color;
 	return (m);
 }

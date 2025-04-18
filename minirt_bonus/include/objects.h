@@ -24,6 +24,7 @@ typedef struct s_material
 	double	diffuse;
 	double	specular;
 	double	shininess;
+	double	reflection;
 }	t_material;
 
 typedef struct s_sphere

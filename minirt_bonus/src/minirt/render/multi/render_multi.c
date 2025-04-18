@@ -130,6 +130,7 @@ bool	render_multi(t_config *c)
 	thread_data = ft_calloc(sizeof(t_multi), numofcpus);
 	if (!thread_data)
 		return (false);
+	c->thdatas = thread_data;
 	if (pthread_mutex_init(&c->config_mut, NULL))
 			return (false);
 	for (int i = 0; i < numofcpus; i++) {

@@ -95,6 +95,8 @@ int	clean_exit(t_config *config)
 		free(config->ambient_light);
 		free(config->camera);
 		free(config->funcs);
+		if (config->thdatas)
+			free(config->thdatas);
 		free(config);
 	}
 	exit(0);
