@@ -15,9 +15,9 @@ static t_tuple    color_to_normal(t_color color)
 {
     t_tuple    normal;
 
-    normal.x = (double)color.x / 127.5 - 1;
-    normal.y = (double)color.y / 127.5 - 1;
-    normal.z = (double)color.z / 127.5 - 1;
+    normal.x = (double)color.x * 2.0 - 1;
+    normal.y = (double)color.y * 2.0 - 1;
+    normal.z = (double)color.z * 2.0 - 1;
     return (normal);
 }
 
