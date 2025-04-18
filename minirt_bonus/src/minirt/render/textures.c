@@ -33,14 +33,6 @@ int	get_texture_color_sphere(t_config *c, t_sphere *s,
 	(void)c;
 }
 
-// int	bumpedtexture = 0;
-//
-// if (s->bump_name)
-// {
-// 	bumpedtexture = mlx_get_color(&s->bump, u, v);
-// 	return (handle_colors(colortexture, bumpedtexture));
-// }
-
 t_tuple	make_tangent(t_tuple *n)
 {
 	t_tuple	tangent;
