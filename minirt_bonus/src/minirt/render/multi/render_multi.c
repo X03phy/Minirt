@@ -14,6 +14,7 @@
 #include <memory.h>
 #include <pthread.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "../../../../include/ray.h"
 #include "../../../../libs/minilibx-linux/mlx.h"
@@ -63,7 +64,9 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 	int				color;
 	t_config		configdup;
 
+	pthread_mutex_lock(thdata->read_mut);
 	ft_memcpy(&configdup, c, sizeof(t_config));
+	pthread_mutex_unlock(thdata->read_mut);
 	color = 0;
 	xs = hit(&configdup, render->ray, thdata);
 	if (xs)
@@ -115,7 +118,6 @@ static void	*render_loop2(void *thread_data)
 			hit_that2(thdata->config, &thdata->render, x, y, thdata);
 		}
 	}
-	printf("Thread %d has exited\n", thdata->idx);
 	return (NULL);
 }
 
@@ -126,13 +128,18 @@ bool	render_multi(t_config *c)
 	unsigned long			tids[100];
 
 	ft_bzero(tids, 100);
-	numofcpus = sysconf(_SC_NPROCESSORS_ONLN);
-	// numofcpus = 1;
+	// numofcpus = sysconf(_SC_NPROCESSORS_ONLN);
+	numofcpus = 2;
 	thread_data = ft_calloc(sizeof(t_multi), numofcpus);
 	if (!thread_data)
 		return (false);
+	init_render2(c, &c->render);
 	c->thdatas = thread_data;
 	if (pthread_mutex_init(&c->config_mut, NULL))
+			return (false);
+	if (pthread_mutex_init(&c->read_mut, NULL))
+			return (false);
+	if (pthread_mutex_init(&c->write_mut, NULL))
 			return (false);
 	for (int i = 0; i < numofcpus; i++) {
 		thread_data[i].idx = i + 1;
@@ -144,6 +151,8 @@ bool	render_multi(t_config *c)
 		else
 			thread_data[i].maxpx = (WINH / numofcpus) * i + (WINH / numofcpus);
 		thread_data[i].config_mut = &c->config_mut;
+		thread_data[i].read_mut = &c->read_mut;
+		thread_data[i].write_mut = &c->write_mut;
 	}
 
 	for (int j = 0; j < numofcpus; j++) {

@@ -149,6 +149,8 @@ typedef struct s_config
 	t_lighting		l;
 	t_render		render;
 	pthread_mutex_t	config_mut;
+	pthread_mutex_t	read_mut;
+	pthread_mutex_t	write_mut;
 	struct s_multi	*thdatas;
 }	t_config;
 
@@ -160,6 +162,8 @@ typedef struct s_multi
 	t_config		*config;
 	t_render		render;
 	pthread_mutex_t	*config_mut;
+	pthread_mutex_t	*read_mut;
+	pthread_mutex_t	*write_mut;
 }	t_multi;
 
 typedef struct s_cone_math
