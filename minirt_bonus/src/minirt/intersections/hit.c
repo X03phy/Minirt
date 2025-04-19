@@ -12,6 +12,7 @@
 
 #include "../../../include/minirt.h"
 #include "../../../include/ray.h"
+#include <pthread.h>
 #include <stdint.h>
 
 t_object_type	get_type(t_object_node *obj)
@@ -30,7 +31,7 @@ static void	hit_loop_result(t_intersection	*result, t_list *tmp,
 	}
 }
 
-static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r)
+static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r, t_multi *thdata)
 {
 	bool		intersection_found;
 	t_cylinder	*cylinder;
@@ -57,6 +58,7 @@ static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r)
 		intersection_found = ray_cone_intersection(
 				(t_cone *)(((t_object_node *)(tmp->content))->obj), r, &t);
 	hit_loop_result(result, tmp, t, intersection_found);
+	(void)thdata;
 }
 
 t_intersection	*hit(t_config	*c, t_ray r, t_multi *thdata)
@@ -74,7 +76,7 @@ t_intersection	*hit(t_config	*c, t_ray r, t_multi *thdata)
 	tmp = c->objects_list;
 	while (tmp)
 	{
-		hit_loop(result, tmp, r);
+		hit_loop(result, tmp, r, thdata);
 		tmp = tmp->next;
 	}
 	if (result->object)
