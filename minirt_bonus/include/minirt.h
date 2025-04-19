@@ -38,7 +38,7 @@
 # define SCENE_TYPE_NUM 7
 # define WINH 1000
 # define WINW 1000
-# define ROTATION_SPEED 100
+# define ROTATION_SPEED 500
 # define MOVEMENT_SPEED 0.2
 
 // errors messages
