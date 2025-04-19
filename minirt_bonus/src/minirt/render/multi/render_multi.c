@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:21:13 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 22:51:56 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:35:06 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 bool	clean_threads(t_config *c, t_multi **multi)
 {
 	pthread_mutex_destroy(&c->config_mut);
-	// free(*multi);
+	free(*multi);
 	return (false);
 	(void)c;
 	(void)multi;
@@ -64,9 +64,7 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 	int				color;
 	t_config		configdup;
 
-	pthread_mutex_lock(thdata->read_mut);
 	ft_memcpy(&configdup, c, sizeof(t_config));
-	pthread_mutex_unlock(thdata->read_mut);
 	color = 0;
 	xs = hit(&configdup, render->ray, thdata);
 	if (xs)
@@ -127,14 +125,19 @@ bool	render_multi(t_config *c)
 	t_multi			*thread_data;
 	unsigned long			tids[100];
 
+
+	if (c->img.img)
+	{
+		mlx_destroy_image(c->mlx, c->img.img);
+		ft_bzero(&c->img, sizeof(t_img));
+	}
 	ft_bzero(tids, 100);
-	// numofcpus = sysconf(_SC_NPROCESSORS_ONLN);
-	numofcpus = 2;
+	numofcpus = sysconf(_SC_NPROCESSORS_ONLN);
+	// numofcpus = 1;
 	thread_data = ft_calloc(sizeof(t_multi), numofcpus);
 	if (!thread_data)
 		return (false);
 	init_render2(c, &c->render);
-	c->thdatas = thread_data;
 	if (pthread_mutex_init(&c->config_mut, NULL))
 			return (false);
 	if (pthread_mutex_init(&c->read_mut, NULL))
@@ -155,11 +158,12 @@ bool	render_multi(t_config *c)
 		thread_data[i].write_mut = &c->write_mut;
 	}
 
-	for (int j = 0; j < numofcpus; j++) {
-		printf("thread num %d will render pixel from %d to %d\n", thread_data[j].idx, thread_data[j].minpx, thread_data[j].maxpx);
-	}
-	
-	c->mlx_win = mlx_new_window(c->mlx, WINW, WINH, "MiniRT");
+	// for (int j = 0; j < numofcpus; j++) {
+	// 	printf("thread num %d will render pixel from %d to %d\n", thread_data[j].idx, thread_data[j].minpx, thread_data[j].maxpx);
+	// }
+
+	if (c->mlx_win == NULL)
+		c->mlx_win = mlx_new_window(c->mlx, WINW, WINH, "MiniRT");
 	c->img.img = mlx_new_image(c->mlx, WINW, WINH);
 	c->img.addr = mlx_get_data_addr(c->img.img,
 			&c->img.bits_per_pixels,
@@ -173,6 +177,7 @@ bool	render_multi(t_config *c)
 		pthread_join(tids[m], NULL);
 	}
 
+	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 	clean_threads(c, &thread_data);
 	return (true);
 }

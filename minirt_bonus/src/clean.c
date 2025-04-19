@@ -6,7 +6,7 @@
 /*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:10:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 16:31:54 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:33:31 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ int	clean_exit(t_config *config)
 		free(config->ambient_light);
 		free(config->camera);
 		free(config->funcs);
-		if (config->thdatas)
-			free(config->thdatas);
 		free(config);
 	}
 	exit(0);

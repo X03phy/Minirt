@@ -57,9 +57,8 @@ static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r, t_multi *thda
 	else if (((t_object_node *)tmp->content)->type == CONE)
 		intersection_found = ray_cone_intersection(
 				(t_cone *)(((t_object_node *)(tmp->content))->obj), r, &t);
-	pthread_mutex_lock(thdata->read_mut);
 	hit_loop_result(result, tmp, t, intersection_found);
-	pthread_mutex_unlock(thdata->read_mut);
+	(void)thdata;
 }
 
 t_intersection	*hit(t_config	*c, t_ray r, t_multi *thdata)

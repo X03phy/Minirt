@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 22:07:19 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:22:54 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define SCENE_TYPE_NUM 7
 # define WINH 1000
 # define WINW 1000
+# define ROTATION_SPEED 100
+# define MOVEMENT_SPEED 0.2
 
 // errors messages
 # define INVALID_FILE "Invalid file : %s\n"
@@ -254,5 +256,7 @@ t_tuple			get_bump_normal_sphere(t_tuple *n, t_sphere *s);
 
 // hooks
 void			gen_ray(t_config *c, int x, int y, bool printinfos);
+void			move_cam(t_config *config, int keycode);
+void			move_cam_vec(t_config *config, int keycode);
 
 #endif
