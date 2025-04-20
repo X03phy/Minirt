@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:45:53 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 21:52:07 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/20 15:37:13 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,11 @@ void	render_loop(t_config *c, t_render *render)
 
 void	render(t_config *c)
 {
-	// t_render	render;
-
 	if (init_render(c, &c->render) == false)
 		return ;
 	c->render.forward = vector_normalize(c->camera->orientation_vec);
-	if (fabs(c->render.forward.x) < 0.00001 && fabs(c->render.forward.z) < 0.00001)
+	if (fabs(c->render.forward.x) < 0.00001
+		&& fabs(c->render.forward.z) < 0.00001)
 		c->render.up = vector_create(0, 0, 1);
 	else
 		c->render.up = vector_create(0, 1, 0);
