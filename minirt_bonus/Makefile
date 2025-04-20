@@ -6,13 +6,13 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/17 16:58:38 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/19 17:21:49 by maecarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -g -pthread #-fsanitize=address,null
+CFLAGS = -Werror -Wextra -Wall -O3 -flto -ffast-math -march=native -pipe -pthread #-fsanitize=address,null
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -72,12 +72,16 @@ SRCRENDER = minirt/render/render.c \
 			minirt/render/bump_maps.c \
 			minirt/render/multi/render_multi.c
 
+SRCHOOKS = minirt/hooks/gen_ray.c \
+		   minirt/hooks/move.c
+
 SRC = 	$(SRCPARSING) \
 		$(SRCMLXUTILS) \
 		$(SRCUTILS) \
 		$(SRC_RAY) \
 		$(SRC_HIT) \
 		$(SRCRENDER) \
+		$(SRCHOOKS) \
 		main.c \
 	  	hooks.c \
 	  	clean.c \

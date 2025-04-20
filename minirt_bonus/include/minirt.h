@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 17:03:30 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:22:54 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define SCENE_TYPE_NUM 7
 # define WINH 1000
 # define WINW 1000
+# define ROTATION_SPEED 500
+# define MOVEMENT_SPEED 0.2
 
 // errors messages
 # define INVALID_FILE "Invalid file : %s\n"
@@ -140,7 +142,6 @@ typedef struct s_config
 	void			*mlx;
 	void			*mlx_win;
 	t_img			img;
-	t_img			earth;
 	t_parsefunc		*funcs;
 	t_ambient_light	*ambient_light;
 	t_camera		*camera;
@@ -148,7 +149,10 @@ typedef struct s_config
 	t_list			*objects_list;
 	int				total_objects;
 	t_lighting		l;
+	t_render		render;
 	pthread_mutex_t	config_mut;
+	pthread_mutex_t	read_mut;
+	pthread_mutex_t	write_mut;
 	struct s_multi	*thdatas;
 }	t_config;
 
@@ -160,6 +164,8 @@ typedef struct s_multi
 	t_config		*config;
 	t_render		render;
 	pthread_mutex_t	*config_mut;
+	pthread_mutex_t	*read_mut;
+	pthread_mutex_t	*write_mut;
 }	t_multi;
 
 typedef struct s_cone_math
@@ -220,8 +226,12 @@ void			print_light(t_light *l);
 void			print_plane(t_plane *p);
 void			print_sphere(t_sphere *s);
 void			print_lights(t_list *spotlights);
+void			print_cylinder(t_cylinder *c);
+void			print_disk(t_disk *p);
+void			print_cone(t_cone *c);
 
 // render
+void			hit_that(t_config *c, t_render *render, int x, int y);
 void			render(t_config *c);
 int				render_sphere(t_config *c,
 					t_intersection *xs, t_render *render);
@@ -243,5 +253,10 @@ int				get_texture_color_plane(t_config *c, t_plane *p,
 					t_tuple *x_point, t_tuple *n);
 					
 t_tuple			get_bump_normal_sphere(t_tuple *n, t_sphere *s);
+
+// hooks
+void			gen_ray(t_config *c, int x, int y, bool printinfos);
+void			move_cam(t_config *config, int keycode);
+void			move_cam_vec(t_config *config, int keycode);
 
 #endif

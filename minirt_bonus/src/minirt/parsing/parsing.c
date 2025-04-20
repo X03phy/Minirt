@@ -43,7 +43,7 @@ bool	parse_line(t_config *c, char *line, int currline)
 	if (!c || !line)
 		return (false);
 	trimmed = ft_strtrim(line, WHITESPACES);
-	if (!trimmed || ft_strlen(trimmed) == 0)
+	if (!trimmed || ft_strlen(trimmed) == 0 || trimmed[0] == '#')
 		return (free(trimmed), true);
 	splited = ft_split_charset(trimmed, WHITESPACES",");
 	if (!splited || splited[0] == NULL)
