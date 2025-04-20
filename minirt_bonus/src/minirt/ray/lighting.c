@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:30:34 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 18:31:24 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:44:39 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_color	lighting(t_lighting *l, t_light *light, t_config *c)
 {
 	bool	in_shadow;
 
-	in_shadow = false; //is_in_shadow(c, light, l->p, NULL);
+	in_shadow = is_in_shadow(c, light, l->p, NULL);
 	l->lightv = vector_normalize(tuple_substitute(light->position, l->p));
 	l->light_real_color = tuple_multiply(light->color, light->brightness);
 	l->ambient = tuple_mult_tuple(l->m.color,
