@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/18 18:27:08 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:53:56 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,6 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	intensity = 1.0;
 	ft_bzero(&c->l, sizeof(t_lighting));
 
-
-	// t_tuple			v;
-	// double			distance;
-	// t_tuple			direction;
-	// t_tuple			offset_point;
-
-	// v = tuple_substitute(((t_light *)c->spotlights->content)->position, render->x_point);
-	// distance = vector_magnitude(v);
-	// direction = vector_normalize(v);
-	// offset_point = tuple_add(render->x_point, tuple_multiply(direction, ACNE_DECALAGE));
-
-	
-	// render->x_point = tuple_add(render->x_point, tuple_multiply(direction, ACNE_DECALAGE));
-
 	
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 		((t_sphere *)xs->object->obj)->center));
@@ -52,11 +38,7 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 		if (((t_sphere *)xs->object->obj)->bumped == true)
 			c->l.normal_vec = get_bump_normal_sphere(&(c->l.normal_vec), ((t_sphere *)xs->object->obj));
 	}
-
-
 	
-	// if (vector_dot(c->l.eyev, c->l.normal_vec) < 0.0)
-	// 	c->l.normal_vec = tuple_negate(c->l.normal_vec);
 	c->l.spotlights = c->spotlights;
 	c->l.in_shadow = render->in_shadow;
 	color = lighting(&c->l, (t_light *)tmp->content, c);

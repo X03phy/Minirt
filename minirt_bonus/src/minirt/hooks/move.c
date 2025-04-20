@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maecarva <maecarva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:20:33 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/19 17:24:28 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/20 11:51:41 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	move_cam_vec(t_config *config, int keycode)
 
 	rot = NULL;
 	if (keycode == UP)
-		rot = matrix_rotate_x(-M_PI / 12);
+		rot = matrix_rotate_x(-M_PI / ROTATION_SPEED);
 	else if (keycode == DOWN)
-		rot = matrix_rotate_x(M_PI / 12);
+		rot = matrix_rotate_x(M_PI / ROTATION_SPEED);
 	else if (keycode == RIGHT)
 		rot = matrix_rotate_y(M_PI / ROTATION_SPEED);
 	else if (keycode == LEFT)
