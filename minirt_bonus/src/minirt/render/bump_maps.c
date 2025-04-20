@@ -6,41 +6,40 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:56:14 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/20 12:57:31 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 15:36:27 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
 #include <math.h>
 
-static t_tuple    int_to_normal(int color)
+static t_tuple	int_to_normal(int color)
 {
-    t_tuple    normal;
+	t_tuple	normal;
 
 	normal.x = (color >> 16) & 0xFF;
 	normal.y = (color >> 8) & 0xFF;
 	normal.z = (color) & 0xFF;
-
-    normal.x = normal.x / 255.0;
-    normal.y = normal.y / 255.0;
-    normal.z = normal.z / 255.0;
-    normal.w = 0;
-    return (vector_normalize(normal));
+	normal.x = normal.x / 255.0;
+	normal.y = normal.y / 255.0;
+	normal.z = normal.z / 255.0;
+	normal.w = 0;
+	return (vector_normalize(normal));
 }
 
-t_tuple get_ref_vector(t_tuple *n)
+t_tuple	get_ref_vector(t_tuple *n)
 {
-    int sign;
+	int	sign;
 
-    if (fabs(n->y) > 0.999)
-    {
-        if (n->y < 0)
-            sign = -1;
-        else
-            sign = 1;
-        return (vector_create(0, 0, sign));
-    }
-    return (vector_create(0, 1, 0));
+	if (fabs(n->y) > 0.999)
+	{
+		if (n->y < 0)
+			sign = -1;
+		else
+			sign = 1;
+		return (vector_create(0, 0, sign));
+	}
+	return (vector_create(0, 1, 0));
 }
 
 int	get_bump_color_sphere(t_sphere *s, t_tuple *n)
@@ -59,20 +58,23 @@ int	get_bump_color_sphere(t_sphere *s, t_tuple *n)
 	return (colorbump);
 }
 
-t_tuple get_bump_normal_sphere(t_tuple *n, t_sphere *s)
+t_tuple	get_bump_normal_sphere(t_tuple *n, t_sphere *s)
 {
-    t_tuple c = int_to_normal(get_bump_color_sphere(s, n));
-    
-    t_tuple ref_vec = get_ref_vector(n);
-    
-    t_tuple t = vector_normalize(vector_cross_product(ref_vec, c));
-    t_tuple b =  vector_normalize(vector_cross_product(c, t));
+	t_tuple	c;
+	t_tuple	ref_vec;
+	t_tuple	t;
+	t_tuple	b;
+	t_tuple	new_normal;
 
-    t_tuple new_normal = vector_create(0, 0, 0);
-    new_normal.x = t.x * c.x + b.x * c.y + n->x * c.z;
-    new_normal.y = t.y * c.x + b.y * c.y + n->y * c.z;
-    new_normal.z = t.z * c.x + b.z * c.y + n->z * c.z;
-    return (vector_normalize(new_normal));
+	c = int_to_normal(get_bump_color_sphere(s, n));
+	ref_vec = get_ref_vector(n);
+	t = vector_normalize(vector_cross_product(ref_vec, c));
+	b = vector_normalize(vector_cross_product(c, t));
+	new_normal = vector_create(0, 0, 0);
+	new_normal.x = t.x * c.x + b.x * c.y + n->x * c.z;
+	new_normal.y = t.y * c.x + b.y * c.y + n->y * c.z;
+	new_normal.z = t.z * c.x + b.z * c.y + n->z * c.z;
+	return (vector_normalize(new_normal));
 }
 
 // tangent space to world: n, normal dans la teture,

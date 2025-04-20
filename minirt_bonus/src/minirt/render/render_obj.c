@@ -6,95 +6,12 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 09:23:47 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/20 12:53:56 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 15:24:04 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
 #include <pthread.h>
-
-int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
-{
-	t_tuple	color;
-	t_list	*tmp;
-	float	intensity;
-
-	color = tuple_create(0, 0, 0, 0);
-	tmp = c->spotlights;
-	intensity = 1.0;
-	ft_bzero(&c->l, sizeof(t_lighting));
-
-	
-	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
-		((t_sphere *)xs->object->obj)->center));
-
-
-	c->l.eyev = tuple_negate(render->ray.direction);
-	c->l.p = render->x_point;
-	c->l.m = ((t_sphere *)xs->object->obj)->material;
-
-	if (((t_sphere *)xs->object->obj)->textured == true)
-	{
-		c->l.m.color = int_to_color(get_texture_color_sphere(c, ((t_sphere *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
-		if (((t_sphere *)xs->object->obj)->bumped == true)
-			c->l.normal_vec = get_bump_normal_sphere(&(c->l.normal_vec), ((t_sphere *)xs->object->obj));
-	}
-	
-	c->l.spotlights = c->spotlights;
-	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, (t_light *)tmp->content, c);
-	tmp = tmp->next;
-	while (tmp)
-	{
-		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
-		tmp = tmp->next;
-	}
-	if (((t_sphere *)xs->object->obj)->checked == true)
-	{
-		// pthread_mutex_lock(&c->write_mut);
-		xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
-		// pthread_mutex_unlock(&c->write_mut);
-		intensity = define_intensity(xs->object->pattern);
-	}
-	color = tuple_multiply(color, intensity);
-	return (color_to_int(color));
-}
-
-int	render_plane(t_config *c, t_intersection *xs, t_render *render)
-{
-	t_tuple	color;
-	float	intensity;
-	t_list	*tmp;
-
-	intensity = 1.0;
-	color = tuple_create(0, 0, 0, 0);
-	tmp = c->spotlights;
-	ft_bzero(&c->l, sizeof(t_lighting));
-	c->l.normal_vec = ((t_plane *)xs->object->obj)->orientation_vec;
-	c->l.eyev = tuple_negate(render->ray.direction);
-	c->l.p = render->x_point;
-	c->l.m = ((t_plane *)xs->object->obj)->material;
-
-	if (((t_plane *)xs->object->obj)->textured == true)
-		c->l.m.color = int_to_color(get_texture_color_plane(c, ((t_plane *)xs->object->obj), &render->x_point, &(c->l.normal_vec)));
-
-	c->l.spotlights = c->spotlights;
-	c->l.in_shadow = render->in_shadow;
-	color = lighting(&c->l, (t_light *)tmp->content, c);
-	tmp = tmp->next;
-	while (tmp)
-	{
-		color = tuple_add(color, lighting(&c->l, (t_light *)tmp->content, c));
-		tmp = tmp->next;
-	}
-	if (((t_plane *)xs->object->obj)->checked == true)
-	{
-		xs->object->pattern = pattern_plane_checkerboard(&(render->x_point), &(c->l.normal_vec));
-		intensity = define_intensity(xs->object->pattern);
-	}
-	color = tuple_multiply(color, intensity);
-	return (color_to_int(color));
-}
 
 int	render_cylinder(t_config *c, t_intersection *xs, t_render *render)
 {
@@ -151,19 +68,21 @@ int	render_disk(t_config *c, t_intersection *xs, t_render *render)
 
 t_tuple	cone_normal_at(t_cone *cone, t_tuple point)
 {
-	t_tuple	apex_to_point = tuple_substitute(point, cone->summit); // v = P - C
-	double	proj_len = vector_dot(apex_to_point, cone->orientation_vec); // projection de v sur l'axe
-	t_tuple	proj = tuple_multiply(cone->orientation_vec, proj_len); // projection vectorielle
-	t_tuple	ortho = tuple_substitute(apex_to_point, proj); // composante radiale
+	t_tuple	apex_to_point;
+	double	proj_len;
+	t_tuple	proj;
+	t_tuple	ortho;
+	t_tuple	n;
 
-	// tan²(angle) pour ajuster l'étirement de la normale
-	double	k = tan(cone->angle);
-	t_tuple	n = vector_normalize(tuple_substitute(ortho, tuple_multiply(cone->orientation_vec, proj_len * k * k)));
-
-	// Si le point est sur la nappe "inversée", la normale doit pointer dans l'autre sens
+	apex_to_point = tuple_substitute(point, cone->summit);
+	proj_len = vector_dot(apex_to_point, cone->orientation_vec);
+	proj = tuple_multiply(cone->orientation_vec, proj_len);
+	ortho = tuple_substitute(apex_to_point, proj);
+	n = vector_normalize(tuple_substitute(ortho,
+				tuple_multiply(cone->orientation_vec,
+					proj_len * pow(tan(cone->angle), 2))));
 	if (proj_len < 0)
 		n = tuple_negate(n);
-
 	return (n);
 }
 
@@ -175,7 +94,8 @@ int	render_cone(t_config *c, t_intersection *xs, t_render *render)
 	ft_bzero(&c->l, sizeof(t_lighting));
 	color = tuple_create(0, 0, 0, 0);
 	tmp = c->spotlights;
-	c->l.normal_vec = cone_normal_at((t_cone *)xs->object->obj, render->x_point);
+	c->l.normal_vec = cone_normal_at((t_cone *)xs->object->obj,
+			render->x_point);
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_cone *)xs->object->obj)->material;

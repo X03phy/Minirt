@@ -6,7 +6,7 @@
 #    By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 16:45:30 by ebonutto          #+#    #+#              #
-#    Updated: 2025/04/19 17:21:49 by maecarva         ###   ########.fr        #
+#    Updated: 2025/04/20 15:22:15 by ebonutto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCUTILS = minirt/utils/utils.c
 
 SRCRENDER = minirt/render/render.c \
 			minirt/render/render_obj.c \
+			minirt/render/render_obj2.c \
 			minirt/render/pattern.c \
 			minirt/render/textures.c \
 			minirt/render/bump_maps.c \
