@@ -12,31 +12,52 @@
 
 #include "../../../../include/minirt.h"
 
-static bool	get_texture_sphere(t_config *c, t_sphere *s, char **infos)
+static bool	get_texture_sphere(t_config *c, t_sphere *s,
+				char **infos, char **tmp)
 {
-	char	*tmp;
-
-	tmp = ft_strchr(infos[8], ':');
-	if (!tmp)
+	*tmp = ft_strchr(infos[8], ':');
+	if (!*tmp)
 		return (false);
-	tmp = ft_strdup(tmp + 1);
-	if (!tmp || ft_strlen(tmp) == 0)
-		return (free(tmp), false);
+	*tmp = ft_strdup(*tmp + 1);
+	if (!*tmp || ft_strlen(*tmp) == 0)
+		return (free(*tmp), false);
 	s->textured = true;
-	s->texture_name = tmp;
+	s->texture_name = *tmp;
 	s->texture.img = mlx_xpm_file_to_image(c->mlx,
-			tmp, &s->texture.imgw, &s->texture.imgh);
+			*tmp, &s->texture.imgw, &s->texture.imgh);
 	if (!s->texture.img)
-		return (free(tmp), false);
+		return (free(*tmp), false);
 	s->texture.addr = mlx_get_data_addr(s->texture.img,
 			&s->texture.bits_per_pixels,
 			&s->texture.line_len, &s->texture.endian);
 	if (!s->texture.addr)
-		return (free(tmp), false);
+		return (free(*tmp), false);
 	if (infos[9] == NULL)
 		return (true);
+	return (true);
+}
 
+static bool	get_bump_sphere(t_config *c, t_sphere *s, char **infos, char **tmp)
+{
+	char	*tmp2;
 
+	tmp2 = ft_strchr(infos[9], ':');
+	if (!tmp2)
+		return (false);
+	tmp2 = ft_strdup(tmp2 + 1);
+	if (!tmp2 || ft_strlen(tmp2) == 0)
+		return (free(tmp2), free(*tmp), false);
+	s->bumped = true;
+	s->bump_name = tmp2;
+	s->bump.img = mlx_xpm_file_to_image(
+			c->mlx, tmp2, &s->bump.imgw, &s->bump.imgh);
+	if (!s->bump.img)
+		return (free(tmp2), free(*tmp), false);
+	s->bump.addr = mlx_get_data_addr(s->bump.img,
+			&s->bump.bits_per_pixels,
+			&s->bump.line_len, &s->bump.endian);
+	if (!s->bump.addr)
+		return (free(tmp2), free(*tmp), false);
 	return (true);
 }
 
@@ -51,44 +72,14 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 		s->checked = true;
 	else if (ft_strnstr(infos[8], "text", ft_strlen(infos[8])) == infos[8])
 	{
-		tmp = ft_strchr(infos[8], ':');
-		if (!tmp)
+		if (get_texture_sphere(c, s, infos, &tmp) == false)
 			return (false);
-		tmp = ft_strdup(tmp + 1);
-		if (!tmp || ft_strlen(tmp) == 0)
-			return (free(tmp), false);
-		s->textured = true;
-		s->texture_name = tmp;
-		s->texture.img = mlx_xpm_file_to_image(c->mlx,
-				tmp, &s->texture.imgw, &s->texture.imgh);
-		if (!s->texture.img)
-			return (free(tmp), false);
-		s->texture.addr = mlx_get_data_addr(s->texture.img,
-				&s->texture.bits_per_pixels,
-				&s->texture.line_len, &s->texture.endian);
-		if (!s->texture.addr)
-			return (free(tmp), false);
 		if (infos[9] == NULL)
 			return (true);
 		if (ft_strnstr(infos[9], "bump", ft_strlen(infos[9])) == infos[9])
 		{
-			tmp2 = ft_strchr(infos[9], ':');
-			if (!tmp2)
-				return (false);
-			tmp2 = ft_strdup(tmp2 + 1);
-			if (!tmp2 || ft_strlen(tmp2) == 0)
-				return (free(tmp2), free(tmp), false);
-			s->bumped = true;
-			s->bump_name = tmp2;
-			s->bump.img = mlx_xpm_file_to_image(
-					c->mlx, tmp2, &s->bump.imgw, &s->bump.imgh);
-			if (!s->bump.img)
-				return (free(tmp2), free(tmp), false);
-			s->bump.addr = mlx_get_data_addr(s->bump.img,
-					&s->bump.bits_per_pixels,
-					&s->bump.line_len, &s->bump.endian);
-			if (!s->bump.addr)
-				return (free(tmp2), free(tmp), false);
+			if (get_bump_sphere(c, s, infos, &tmp) == false)
+				return (mlx_destroy_image(c->mlx, s->texture.img), false);
 		}
 		else
 			return (free(tmp2),
@@ -97,7 +88,6 @@ static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 	else
 		return (false);
 	return (true);
-	(void)c;
 }
 
 static bool	fill_sphere(t_config *c, char **infos, t_object_node *node)

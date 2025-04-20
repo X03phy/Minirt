@@ -48,6 +48,5 @@ t_color	lighting(t_lighting *l, t_light *light, t_config *c)
 	calculate_diff_spec(l);
 	if (in_shadow)
 		return (l->ambient);
-		
 	return (tuple_add(tuple_add(l->ambient, l->diffuse), l->specular));
 }
