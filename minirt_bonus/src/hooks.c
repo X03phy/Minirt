@@ -34,6 +34,12 @@ int	keys(int keycode, t_config *config)
 	return (0);
 }
 
+int	keysimple(int keycode, t_config *config)
+{
+	if (keycode == ESCKEY)
+		clean_exit(config);
+	return (0);
+}
 int	mouse_hook(int button, int x, int y, t_config *config)
 {
 	if (button == 1)
@@ -44,9 +50,12 @@ int	mouse_hook(int button, int x, int y, t_config *config)
 	(void)config;
 }
 
-void	install_hooks(t_config *config)
+void	install_hooks(t_config *config, bool multi)
 {
 	mlx_hook(config->mlx_win, DESTROY_WINDOW, 0L, &cross, config);
-	mlx_hook(config->mlx_win, EVENT_KEYPRESS, (1L << 0), keys, config);
+	if (multi)
+		mlx_hook(config->mlx_win, EVENT_KEYPRESS, (1L << 0), keys, config);
+	else
+		mlx_hook(config->mlx_win, EVENT_KEYPRESS, (1L << 0), keysimple, config);
 	mlx_hook(config->mlx_win, 4, (1L << 2), &mouse_hook, config);
 }

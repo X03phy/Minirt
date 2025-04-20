@@ -47,7 +47,6 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	ft_bzero(&c->l, sizeof(t_lighting));
 	c->l.normal_vec = vector_normalize(tuple_substitute(render->x_point,
 				((t_sphere *)xs->object->obj)->center));
-	c->l.geo_normal_vec = c->l.normal_vec;
 	c->l.eyev = tuple_negate(render->ray.direction);
 	c->l.p = render->x_point;
 	c->l.m = ((t_sphere *)xs->object->obj)->material;

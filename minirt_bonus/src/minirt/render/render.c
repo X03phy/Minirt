@@ -90,7 +90,15 @@ void	render_loop(t_config *c, t_render *render)
 }
 
 void	render(t_config *c)
-{
+{	
+	if (c->img.img)
+		mlx_destroy_image(c->mlx, c->img.img);
+	if (c->mlx_win == NULL)
+		c->mlx_win = mlx_new_window(c->mlx, WINW, WINH, "MiniRT");
+	c->img.img = mlx_new_image(c->mlx, WINW, WINH);
+	c->img.addr = mlx_get_data_addr(c->img.img,
+			&c->img.bits_per_pixels,
+			&c->img.line_len, &c->img.endian);
 	if (init_render(c, &c->render) == false)
 		return ;
 	c->render.forward = vector_normalize(c->camera->orientation_vec);
@@ -106,4 +114,5 @@ void	render(t_config *c)
 				c->render.forward));
 	c->render.up = tuple_multiply(c->render.up, -1);
 	render_loop(c, &c->render);
+	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 }
