@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../../include/minirt.h"
+#include <pthread.h>
 
 int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 {
@@ -68,7 +69,9 @@ int	render_sphere(t_config *c, t_intersection *xs, t_render *render)
 	}
 	if (((t_sphere *)xs->object->obj)->checked == true)
 	{
+		// pthread_mutex_lock(&c->write_mut);
 		xs->object->pattern = pattern_sphere_checkerboard(&(render->x_point), &(c->l.normal_vec));
+		// pthread_mutex_unlock(&c->write_mut);
 		intensity = define_intensity(xs->object->pattern);
 	}
 	color = tuple_multiply(color, intensity);

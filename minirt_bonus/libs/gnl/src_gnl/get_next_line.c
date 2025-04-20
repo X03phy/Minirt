@@ -114,7 +114,7 @@ int	get_next_line(int fd, char **line)
 	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
-		return (EXIT_FAILURE);
+		return (ft_free_all(&buffer, NULL), EXIT_FAILURE);
 	if (line && (*line))
 		ft_free_all(NULL, line);
 	if (!buffer)
