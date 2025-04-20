@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/20 12:29:42 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 17:46:36 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_lighting
 	t_light		l;
 	t_tuple		p;
 	t_tuple		eyev;
+	t_tuple		geo_normal_vec;
 	t_tuple		normal_vec;
 	bool		in_shadow;
 	t_list		*spotlights;

@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:56:14 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/20 15:36:27 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 16:26:00 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_tuple	get_ref_vector(t_tuple *n)
 {
 	int	sign;
 
-	if (fabs(n->y) > 0.999)
+	if (fabs(n->y) == 1)
 	{
 		if (n->y < 0)
 			sign = -1;
