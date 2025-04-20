@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:56:14 by ebonutto          #+#    #+#             */
-/*   Updated: 2025/04/18 18:42:30 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:57:31 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static t_tuple    int_to_normal(int color)
 	normal.y = (color >> 8) & 0xFF;
 	normal.z = (color) & 0xFF;
 
-    normal.x = normal.x / 255.0 + 1;
-    normal.y = normal.y / 255.0 + 1;
-    normal.z = normal.z / 255.0 + 1;
+    normal.x = normal.x / 255.0;
+    normal.y = normal.y / 255.0;
+    normal.z = normal.z / 255.0;
     normal.w = 0;
-    return (normal );
+    return (vector_normalize(normal));
 }
 
 t_tuple get_ref_vector(t_tuple *n)
@@ -59,18 +59,14 @@ int	get_bump_color_sphere(t_sphere *s, t_tuple *n)
 	return (colorbump);
 }
 
-// t_tuple cn = vector_normalize(int_to_normal(get_bump_color_sphere(c, ((t_sphere *)xs->object->obj),
-// &render->x_point, &c.l.normal_vec)));
-
 t_tuple get_bump_normal_sphere(t_tuple *n, t_sphere *s)
 {
     t_tuple c = int_to_normal(get_bump_color_sphere(s, n));
     
     t_tuple ref_vec = get_ref_vector(n);
     
-    t_tuple t = vector_normalize(tuple_multiply(vector_cross_product(ref_vec, c), 1));
-    t_tuple b =  vector_normalize(tuple_multiply(vector_cross_product(c, t), 1));
-    // et on a deja n donc hassoul
+    t_tuple t = vector_normalize(vector_cross_product(ref_vec, c));
+    t_tuple b =  vector_normalize(vector_cross_product(c, t));
 
     t_tuple new_normal = vector_create(0, 0, 0);
     new_normal.x = t.x * c.x + b.x * c.y + n->x * c.z;

@@ -1,5 +1,7 @@
 A	1										255,255,255
-C	0,0.5,-2		0,0,1	70
-L	-5,10,-2	0.7		255,255,255
-sp	0,0,0 0.5								255,0,0 text:../worldColour.5400x2700.xpm
-pl	0,-1,0			0,1,0					255,0,255  text:../textures/venusmap.xpm
+C	0,0,2		0,0,-1	70
+L	0,2,-10	1		255,255,255
+L	2,2,-10	1		255,255,255
+sp	0,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm bump:../2k_earth_normal_map.xpm
+sp	1,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm
+pl	0,-1,0			0,1,0					255,0,255

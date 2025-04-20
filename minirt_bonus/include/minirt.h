@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:59:28 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/19 17:22:54 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:29:42 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,7 @@ int				get_texture_color_sphere(t_config *c, t_sphere *s,
 					t_tuple *x_point, t_tuple *n);
 int				get_texture_color_plane(t_config *c, t_plane *p,
 					t_tuple *x_point, t_tuple *n);
-					
+
 t_tuple			get_bump_normal_sphere(t_tuple *n, t_sphere *s);
 
 // hooks
