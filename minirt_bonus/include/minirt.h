@@ -121,7 +121,6 @@ typedef struct s_lighting
 	t_light		l;
 	t_tuple		p;
 	t_tuple		eyev;
-	t_tuple		geo_normal_vec;
 	t_tuple		normal_vec;
 	bool		in_shadow;
 	t_list		*spotlights;
@@ -186,7 +185,7 @@ typedef struct s_cone_math
 }	t_cone_math;
 
 int				clean_exit(t_config *config);
-void			install_hooks(t_config *config);
+void			install_hooks(t_config *config, bool multi);
 
 // utils
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);

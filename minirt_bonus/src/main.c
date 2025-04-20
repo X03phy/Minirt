@@ -65,7 +65,8 @@ int	main(int ac, char **av)
 	print_tuto();
 	if (!render_multi(c))
 		return (clean_exit(c));
-	install_hooks(c);
+	// render(c);
+	install_hooks(c, true);
 	mlx_loop(c->mlx);
 	return (EXIT_SUCCESS);
 }

@@ -26,7 +26,7 @@ static void	calculate_diff_spec(t_lighting *l)
 		l->diffuse = tuple_mult_tuple(l->m.color, l->light_real_color);
 		l->diffuse = tuple_multiply(l->diffuse,
 				l->m.diffuse * l->light_dot_normal);
-		if (reflect_dot_eye > 0 && lightdir > 0 /* &&  vector_dot(l->lightv, l->geo_normal_vec) >= 0 */)
+		if (reflect_dot_eye > 0 && lightdir > 0)
 		{
 			l->specular = tuple_multiply(point_create(1, 1, 1), l->m.specular
 					* pow(reflect_dot_eye, l->m.shininess));
