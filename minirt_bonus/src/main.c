@@ -27,11 +27,14 @@ void	print_err(t_config *c, char *msg)
 		return ((void)printf("%s\n", msg));
 	if (c->err.line > -1)
 		printf("In scene file : %s\n", c->av[1]);
-	if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0
-		|| ft_strcmp(INVALID_NUMBER, c->err.msg) == 0)
-		printf(c->err.msg, c->err.line);
-	else
-		printf(c->err.msg, c->av[1]);
+	if (c->err.msg)
+	{
+		if (ft_strcmp(INVALID_OBJECT, c->err.msg) == 0
+			|| ft_strcmp(INVALID_NUMBER, c->err.msg) == 0)
+			printf(c->err.msg, c->err.line);
+		else
+			printf(c->err.msg, c->av[1]);
+	}
 }
 
 void	print_tuto(void)
@@ -46,21 +49,22 @@ int	main(int ac, char **av)
 	c = init_config(ac, av);
 	if (!c)
 		return (perror("Can't initialize config : "), EXIT_FAILURE);
-	if (ac < 2)
+	if (ac != 2)
 		return (ft_help("Invalid number of arguments."),
 			clean_exit(c), EXIT_FAILURE);
 	c->mlx = mlx_init();
 	if (c->mlx == NULL)
 		return (false);
 	if (parse_scene(c, av[1]) == false)
-		return (ft_help("Invalid scene."), clean_exit(c), EXIT_FAILURE);
+		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	check_config(c);
 	if (c->err.msg)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
 	print_tuto();
-	render_multi(c);
+	if (!render_multi(c))
+		return (clean_exit(c));
 	install_hooks(c);
 	mlx_loop(c->mlx);
 	return (EXIT_SUCCESS);

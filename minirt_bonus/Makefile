@@ -12,7 +12,8 @@
 
 NAME = minirt
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -O3 -flto -ffast-math -march=native -pipe -pthread #-fsanitize=address,null
+CFLAGS = -Werror -Wextra -Wall -g3 -pthread #-fsanitize=address,null
+# CFLAGS = -Werror -Wextra -Wall -g3 -pthread -fsanitize=address,null
 
 SRC_PATH = src/
 OBJ_PATH = obj/

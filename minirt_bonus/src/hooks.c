@@ -21,14 +21,15 @@ int	cross(t_config *config)
 
 int	keys(int keycode, t_config *config)
 {
-	// printf("keycode : %d\n", keycode);
 	if (keycode == ESCKEY)
 		clean_exit(config);
 	else if (keycode == P)
 		print_config(config);
-	else if (keycode == A || keycode == W || keycode == S || keycode == D || keycode == SPACE || keycode == CTRL)
+	else if (keycode == A || keycode == W || keycode == S
+		|| keycode == D || keycode == SPACE || keycode == CTRL)
 		move_cam(config, keycode);
-	else if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
+	else if (keycode == UP || keycode == DOWN
+		|| keycode == LEFT || keycode == RIGHT)
 		move_cam_vec(config, keycode);
 	return (0);
 }

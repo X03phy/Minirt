@@ -20,11 +20,6 @@
 #include "../../../../libs/minilibx-linux/mlx.h"
 #include <math.h>
 
-// t_config	*dup_config(t_config *c)
-// {
-//
-// }
-
 bool	clean_threads(t_config *c, t_multi **multi)
 {
 	pthread_mutex_destroy(&c->config_mut);
@@ -62,29 +57,34 @@ static void	hit_that2(t_config *c, t_render *render, int x, int y, t_multi *thda
 {
 	t_intersection	*xs;
 	int				color;
-	t_config		configdup;
+	// t_config		configdup;
 
-	ft_memcpy(&configdup, c, sizeof(t_config));
+	// pthread_mutex_lock(thdata->config_mut);
+	// ft_memcpy(&configdup, c, sizeof(t_config));
+	// pthread_mutex_unlock(thdata->config_mut);
 	color = 0;
-	xs = hit(&configdup, render->ray, thdata);
+	xs = hit(&thdata->config, render->ray, thdata);
 	if (xs)
 	{
 		render->x_point = ray_position(render->ray, xs->t);
 		if (xs->object->type == SPHERE)
-			color = render_sphere(&configdup, xs, render);
+		{
+			color = render_sphere(&thdata->config, xs, render);
+		}
 		else if (xs->object->type == PLANE)
-			color = render_plane(&configdup, xs, render);
+			color = render_plane(&thdata->config, xs, render);
 		else if (xs->object->type == CYLINDER)
-			color = render_cylinder(&configdup, xs, render);
+			color = render_cylinder(&thdata->config, xs, render);
 		else if (xs->object->type == DISK)
-			color = render_disk(&configdup, xs, render);
+			color = render_disk(&thdata->config, xs, render);
 		else if (xs->object->type == CONE)
-			color = render_cone(&configdup, xs, render);
+			color = render_cone(&thdata->config, xs, render);
 		pthread_mutex_lock(thdata->config_mut);
-		my_mlx_pixel_put(&c->img, x, y, color);
+		my_mlx_pixel_put(&thdata->config.img, x, y, color);
 		pthread_mutex_unlock(thdata->config_mut);
 		free(xs);
 	}
+	(void)c;
 }
 
 static void	*render_loop2(void *thread_data)
@@ -108,12 +108,12 @@ static void	*render_loop2(void *thread_data)
 						tuple_multiply(thdata->render.up, thdata->render.world_y)
 						),
 					tuple_multiply(thdata->render.forward, thdata->render.dist_cam_wall));
-			thdata->render.pixel_world = tuple_add(thdata->config->camera->position,
+			thdata->render.pixel_world = tuple_add(thdata->config.camera->position,
 					thdata->render.pixel_offset);
 			thdata->render.dir = vector_normalize(tuple_substitute(
-						thdata->render.pixel_world, thdata->config->camera->position));
-			thdata->render.ray = ray_create(thdata->config->camera->position, thdata->render.dir);
-			hit_that2(thdata->config, &thdata->render, x, y, thdata);
+						thdata->render.pixel_world, thdata->config.camera->position));
+			thdata->render.ray = ray_create(thdata->config.camera->position, thdata->render.dir);
+			hit_that2(&thdata->config, &thdata->render, x, y, thdata);
 		}
 	}
 	return (NULL);
@@ -133,7 +133,7 @@ bool	render_multi(t_config *c)
 	}
 	ft_bzero(tids, 100);
 	numofcpus = sysconf(_SC_NPROCESSORS_ONLN);
-	// numofcpus = 1;
+	// numofcpus = 2;
 	thread_data = ft_calloc(sizeof(t_multi), numofcpus);
 	if (!thread_data)
 		return (false);
@@ -144,19 +144,6 @@ bool	render_multi(t_config *c)
 			return (false);
 	if (pthread_mutex_init(&c->write_mut, NULL))
 			return (false);
-	for (int i = 0; i < numofcpus; i++) {
-		thread_data[i].idx = i + 1;
-		thread_data[i].config = c;
-		thread_data[i].minpx = (WINH / numofcpus) * i;
-		init_render2(c, &thread_data[i].render);
-		if (WINH % numofcpus && i + 1 == numofcpus)
-			thread_data[i].maxpx = (WINH / numofcpus) * i + (WINH / numofcpus) + (WINH % numofcpus);
-		else
-			thread_data[i].maxpx = (WINH / numofcpus) * i + (WINH / numofcpus);
-		thread_data[i].config_mut = &c->config_mut;
-		thread_data[i].read_mut = &c->read_mut;
-		thread_data[i].write_mut = &c->write_mut;
-	}
 
 	// for (int j = 0; j < numofcpus; j++) {
 	// 	printf("thread num %d will render pixel from %d to %d\n", thread_data[j].idx, thread_data[j].minpx, thread_data[j].maxpx);
@@ -169,8 +156,26 @@ bool	render_multi(t_config *c)
 			&c->img.bits_per_pixels,
 			&c->img.line_len, &c->img.endian);
 
+	for (int i = 0; i < numofcpus; i++) {
+		thread_data[i].idx = i + 1;
+		ft_memcpy(&thread_data[i].config, c, sizeof(t_config));
+		thread_data[i].minpx = (WINH / numofcpus) * i;
+		init_render2(c, &thread_data[i].render);
+		if (WINH % numofcpus && i + 1 == numofcpus)
+			thread_data[i].maxpx = (WINH / numofcpus) * i + (WINH / numofcpus) + (WINH % numofcpus);
+		else
+			thread_data[i].maxpx = (WINH / numofcpus) * i + (WINH / numofcpus);
+		thread_data[i].config_mut = &c->config_mut;
+		thread_data[i].read_mut = &c->read_mut;
+		thread_data[i].write_mut = &c->write_mut;
+	}
+
 	for (int k = 0; k < numofcpus; k++) {
-		pthread_create(&tids[k], NULL, render_loop2, (void *)&thread_data[k]);
+		if (pthread_create(&tids[k], NULL, render_loop2, (void *)&thread_data[k]))
+		{
+			printf("Cant create threads.\n");
+			return (clean_threads(c, &thread_data), false);
+		}
 	}
 
 	for (int m = 0; m < numofcpus; m++) {

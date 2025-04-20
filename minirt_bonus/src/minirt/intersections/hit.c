@@ -31,7 +31,8 @@ static void	hit_loop_result(t_intersection	*result, t_list *tmp,
 	}
 }
 
-static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r, t_multi *thdata)
+static void	hit_loop(t_intersection	*result, t_list *tmp,
+				t_ray r, t_multi *thdata)
 {
 	bool		intersection_found;
 	t_cylinder	*cylinder;
@@ -48,7 +49,6 @@ static void	hit_loop(t_intersection	*result, t_list *tmp, t_ray r, t_multi *thda
 	else if (((t_object_node *)tmp->content)->type == CYLINDER)
 	{
 		cylinder = (t_cylinder *)(((t_object_node *)(tmp->content))->obj);
-		cylinder->orientation_vec = vector_normalize(cylinder->orientation_vec);
 		intersection_found = ray_cylinder_intersection(cylinder, r, &t);
 	}
 	else if (((t_object_node *)tmp->content)->type == DISK)

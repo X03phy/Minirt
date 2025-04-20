@@ -29,7 +29,6 @@ t_intersection	*test_ray_for_pixel(t_config *c, int x, int y)
 				c->render.pixel_world, c->camera->position));
 	c->render.ray = ray_create(c->camera->position, c->render.dir);
 	return (hit(c, c->render.ray, NULL));
-
 }
 
 void	print_obj_infos(t_intersection *xs)
@@ -76,8 +75,8 @@ void	gen_ray(t_config *c, int x, int y, bool printinfos)
 	if (xs)
 	{
 		printf(GRN"Intersection found for pixel at %d:%d.\n"RESET, x, y);
-		// if (printinfos)
-		// 	print_obj_infos(xs);
+		if (printinfos)
+			print_obj_infos(xs);
 		simulate_render(c, xs);
 		free(xs);
 	}

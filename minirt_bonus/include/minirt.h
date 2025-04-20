@@ -38,7 +38,7 @@
 # define SCENE_TYPE_NUM 7
 # define WINH 1000
 # define WINW 1000
-# define ROTATION_SPEED 500
+# define ROTATION_SPEED 12
 # define MOVEMENT_SPEED 0.2
 
 // errors messages
@@ -161,7 +161,7 @@ typedef struct s_multi
 	int				idx;
 	int				minpx;
 	int				maxpx;
-	t_config		*config;
+	t_config		config;
 	t_render		render;
 	pthread_mutex_t	*config_mut;
 	pthread_mutex_t	*read_mut;

@@ -12,6 +12,34 @@
 
 #include "../../../../include/minirt.h"
 
+static bool	get_texture_sphere(t_config *c, t_sphere *s, char **infos)
+{
+	char	*tmp;
+
+	tmp = ft_strchr(infos[8], ':');
+	if (!tmp)
+		return (false);
+	tmp = ft_strdup(tmp + 1);
+	if (!tmp || ft_strlen(tmp) == 0)
+		return (free(tmp), false);
+	s->textured = true;
+	s->texture_name = tmp;
+	s->texture.img = mlx_xpm_file_to_image(c->mlx,
+			tmp, &s->texture.imgw, &s->texture.imgh);
+	if (!s->texture.img)
+		return (free(tmp), false);
+	s->texture.addr = mlx_get_data_addr(s->texture.img,
+			&s->texture.bits_per_pixels,
+			&s->texture.line_len, &s->texture.endian);
+	if (!s->texture.addr)
+		return (free(tmp), false);
+	if (infos[9] == NULL)
+		return (true);
+
+
+	return (true);
+}
+
 static bool	handle_more_args_sphere(t_config *c, char **infos, t_sphere *s)
 {
 	char	*tmp;

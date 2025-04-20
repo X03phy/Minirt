@@ -12,6 +12,30 @@
 
 #include "../../../../include/minirt.h"
 
+static bool	get_texture_plane(t_config *c, t_plane *p, char **infos)
+{
+	char	*tmp;
+
+	tmp = ft_strchr(infos[10], ':');
+	if (!tmp)
+		return (false);
+	tmp = ft_strdup(tmp + 1);
+	if (!tmp || ft_strlen(tmp) == 0)
+		return (free(tmp), false);
+	p->textured = true;
+	p->texture_name = tmp;
+	p->texture.img = mlx_xpm_file_to_image(c->mlx,
+			tmp, &p->texture.imgw, &p->texture.imgh);
+	if (!p->texture.img)
+		return (free(tmp), false);
+	p->texture.addr = mlx_get_data_addr(p->texture.img,
+			&p->texture.bits_per_pixels,
+			&p->texture.line_len, &p->texture.endian);
+	if (!p->texture.addr)
+		return (free(tmp), false);
+	return (true);
+}
+
 static bool	handle_more_args_plane(t_config *c, char **infos, t_plane *p)
 {
 	char	*tmp;
@@ -21,22 +45,7 @@ static bool	handle_more_args_plane(t_config *c, char **infos, t_plane *p)
 		p->checked = true;
 	else if (ft_strnstr(infos[10], "text", ft_strlen(infos[10])) == infos[10])
 	{
-		tmp = ft_strchr(infos[10], ':');
-		if (!tmp)
-			return (false);
-		tmp = ft_strdup(tmp + 1);
-		if (!tmp || ft_strlen(tmp) == 0)
-			return (free(tmp), false);
-		p->textured = true;
-		p->texture_name = tmp;
-		p->texture.img = mlx_xpm_file_to_image(c->mlx,
-				tmp, &p->texture.imgw, &p->texture.imgh);
-		if (!p->texture.img)
-			return (false);
-		p->texture.addr = mlx_get_data_addr(p->texture.img,
-				&p->texture.bits_per_pixels,
-				&p->texture.line_len, &p->texture.endian);
-		if (!p->texture.addr)
+		if (!get_texture_plane(c, p, infos))
 			return (false);
 	}
 	else
