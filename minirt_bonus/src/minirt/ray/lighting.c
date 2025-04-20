@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:30:34 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/20 14:31:11 by ebonutto         ###   ########.fr       */
+/*   Updated: 2025/04/20 17:50:51 by ebonutto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ static void	calculate_diff_spec(t_lighting *l)
 {
 	t_tuple	reflectv;
 	double	reflect_dot_eye;
+	double	lightdir;
 
 	if (l->light_dot_normal >= 0)
 	{
+		reflectv = vector_reflect(tuple_negate(l->lightv), l->normal_vec);
+		reflect_dot_eye = vector_dot(reflectv, l->eyev);
+		lightdir = vector_dot(reflectv, l->lightv);
 		l->diffuse = tuple_mult_tuple(l->m.color, l->light_real_color);
 		l->diffuse = tuple_multiply(l->diffuse,
 				l->m.diffuse * l->light_dot_normal);
-		reflectv = vector_reflect(tuple_negate(l->lightv), l->normal_vec);
-		reflect_dot_eye = vector_dot(reflectv, l->eyev);
-		if (reflect_dot_eye > 0)
+		if (reflect_dot_eye > 0 && lightdir > 0 /* &&  vector_dot(l->lightv, l->geo_normal_vec) >= 0 */)
 		{
 			l->specular = tuple_multiply(point_create(1, 1, 1), l->m.specular
 					* pow(reflect_dot_eye, l->m.shininess));
