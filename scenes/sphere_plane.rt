@@ -1,6 +1,6 @@
 A	1										255,255,255
 C	0,0,-3		0,0,1	70
 L	2,2,-6	1		255,255,255
-sp	-0.8,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm bump:../textures/Testnormal.xpm
-sp	1,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm
+sp	-0.8,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm bump:../textures/orange.xpm
+#sp	1,0,0 0.5								255,0,0 text:../2k_earth_daymap.xpm
 pl	0,-1,0			0,1,0					255,0,255
