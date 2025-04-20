@@ -6,7 +6,7 @@
 /*   By: ebonutto <ebonutto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:57:10 by maecarva          #+#    #+#             */
-/*   Updated: 2025/04/17 16:10:33 by maecarva         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:01:22 by maecarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	print_err(t_config *c, char *msg)
 		printf(c->err.msg, c->av[1]);
 }
 
+void	print_tuto(void)
+{
+	printf("Move camera : WASD\nTurn camera : arrowkeys\n");
+}
+
 int	main(int ac, char **av)
 {
 	t_config	*c;
@@ -54,7 +59,9 @@ int	main(int ac, char **av)
 		return (print_err(c, NULL), clean_exit(c), EXIT_FAILURE);
 	if (c)
 		print_config(c);
-	render(c);
-	// render_multi(c);
+	print_tuto();
+	render_multi(c);
+	install_hooks(c);
+	mlx_loop(c->mlx);
 	return (EXIT_SUCCESS);
 }
